@@ -13,9 +13,9 @@ final class UIBlockingProgressHUD {
         UIApplication.shared.windows.first
     }
 
-    static func show() {
+    static func show(with message: String? = nil) {
         window?.isUserInteractionEnabled = false
-        ProgressHUD.show()
+        ProgressHUD.show(message)
     }
 
     static func dismiss() {

@@ -33,8 +33,8 @@ final class ShoppingBagViewController: UIViewController {
 }
 
 extension ShoppingBagViewController: ShoppingBagViewInput {
-    func showProgressHUD() {
-        UIBlockingProgressHUD.show()
+    func showProgressHUD(with message: String? = nil) {
+        UIBlockingProgressHUD.show(with: message)
     }
 
     func hideProgressHUD() {

@@ -14,14 +14,22 @@ final class ShoppingBagPresenter {
 
 extension ShoppingBagPresenter: ShoppingBagViewOutput {
     func viewDidLoad() {
-        view?.showProgressHUD()
+        view?.showProgressHUD(with: "Загрузка корзины")
         interactor?.loadShoppingOrder()
     }
 }
 
 extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
     func didLoadShoppingOrder(_ shoppingOrder: ShoppingOrder?) {
-        view?.hideProgressHUD()
         print(shoppingOrder)
+
+        guard let nfts = shoppingOrder?.nfts else { return }
+
+        interactor?.loadNFTs(with: nfts)
+    }
+
+    func didLoadOrders(_ nfts: [NFT]?) {
+        view?.hideProgressHUD()
+        print(nfts)
     }
 }

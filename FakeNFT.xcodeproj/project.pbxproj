@@ -33,6 +33,7 @@
 		6FF2D2BA73DEE7A4D1E75D8A /* ShoppingBagAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */; };
 		AC30C20A583A7C01C69F8EB5 /* ShoppingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */; };
 		B15A0FB5A97872028A7713FE /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */; };
+		B1C009F74AA70BD534A88D2A /* ReferenceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */; };
 		DA1BFAF6C75C2B82D50046D0 /* ShoppingBagViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3D14AAA4C1DE764E495CC0 /* ShoppingBagViewOutput.swift */; };
 		DBA5E96FDAB8286204290B4A /* ShoppingBagViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */; };
 		E5A4D13B6A2C907AFF44F276 /* ShoppingBagInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E6AC50D227FD8CFAE824 /* ShoppingBagInteractor.swift */; };
@@ -89,6 +90,7 @@
 		5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		6C6CD9C8783F99C8323D49D0 /* ShoppingBagPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPresenter.swift; sourceTree = "<group>"; };
 		7F74BE45F354B452EF6EBC02 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
+		99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceWrapper.swift; sourceTree = "<group>"; };
 		B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagAssembly.swift; sourceTree = "<group>"; };
 		BCF19F083FDA850262124F91 /* ShoppingBagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewController.swift; sourceTree = "<group>"; };
 		C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewInput.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */,
+				99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				F6549B40D4AD313E8FAE64BC /* ShoppingBagViewController.swift in Sources */,
 				E81E1BB47021F7EC51A28131 /* NFT.swift in Sources */,
 				B15A0FB5A97872028A7713FE /* UIBlockingProgressHUD.swift in Sources */,
+				B1C009F74AA70BD534A88D2A /* ReferenceWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

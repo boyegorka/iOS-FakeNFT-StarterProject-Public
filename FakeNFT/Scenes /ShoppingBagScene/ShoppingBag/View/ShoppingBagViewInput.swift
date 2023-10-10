@@ -6,6 +6,6 @@
 //
 
 protocol ShoppingBagViewInput: AnyObject {
-    func showProgressHUD()
+    func showProgressHUD(with message: String?)
     func hideProgressHUD()
 }
