@@ -36,4 +36,7 @@ extension UIColor {
     static let textSecondary = UIColor.gray
     static let textOnPrimary = UIColor.white
     static let textOnSecondary = UIColor.black
+    
+    static let backgroundLightGray = UIColor(hexString: "F7F7F8")
+    
 }
