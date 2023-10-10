@@ -22,26 +22,21 @@ final class RatingViewControllerCell: UITableViewCell {
     }()
     
     var userCard: UIView = {
-        let view = UIView()
-        //TODO: 
-        view.backgroundColor = .lightGray
+        let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //TODO: Добавыить цвета
+        view.backgroundColor = UIColor(hexString: "F7F7F8")
         view.layer.cornerRadius = 12
         
         return view
     }()
     
-    var avatar: UIImageView = {
+    var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "person.crop.circle.fill")!)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        imageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-//        imageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-//
-//        imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-//        imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-//
        
         return imageView
     }()
@@ -70,13 +65,39 @@ final class RatingViewControllerCell: UITableViewCell {
         return title
     }()
 
-    func configure(ratingPosition: String, name: String, avatar: UIImage, rating: String) {
-        contentView.addSubview(ratingPosition)
+    func configure(ratingPosition: Int, name: String, avatar: UIImage, rating: Int) {
+        ratingPositionLabel.text = ratingPosition.description
+        nameLabel.text = name
+        ratingLabel.text = rating.description
+        
+        contentView.addSubview(ratingPositionLabel)
         contentView.addSubview(userCard)
-        userCard.addSubview(avatar)
+        avatarView.image = avatar
+        userCard.addSubview(avatarView)
         userCard.addSubview(nameLabel)
         userCard.addSubview(ratingLabel)
         
-        
+        NSLayoutConstraint.activate([
+            ratingPositionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            ratingPositionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            ratingPositionLabel.widthAnchor.constraint(equalToConstant: 27),
+            
+            userCard.leadingAnchor.constraint(equalTo: ratingPositionLabel.trailingAnchor, constant: 8),
+            userCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            userCard.heightAnchor.constraint(equalToConstant: 80),
+            userCard.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            avatarView.heightAnchor.constraint(equalToConstant: 28),
+            avatarView.widthAnchor.constraint(equalToConstant: 28),
+            avatarView.leadingAnchor.constraint(equalTo: userCard.leadingAnchor, constant: 16),
+            avatarView.centerYAnchor.constraint(equalTo: userCard.centerYAnchor),
+            
+            ratingLabel.trailingAnchor.constraint(equalTo: userCard.trailingAnchor, constant: -16),
+            ratingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
+            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: ratingLabel.leadingAnchor, constant: -8),
+            nameLabel.centerYAnchor.constraint(equalTo: userCard.centerYAnchor),
+        ])
     }
 }

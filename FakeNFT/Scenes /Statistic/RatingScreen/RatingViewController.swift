@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 let horizontalPadding: CGFloat = 16
-let rowHeight: CGFloat = 80
+let rowHeight: CGFloat = 88
 
 final class RatingViewController: UIViewController {
     private let cellIdentifier = "cell"
@@ -19,6 +19,8 @@ final class RatingViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "sort"), for: .normal)
         button.backgroundColor = .background
+        
+        button.addTarget(self, action: #selector(didTapSortButton), for: .touchUpInside)
         
         return button
     }()
@@ -33,7 +35,7 @@ final class RatingViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         
-        table.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        table.register(RatingViewControllerCell.self, forCellReuseIdentifier: cellIdentifier)
         
         return table
     }()
@@ -60,6 +62,43 @@ final class RatingViewController: UIViewController {
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
         ])
     }
+    
+    @objc func didTapSortButton() {
+        let nameSort = UIAlertAction(
+            //TODO: add localize
+            //title: NSLocalizedString("main.delete.alert.title", comment: "Заголовок алерта с подтверждением удаления"),
+            title: "По имени",
+            style: .destructive
+        ) {_ in
+           // сортировка по имени
+        }
+        
+        let ratingSort = UIAlertAction(
+            //TODO: add localize
+            title: "По рейтингу",
+            style: .destructive
+        ) {_ in
+           // сортировка по рейтингу
+        }
+        
+        let cancel = UIAlertAction(
+            //TODO: add localize
+            title: "Закрыть",
+            style: .cancel
+        )
+        
+        let alert = UIAlertController(
+            //TODO: добавить локализацию
+            title: "Сортировка",
+            message: "",
+            preferredStyle: .actionSheet)
+        
+        alert.addAction(nameSort)
+        alert.addAction(ratingSort)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+    }
 }
 
 extension RatingViewController: UITableViewDataSource {
@@ -68,21 +107,26 @@ extension RatingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .red
+        let cell = RatingViewControllerCell()
+        
+        let user = getMockUsers()[indexPath.row]
+        cell.configure(ratingPosition: user.ratingPosition, name: user.name, avatar: user.avatar, rating: user.rating)
         
         return cell
     }
 }
 
 extension RatingViewController: UITableViewDelegate {
-    
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 
+}
 
 
 extension RatingViewController {
     struct User {
+        var ratingPosition: Int
         var name: String
         var avatar: UIImage
         var rating: Int
@@ -90,9 +134,9 @@ extension RatingViewController {
 
     func getMockUsers() -> [User] {
         return  [
-            User(name: "Nick", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 12),
-            User(name: "Poul", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 354),
-            User(name: "PO", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 1),
+            User(ratingPosition: 23, name: "Nick", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 12),
+            User(ratingPosition: 1, name: "Poul", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 354),
+            User(ratingPosition: 156, name: "PO", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 1),
         ]
     }
 }
