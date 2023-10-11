@@ -22,6 +22,7 @@ final class OrderCell: UITableViewCell, ReuseIdentifying {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bodyBold
 
         return label
     }()
@@ -37,6 +38,7 @@ final class OrderCell: UITableViewCell, ReuseIdentifying {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Цена"
+        label.font = .bodyRegular
 
         return label
     }()
@@ -44,6 +46,7 @@ final class OrderCell: UITableViewCell, ReuseIdentifying {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bodyBold
 
         return label
     }()

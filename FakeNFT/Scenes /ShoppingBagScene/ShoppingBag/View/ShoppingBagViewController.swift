@@ -22,7 +22,7 @@ final class ShoppingBagViewController: UIViewController {
     private let purchaseContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .backgroundLightGray
+        view.backgroundColor = .ypLightGray
         view.layer.cornerRadius = 12
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.clipsToBounds = true
@@ -33,6 +33,7 @@ final class ShoppingBagViewController: UIViewController {
     private let nftCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .caption1
 
         return label
     }()
@@ -40,6 +41,8 @@ final class ShoppingBagViewController: UIViewController {
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bodyBold
+        label.textColor = .ypGreenUniversal
 
         return label
     }()
@@ -47,19 +50,27 @@ final class ShoppingBagViewController: UIViewController {
     private let purchaseButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("К оплате", for: .normal)
         button.layer.cornerRadius = 16
         button.clipsToBounds = true
         button.backgroundColor = .textPrimary
         button.tintColor = .white
+
+        let title = NSAttributedString(
+            string: "К оплате",
+            attributes: [
+                .font: UIFont.bodyBold
+            ]
+        )
+
+        button.setAttributedTitle(title, for: .normal)
 
         return button
     }()
 
     private var purchaseButtonContainerHeight: NSLayoutConstraint?
 
-    private let nftRemoveView: NFTRemoveView = {
-        let removeView = NFTRemoveView()
+    private let nftPreviewView: NFTPreviewView = {
+        let removeView = NFTPreviewView()
         removeView.translatesAutoresizingMaskIntoConstraints = false
         removeView.alpha = 0
 
@@ -88,7 +99,7 @@ final class ShoppingBagViewController: UIViewController {
 
         setupNavBar()
         setupConstraints()
-        setupNFTRemoveView()
+        setupNFTPreviewView()
 
         output?.viewDidLoad()
     }
@@ -132,18 +143,18 @@ extension ShoppingBagViewController: ShoppingBagViewInput {
     }
 
     func showRemoveNFTAlert(for preview: UIImage) {
-        nftRemoveView.setNFTImagePreview(preview)
+        nftPreviewView.setNFTImagePreview(preview)
 
         UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.nftRemoveView.alpha = 1
+            self?.nftPreviewView.alpha = 1
         }
     }
 }
 
-extension ShoppingBagViewController: NFTRemoveViewDelegate {
+extension ShoppingBagViewController: NFTPreviewViewDelegate {
     func didTapSubmitButton() {
         UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.nftRemoveView.alpha = 0
+            self?.nftPreviewView.alpha = 0
         } completion: { [weak self] isFinished in
             if isFinished {
                 self?.output?.didTapSubmitRemoveNFTButton()
@@ -153,7 +164,7 @@ extension ShoppingBagViewController: NFTRemoveViewDelegate {
 
     func didTapCancelButton() {
         UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.nftRemoveView.alpha = 0
+            self?.nftPreviewView.alpha = 0
         }
     }
 }
@@ -198,20 +209,20 @@ private extension ShoppingBagViewController {
         purchaseButtonContainerHeight?.isActive = true
     }
 
-    func setupNFTRemoveView() {
-        nftRemoveView.delegate = self
+    func setupNFTPreviewView() {
+        nftPreviewView.delegate = self
 
         guard let rootView = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController?.view else {
             return
         }
 
-        rootView.addSubview(nftRemoveView)
+        rootView.addSubview(nftPreviewView)
 
         NSLayoutConstraint.activate([
-            nftRemoveView.topAnchor.constraint(equalTo: rootView.topAnchor),
-            nftRemoveView.leadingAnchor.constraint(equalTo: rootView.leadingAnchor),
-            nftRemoveView.trailingAnchor.constraint(equalTo: rootView.trailingAnchor),
-            nftRemoveView.bottomAnchor.constraint(equalTo: rootView.bottomAnchor),
+            nftPreviewView.topAnchor.constraint(equalTo: rootView.topAnchor),
+            nftPreviewView.leadingAnchor.constraint(equalTo: rootView.leadingAnchor),
+            nftPreviewView.trailingAnchor.constraint(equalTo: rootView.trailingAnchor),
+            nftPreviewView.bottomAnchor.constraint(equalTo: rootView.bottomAnchor),
         ])
     }
 

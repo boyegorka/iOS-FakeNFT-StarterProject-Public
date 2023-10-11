@@ -1,5 +1,5 @@
 //
-//  NFTRemoveView.swift
+//  NFTPreviewView.swift
 //  FakeNFT
 //
 //  Created by Олег Аксененко on 11.10.2023.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol NFTRemoveViewDelegate: AnyObject {
+protocol NFTPreviewViewDelegate: AnyObject {
     func didTapSubmitButton()
     func didTapCancelButton()
 }
 
-final class NFTRemoveView: UIView {
+final class NFTPreviewView: UIView {
     private let blureContainerView: UIVisualEffectView = {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ final class NFTRemoveView: UIView {
         label.numberOfLines = 2
         label.text = "Вы уверены, что хотите удалить объект из корзины?"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 13)
+        label.font = .caption2
 
         return label
     }()
@@ -44,11 +44,19 @@ final class NFTRemoveView: UIView {
     private let submitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Удалить", for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
+
+        let title = NSAttributedString(
+            string: "Удалить",
+            attributes: [
+                .font: UIFont.bodyRegular
+            ]
+        )
+
+        button.setAttributedTitle(title, for: .normal)
 
         return button
     }()
@@ -56,16 +64,24 @@ final class NFTRemoveView: UIView {
     private let cancelButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Вернуться", for: .normal)
         button.setTitleColor(.textOnPrimary, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
 
+        let title = NSAttributedString(
+            string: "Вернуться",
+            attributes: [
+                .font: UIFont.bodyRegular
+            ]
+        )
+
+        button.setAttributedTitle(title, for: .normal)
+
         return button
     }()
 
-    weak var delegate: NFTRemoveViewDelegate?
+    weak var delegate: NFTPreviewViewDelegate?
 
     func setNFTImagePreview(_ preview: UIImage) {
         previewImageView.image = preview
@@ -91,7 +107,7 @@ final class NFTRemoveView: UIView {
     }
 }
 
-private extension NFTRemoveView {
+private extension NFTPreviewView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             blureContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
