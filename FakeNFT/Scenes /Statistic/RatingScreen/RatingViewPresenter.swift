@@ -23,21 +23,6 @@ enum UsersSortOrder: String {
     case desc = "desc"
 }
 
-struct User: Codable {
-    var name: String
-    var avatarUrl: String
-    var description: String
-    var website: String
-    var nfts: [String]
-    var rating: String
-    var id: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id, name, description, website, rating, nfts
-        case avatarUrl = "avatar"
-    }
-}
-
 protocol RatingViewPresenterDelegate: AnyObject {
     func showAlert(msg: String)
     func performBatchUpdates(indexPaths: [IndexPath])

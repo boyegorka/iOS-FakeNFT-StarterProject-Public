@@ -33,6 +33,7 @@
 		4D5902D02AD58557009F3756 /* RatingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902CD2AD58557009F3756 /* RatingViewPresenter.swift */; };
 		4D5902D12AD58557009F3756 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902CE2AD58557009F3756 /* RatingViewController.swift */; };
 		4D5902D42AD6F14F009F3756 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902D32AD6F14F009F3756 /* UIBlockingProgressHUD.swift */; };
+		4D5902DA2AD7225B009F3756 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902D92AD7225B009F3756 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		4D5902CD2AD58557009F3756 /* RatingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewPresenter.swift; sourceTree = "<group>"; };
 		4D5902CE2AD58557009F3756 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		4D5902D32AD6F14F009F3756 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		4D5902D92AD7225B009F3756 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		3F6806C929CBBCAF00B4F915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D5902D82AD72226009F3756 /* Statistic */,
 				3F6806D829CC979D00B4F915 /* Network */,
 			);
 			path = Models;
@@ -294,6 +297,14 @@
 				4D5902D32AD6F14F009F3756 /* UIBlockingProgressHUD.swift */,
 			);
 			path = UIBlockingProgressHUD;
+			sourceTree = "<group>";
+		};
+		4D5902D82AD72226009F3756 /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				4D5902D92AD7225B009F3756 /* User.swift */,
+			);
+			path = Statistic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,6 +463,7 @@
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
+				4D5902DA2AD7225B009F3756 /* User.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				4D5902CF2AD58557009F3756 /* RatingCell.swift in Sources */,
 				4D5902D42AD6F14F009F3756 /* UIBlockingProgressHUD.swift in Sources */,
