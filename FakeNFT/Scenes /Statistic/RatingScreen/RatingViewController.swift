@@ -7,17 +7,34 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 let horizontalPadding: CGFloat = 16
 let rowHeight: CGFloat = 88
 
+let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
+
+protocol RatingViewPresenterProtocol: AnyObject {
+    var users: [User] { get }
+    
+    func setDelegate(delegate: RatingViewPresenterDelegate)
+    func listUsers(sortParameter: UsersSortParameter, sortOrder: UsersSortOrder)
+}
+
 final class RatingViewController: UIViewController {
     private let cellIdentifier = "cell"
+    
+    lazy private var presenter: RatingViewPresenterProtocol = {
+        let defaultNetworkClient = DefaultNetworkClient()
+        presenter = RatingViewPresenter(networkClient: defaultNetworkClient)
+        presenter.setDelegate(delegate: self)
+        return presenter
+    }()
     
     lazy private var sortButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "sort"), for: .normal)
+        button.setImage(UIImage(named: "sortIcon"), for: .normal)
         button.backgroundColor = .background
         
         button.addTarget(self, action: #selector(didTapSortButton), for: .touchUpInside)
@@ -35,7 +52,7 @@ final class RatingViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         
-        table.register(RatingViewControllerCell.self, forCellReuseIdentifier: cellIdentifier)
+        table.register(RatingCell.self, forCellReuseIdentifier: cellIdentifier)
         
         return table
     }()
@@ -47,8 +64,13 @@ final class RatingViewController: UIViewController {
         view.addSubview(table)
         
         setupConstraints()
+        loadUsers()
     }
     
+    func loadUsers() {
+        presenter.listUsers(sortParameter: UsersSortParameter.byRating, sortOrder: UsersSortOrder.asc)
+    }
+        
     func setupConstraints() {
         NSLayoutConstraint.activate([
             sortButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -59,37 +81,32 @@ final class RatingViewController: UIViewController {
             table.topAnchor.constraint(equalTo: sortButton.bottomAnchor, constant: 20),
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
-            table.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
+            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
     @objc func didTapSortButton() {
         let nameSort = UIAlertAction(
-            //TODO: add localize
-            //title: NSLocalizedString("main.delete.alert.title", comment: "Заголовок алерта с подтверждением удаления"),
-            title: "По имени",
+            title: NSLocalizedString("sort.byname", tableName: "RatingScreen", comment: ""),
             style: .destructive
         ) {_ in
            // сортировка по имени
         }
         
         let ratingSort = UIAlertAction(
-            //TODO: add localize
-            title: "По рейтингу",
+            title: NSLocalizedString("sort.byrating", tableName: "RatingScreen", comment: ""),
             style: .destructive
         ) {_ in
            // сортировка по рейтингу
         }
         
         let cancel = UIAlertAction(
-            //TODO: add localize
-            title: "Закрыть",
+            title: NSLocalizedString("sort.close", tableName: "RatingScreen", comment: ""),
             style: .cancel
         )
         
         let alert = UIAlertController(
-            //TODO: добавить локализацию
-            title: "Сортировка",
+            title: NSLocalizedString("sort.title", tableName: "RatingScreen", comment: ""),
             message: "",
             preferredStyle: .actionSheet)
         
@@ -103,18 +120,61 @@ final class RatingViewController: UIViewController {
 
 extension RatingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        getMockUsers().count
+        return presenter.users.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == presenter.users.count - 1 {
+            loadUsers()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = RatingViewControllerCell()
+        let cell = RatingCell()
         
-        let user = getMockUsers()[indexPath.row]
-        cell.configure(ratingPosition: user.ratingPosition, name: user.name, avatar: user.avatar, rating: user.rating)
-        
+        configCell(for: cell, with: indexPath)
         return cell
     }
+    
+    func configCell(for userCell: RatingCell, with indexPath: IndexPath) {
+        if indexPath.row >= presenter.users.count {
+            assertionFailure("configCell: indexPath.row >= users.count")
+            return
+        }
+
+        let imageView = UIImageView()
+        
+        do {
+            try loadImage(
+                to: imageView,
+                url: presenter.users[indexPath.row].avatarUrl
+            ) { result in
+                switch result {
+                case .success(_):
+                    self.table.reloadRows(at: [indexPath], with: .automatic)
+                    
+                    //TODO: ratingPosition не будет работать при сортировке по имени, надо придумать решение
+                    
+                case .failure(let error):
+                    print("load image failed with error: \(error)")
+                    return
+                }
+            }
+        }
+        catch {
+            print("load image failed with error: \(error)")
+            return
+        }
+        
+        userCell.configure(
+            ratingPosition: indexPath.row + 1,
+            name: presenter.users[indexPath.row].name,
+            avatar: imageView.image ?? unknownAvatar!,
+            rating: presenter.users[indexPath.row].rating
+        )
+    }
 }
+
 
 extension RatingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,20 +182,49 @@ extension RatingViewController: UITableViewDelegate {
     }
 }
 
+extension RatingViewController: RatingViewPresenterDelegate {
+    func loadUserStarted() {
+        UIBlockingProgressHUD.show()
+    }
+    
+    func loadUserFinished() {
+        UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showAlert(msg: String) {
+        print("show alert")
+    }
+    
+    func performBatchUpdates(indexPaths: [IndexPath]) {
+        self.table.performBatchUpdates {
+            self.table.insertRows(at: indexPaths, with: .automatic)
+        }
+    }
+}
 
 extension RatingViewController {
-    struct User {
-        var ratingPosition: Int
-        var name: String
-        var avatar: UIImage
-        var rating: Int
-    }
-
-    func getMockUsers() -> [User] {
-        return  [
-            User(ratingPosition: 23, name: "Nick", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 12),
-            User(ratingPosition: 1, name: "Poul", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 354),
-            User(ratingPosition: 156, name: "PO", avatar: UIImage(systemName: "person.crop.circle.fill")!, rating: 1),
-        ]
+    private func loadImage(
+        to imageView: UIImageView,
+        url: String,
+        handler: @escaping(Result<RetrieveImageResult, KingfisherError>) -> Void
+    ) throws {
+        guard let photoURL = URL(string: url) else {
+            //TODO: do something with error
+            print("failed to get avatar")
+            imageView.image = unknownAvatar
+            return
+        }
+        
+        //TODO: пересчитать угол скругления
+        let processor = RoundCornerImageProcessor(cornerRadius: 16)
+        
+        imageView.kf.setImage(
+            with: photoURL,
+            placeholder: UIImage(named: "Stub"),
+            options: [.processor(processor)],
+            completionHandler: {result in
+                handler(result)
+            }
+        )
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class RatingViewControllerCell: UITableViewCell {
+final class RatingCell: UITableViewCell {
     var ratingPositionLabel: UILabel = {
         let title = UILabel()
         //TODO: Добавить шрифт SF Pro Text
@@ -24,8 +24,7 @@ final class RatingViewControllerCell: UITableViewCell {
     var userCard: UIView = {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
         view.translatesAutoresizingMaskIntoConstraints = false
-        //TODO: Добавыить цвета
-        view.backgroundColor = UIColor(hexString: "F7F7F8")
+        view.backgroundColor = .backgroundLightGray
         view.layer.cornerRadius = 12
         
         return view
@@ -65,14 +64,14 @@ final class RatingViewControllerCell: UITableViewCell {
         return title
     }()
 
-    func configure(ratingPosition: Int, name: String, avatar: UIImage, rating: Int) {
+    func configure(ratingPosition: Int, name: String, avatar: UIImage, rating: String) {
         ratingPositionLabel.text = ratingPosition.description
         nameLabel.text = name
-        ratingLabel.text = rating.description
+        ratingLabel.text = rating
+        avatarView.image = avatar
         
         contentView.addSubview(ratingPositionLabel)
         contentView.addSubview(userCard)
-        avatarView.image = avatar
         userCard.addSubview(avatarView)
         userCard.addSubview(nameLabel)
         userCard.addSubview(ratingLabel)
