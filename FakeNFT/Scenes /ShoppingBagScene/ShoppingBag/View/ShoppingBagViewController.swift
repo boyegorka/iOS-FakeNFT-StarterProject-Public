@@ -58,6 +58,14 @@ final class ShoppingBagViewController: UIViewController {
 
     private var purchaseButtonContainerHeight: NSLayoutConstraint?
 
+    private let nftRemoveView: NFTRemoveView = {
+        let removeView = NFTRemoveView()
+        removeView.translatesAutoresizingMaskIntoConstraints = false
+        removeView.alpha = 0
+
+        return removeView
+    }()
+
     func setDataSource(_ dataSource: UITableViewDataSource) {
         nftsTableView.dataSource = dataSource
     }
@@ -80,6 +88,7 @@ final class ShoppingBagViewController: UIViewController {
 
         setupNavBar()
         setupConstraints()
+        setupNFTRemoveView()
 
         output?.viewDidLoad()
     }
@@ -119,6 +128,28 @@ extension ShoppingBagViewController: ShoppingBagViewInput {
 
             purchaseButtonContainerHeight?.constant = 76
             view.layoutSubviews()
+        }
+    }
+
+    func showRemoveNFTAlert(for preview: UIImage) {
+        nftRemoveView.setNFTImagePreview(preview)
+
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.nftRemoveView.alpha = 1
+        }
+    }
+}
+
+extension ShoppingBagViewController: NFTRemoveViewDelegate {
+    func didTapSubmitButton() {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.nftRemoveView.alpha = 0
+        }
+    }
+
+    func didTapCancelButton() {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.nftRemoveView.alpha = 0
         }
     }
 }
@@ -161,6 +192,23 @@ private extension ShoppingBagViewController {
 
         purchaseButtonContainerHeight = purchaseContainer.heightAnchor.constraint(equalToConstant: 0)
         purchaseButtonContainerHeight?.isActive = true
+    }
+
+    func setupNFTRemoveView() {
+        nftRemoveView.delegate = self
+
+        guard let rootView = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController?.view else {
+            return
+        }
+
+        rootView.addSubview(nftRemoveView)
+
+        NSLayoutConstraint.activate([
+            nftRemoveView.topAnchor.constraint(equalTo: rootView.topAnchor),
+            nftRemoveView.leadingAnchor.constraint(equalTo: rootView.leadingAnchor),
+            nftRemoveView.trailingAnchor.constraint(equalTo: rootView.trailingAnchor),
+            nftRemoveView.bottomAnchor.constraint(equalTo: rootView.bottomAnchor),
+        ])
     }
 
     @objc func didTapSortBarButtonItem() {

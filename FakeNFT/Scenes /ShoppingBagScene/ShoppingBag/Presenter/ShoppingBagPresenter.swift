@@ -69,7 +69,11 @@ extension ShoppingBagPresenter: ShoppingBagModule {
                 rating: nft.rating,
                 price: nft.price,
                 imageURL: imageURL
-            )
+            ) { [weak self] cell in
+                guard let self else { return }
+
+                view?.showRemoveNFTAlert(for: cell.previewImage)
+            }
         } ?? []
     }
 }

@@ -12,4 +12,5 @@ struct OrderCellModel {
     let rating: Int
     let price: Double
     let imageURL: URL
+    let removeAction: (OrderCell) -> Void
 }

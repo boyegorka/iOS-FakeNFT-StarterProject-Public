@@ -58,6 +58,12 @@ final class OrderCell: UITableViewCell, ReuseIdentifying {
         return button
     }()
 
+    private var cellModel: OrderCellModel?
+
+    var previewImage: UIImage {
+        previewImageView.image ?? UIImage()
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -86,6 +92,7 @@ final class OrderCell: UITableViewCell, ReuseIdentifying {
     }
 
     func configure(from cellModel: OrderCellModel) {
+        self.cellModel = cellModel
         previewImageView.kf.setImage(with: cellModel.imageURL)
         titleLabel.text = cellModel.title
         ratingImageView.image = UIImage(named: "stars\(cellModel.rating)")
@@ -121,6 +128,6 @@ private extension OrderCell {
     }
 
     @objc func didTapTrashButton() {
-        print(#function)
+        cellModel?.removeAction(self)
     }
 }

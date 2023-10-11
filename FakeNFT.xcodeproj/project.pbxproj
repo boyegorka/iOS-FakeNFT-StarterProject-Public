@@ -30,6 +30,7 @@
 		3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C38A29D242E90081F015 /* ProductDetailsTableViewCell.swift */; };
 		3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39029D2453B0081F015 /* ExampleRequest.swift */; };
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
+		3FE13BC9D366ECE53E0DAA94 /* NFTRemoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317BD3B105F781B960ABC98 /* NFTRemoveView.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */; };
@@ -102,6 +103,7 @@
 		99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceWrapper.swift; sourceTree = "<group>"; };
 		ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagModule.swift; sourceTree = "<group>"; };
 		B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagAssembly.swift; sourceTree = "<group>"; };
+		B317BD3B105F781B960ABC98 /* NFTRemoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTRemoveView.swift; sourceTree = "<group>"; };
 		BCF19F083FDA850262124F91 /* ShoppingBagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewController.swift; sourceTree = "<group>"; };
 		C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewInput.swift; sourceTree = "<group>"; };
 		C417E826D980755408A69318 /* ShoppingBagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagRouter.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				BCF19F083FDA850262124F91 /* ShoppingBagViewController.swift */,
 				7B2EF8100D2314CA215850B3 /* CellModels */,
 				F49A585F6130E659EF2B363E /* Cells */,
+				B317BD3B105F781B960ABC98 /* NFTRemoveView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */,
 				306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */,
 				5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */,
+				3FE13BC9D366ECE53E0DAA94 /* NFTRemoveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
