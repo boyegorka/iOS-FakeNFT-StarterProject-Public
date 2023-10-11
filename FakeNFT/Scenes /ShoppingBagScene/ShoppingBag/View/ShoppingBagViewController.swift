@@ -11,6 +11,16 @@ final class ShoppingBagViewController: UIViewController {
 
     var output: ShoppingBagViewOutput?
 
+    private let placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .bodyBold
+        label.text = "Корзина пуста"
+        label.isHidden = true
+
+        return label
+    }()
+
     private let nftsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +102,7 @@ final class ShoppingBagViewController: UIViewController {
         view.backgroundColor = .background
 
         view.addSubview(nftsTableView)
+        view.addSubview(placeholderLabel)
         view.addSubview(purchaseContainer)
         purchaseContainer.addSubview(nftCountLabel)
         purchaseContainer.addSubview(totalPriceLabel)
@@ -117,6 +128,14 @@ extension ShoppingBagViewController: ShoppingBagViewInput {
 
     func hideProgressHUD() {
         UIBlockingProgressHUD.dismiss()
+    }
+
+    func showPlaceholder() {
+        placeholderLabel.isHidden = false
+    }
+
+    func hidePlaceholder() {
+        placeholderLabel.isHidden = true
     }
 
     func setupPurchaseButton(_ nfts: [NFT]) {
@@ -188,6 +207,9 @@ private extension ShoppingBagViewController {
             nftsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             nftsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             nftsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            placeholderLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            placeholderLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
 
             purchaseContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             purchaseContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),

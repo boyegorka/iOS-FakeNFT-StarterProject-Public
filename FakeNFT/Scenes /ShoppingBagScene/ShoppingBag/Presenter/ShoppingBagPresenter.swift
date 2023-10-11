@@ -55,6 +55,7 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
         view?.hideProgressHUD()
         stateStorage?.nfts = nfts
 
+        nfts?.isEmpty ?? true ? view?.showPlaceholder() : view?.hidePlaceholder()
         view?.reloadData()
         view?.setupPurchaseButton(nfts ?? [])
     }

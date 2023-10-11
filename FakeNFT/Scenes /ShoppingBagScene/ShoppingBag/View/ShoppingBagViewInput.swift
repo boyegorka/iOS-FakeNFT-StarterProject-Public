@@ -13,6 +13,9 @@ protocol ShoppingBagViewInput: AnyObject {
     func showProgressHUD(with message: String?)
     func hideProgressHUD()
 
+    func showPlaceholder()
+    func hidePlaceholder()
+
     func setupPurchaseButton(_ nfts: [NFT])
     func showRemoveNFTAlert(for preview: UIImage)
 }
