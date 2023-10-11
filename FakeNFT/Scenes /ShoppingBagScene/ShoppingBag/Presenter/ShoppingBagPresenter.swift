@@ -28,6 +28,18 @@ extension ShoppingBagPresenter: ShoppingBagViewOutput {
     func didTapPurchaseButton() {
         router?.presentPaymentTypePicker()
     }
+
+    func didTapSubmitRemoveNFTButton() {
+        guard let shoppingOrder = stateStorage?.shoppingOrder else { return }
+
+        let newShoppingOrder = ShoppingOrder(
+            id: shoppingOrder.id,
+            nfts: shoppingOrder.nfts.filter { $0 != stateStorage?.selectedRemoveNFT?.id }
+        )
+
+        view?.showProgressHUD(with: "Удаление элемента из корзины")
+        interactor?.sendShoppingOrder(newShoppingOrder)
+    }
 }
 
 extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
@@ -39,12 +51,20 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
         interactor?.loadNFTs(with: nfts)
     }
 
-    func didLoadOrders(_ nfts: [NFT]?) {
+    func didLoadNFTs(_ nfts: [NFT]?) {
         view?.hideProgressHUD()
         stateStorage?.nfts = nfts
 
         view?.reloadData()
         view?.setupPurchaseButton(nfts ?? [])
+    }
+
+    func didSendShoppingOrder(_ shoppingOrder: ShoppingOrder?) {
+        stateStorage?.shoppingOrder = shoppingOrder
+
+        guard let nfts = shoppingOrder?.nfts else { return }
+
+        interactor?.loadNFTs(with: nfts)
     }
 }
 
@@ -72,6 +92,7 @@ extension ShoppingBagPresenter: ShoppingBagModule {
             ) { [weak self] cell in
                 guard let self else { return }
 
+                stateStorage?.selectedRemoveNFT = nft
                 view?.showRemoveNFTAlert(for: cell.previewImage)
             }
         } ?? []

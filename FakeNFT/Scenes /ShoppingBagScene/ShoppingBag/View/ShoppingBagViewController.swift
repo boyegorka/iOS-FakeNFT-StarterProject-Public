@@ -144,6 +144,10 @@ extension ShoppingBagViewController: NFTRemoveViewDelegate {
     func didTapSubmitButton() {
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.nftRemoveView.alpha = 0
+        } completion: { [weak self] isFinished in
+            if isFinished {
+                self?.output?.didTapSubmitRemoveNFTButton()
+            }
         }
     }
 

@@ -14,5 +14,6 @@ enum ShoppingBagSortType: String {
 final class ShoppingBagStateStorage {
     var shoppingOrder: ShoppingOrder?
     var nfts: [NFT]?
+    var selectedRemoveNFT: NFT?
     var sortType: ShoppingBagSortType = .name
 }

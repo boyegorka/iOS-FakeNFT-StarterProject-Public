@@ -10,11 +10,14 @@ import Foundation
 protocol ShoppingBagInteractor {
     func loadShoppingOrder(with sortType: ShoppingBagSortType)
     func loadNFTs(with ids: [String])
+
+    func sendShoppingOrder(_ shoppingOrder: ShoppingOrder)
 }
 
 protocol ShoppingBagInteractorOutput: AnyObject {
     func didLoadShoppingOrder(_ shoppingOrder: ShoppingOrder?)
-    func didLoadOrders(_ nfts: [NFT]?)
+    func didLoadNFTs(_ nfts: [NFT]?)
+    func didSendShoppingOrder(_ shoppingOrder: ShoppingOrder?)
 }
 
 final class ShoppngBagInteractorImpl {
@@ -46,8 +49,14 @@ extension ShoppngBagInteractorImpl: ShoppingBagInteractor {
         dispatchGroup.notify(queue: .main) { [weak self] in
             guard let self else { return }
 
-            output?.didLoadOrders(nfts.wrappedValue.isEmpty ? nil : nfts.wrappedValue)
+            output?.didLoadNFTs(nfts.wrappedValue.isEmpty ? nil : nfts.wrappedValue)
             nfts.wrappedValue.removeAll()
+        }
+    }
+
+    func sendShoppingOrder(_ shoppingOrder: ShoppingOrder) {
+        loader?.sendShoppingOrder(shoppingOrder) { [weak self] shoppingOrder in
+            self?.output?.didSendShoppingOrder(shoppingOrder)
         }
     }
 }
