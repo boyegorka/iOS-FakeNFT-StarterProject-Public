@@ -29,6 +29,12 @@
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
+		CAD3D72D2AD6DD6200B39A72 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7262AD6DD6200B39A72 /* UIBlockingProgressHUD.swift */; };
+		CAD3D72E2AD6DD6200B39A72 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */; };
+		CAD3D72F2AD6DD6200B39A72 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7282AD6DD6200B39A72 /* AlertPresenter.swift */; };
+		CAD3D7302AD6DD6200B39A72 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */; };
+		CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */; };
+		CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,12 @@
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		4D142D972AD53BC40048BE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
+		CAD3D7262AD6DD6200B39A72 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		CAD3D7282AD6DD6200B39A72 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CataloguePresenter.swift; sourceTree = "<group>"; };
+		CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueCell.swift; sourceTree = "<group>"; };
+		CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +189,7 @@
 		3F6806C729CBBC5B00B4F915 /* Scenes  */ = {
 			isa = PBXGroup;
 			children = (
+				CAD3D7252AD6DD6200B39A72 /* Catalogue */,
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 			);
 			path = "Scenes ";
@@ -258,6 +271,27 @@
 				4D142D952AD53BC00048BE2D /* RatingScreen.strings */,
 			);
 			path = ru;
+			sourceTree = "<group>";
+		};
+		CAD3D7252AD6DD6200B39A72 /* Catalogue */ = {
+			isa = PBXGroup;
+			children = (
+				CAD3D7262AD6DD6200B39A72 /* UIBlockingProgressHUD.swift */,
+				CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */,
+				CAD3D7282AD6DD6200B39A72 /* AlertPresenter.swift */,
+				CAD3D7292AD6DD6200B39A72 /* Catalogue */,
+			);
+			path = Catalogue;
+			sourceTree = "<group>";
+		};
+		CAD3D7292AD6DD6200B39A72 /* Catalogue */ = {
+			isa = PBXGroup;
+			children = (
+				CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */,
+				CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */,
+				CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */,
+			);
+			path = Catalogue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,8 +447,14 @@
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
+				CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
+				CAD3D72E2AD6DD6200B39A72 /* AlertModel.swift in Sources */,
+				CAD3D7302AD6DD6200B39A72 /* CataloguePresenter.swift in Sources */,
+				CAD3D72D2AD6DD6200B39A72 /* UIBlockingProgressHUD.swift in Sources */,
+				CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */,
+				CAD3D72F2AD6DD6200B39A72 /* AlertPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
