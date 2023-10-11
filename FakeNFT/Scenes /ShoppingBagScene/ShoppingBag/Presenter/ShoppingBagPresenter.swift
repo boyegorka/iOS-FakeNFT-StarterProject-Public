@@ -24,6 +24,10 @@ extension ShoppingBagPresenter: ShoppingBagViewOutput {
     func didTapSortButton() {
         router?.presentSortTypePickerAlert()
     }
+
+    func didTapPurchaseButton() {
+        router?.presentPaymentTypePicker()
+    }
 }
 
 extension ShoppingBagPresenter: ShoppingBagInteractorOutput {

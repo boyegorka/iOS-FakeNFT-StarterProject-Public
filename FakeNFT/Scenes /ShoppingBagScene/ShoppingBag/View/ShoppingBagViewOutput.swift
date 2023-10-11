@@ -8,4 +8,5 @@
 protocol ShoppingBagViewOutput {
     func viewDidLoad()
     func didTapSortButton()
+    func didTapPurchaseButton()
 }

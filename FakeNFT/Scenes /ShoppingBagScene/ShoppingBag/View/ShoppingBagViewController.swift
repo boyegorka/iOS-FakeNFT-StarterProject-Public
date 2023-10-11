@@ -168,6 +168,6 @@ private extension ShoppingBagViewController {
     }
 
     @objc func didTapPurchaseButton() {
-        print(#function)
+        output?.didTapPurchaseButton()
     }
 }

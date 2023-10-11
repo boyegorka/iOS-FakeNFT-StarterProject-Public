@@ -9,6 +9,7 @@ import UIKit
 
 protocol ShoppingBagRouter {
     func presentSortTypePickerAlert()
+    func presentPaymentTypePicker()
 }
 
 protocol ShoppingBagRouterOutput {
@@ -43,5 +44,10 @@ extension ShoppingBagRouterImpl: ShoppingBagRouter {
         alertController.addAction(nameSortAction)
         alertController.addAction(cancelAction)
         viewController?.present(alertController, animated: true)
+    }
+
+    func presentPaymentTypePicker() {
+        let paymentPickerViewController = ShoppingBagPaymentPicker()
+        viewController?.navigationController?.pushViewController(paymentPickerViewController, animated: true)
     }
 }

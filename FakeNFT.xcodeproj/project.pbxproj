@@ -33,6 +33,7 @@
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */; };
+		5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */; };
 		6148E5713829F171A4CF7699 /* ShoppingBagStateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E7D9EA54BA897D97EAD38 /* ShoppingBagStateStorage.swift */; };
 		6FF2D2BA73DEE7A4D1E75D8A /* ShoppingBagAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */; };
 		9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */; };
@@ -105,6 +106,7 @@
 		C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewInput.swift; sourceTree = "<group>"; };
 		C417E826D980755408A69318 /* ShoppingBagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagRouter.swift; sourceTree = "<group>"; };
 		CE5E7D9EA54BA897D97EAD38 /* ShoppingBagStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagStateStorage.swift; sourceTree = "<group>"; };
+		DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPicker.swift; sourceTree = "<group>"; };
 		DCEB86D1D659C14D80940E93 /* ShoppingBagLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagLoader.swift; sourceTree = "<group>"; };
 		F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,8 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				51F81067BBA7CC736CF583B8 /* ShoppingBag */,
-				88D56D9CDCCB4546E065C9A1 /* ShoppingBagPayment */,
 				5271A88AC76A9D376F21244C /* ShoppingBagPaymentResults */,
+				9BEACF0B656023FD83E7BCDC /* ShoppingBagPaymentPicker */,
 			);
 			path = ShoppingBagScene;
 			sourceTree = "<group>";
@@ -398,6 +400,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		84B721FFE0CAAEC9694AB545 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		861F02C0959794CF5917F016 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,11 +417,12 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		88D56D9CDCCB4546E065C9A1 /* ShoppingBagPayment */ = {
+		9BEACF0B656023FD83E7BCDC /* ShoppingBagPaymentPicker */ = {
 			isa = PBXGroup;
 			children = (
+				84B721FFE0CAAEC9694AB545 /* View */,
 			);
-			path = ShoppingBagPayment;
+			path = ShoppingBagPaymentPicker;
 			sourceTree = "<group>";
 		};
 		D9F34D1F625167B40CB2747D /* ShoppingBag */ = {
@@ -611,6 +622,7 @@
 				9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */,
 				5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */,
 				306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */,
+				5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
