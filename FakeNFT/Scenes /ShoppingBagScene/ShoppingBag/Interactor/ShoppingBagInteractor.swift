@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ShoppingBagInteractor {
-    func loadShoppingOrder()
+    func loadShoppingOrder(with sortType: ShoppingBagSortType)
     func loadNFTs(with ids: [String])
 }
 
@@ -24,8 +24,8 @@ final class ShoppngBagInteractorImpl {
 }
 
 extension ShoppngBagInteractorImpl: ShoppingBagInteractor {
-    func loadShoppingOrder() {
-        loader?.loadShoppingOrder { [weak self] shoppingOrder in
+    func loadShoppingOrder(with sortType: ShoppingBagSortType) {
+        loader?.loadShoppingOrder(with: sortType) { [weak self] shoppingOrder in
             self?.output?.didLoadShoppingOrder(shoppingOrder)
         }
     }
@@ -47,6 +47,7 @@ extension ShoppngBagInteractorImpl: ShoppingBagInteractor {
             guard let self else { return }
 
             output?.didLoadOrders(nfts.wrappedValue.isEmpty ? nil : nfts.wrappedValue)
+            nfts.wrappedValue.removeAll()
         }
     }
 }

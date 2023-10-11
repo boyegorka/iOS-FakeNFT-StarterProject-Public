@@ -11,13 +11,18 @@ final class ShoppingBagPresenter {
     weak var view: ShoppingBagViewInput?
     var stateStorage: ShoppingBagStateStorage?
     var interactor: ShoppingBagInteractor?
+    var router: ShoppingBagRouter?
     var dataSource: ShoppingBagDataSource?
 }
 
 extension ShoppingBagPresenter: ShoppingBagViewOutput {
     func viewDidLoad() {
         view?.showProgressHUD(with: "Загрузка корзины")
-        interactor?.loadShoppingOrder()
+        interactor?.loadShoppingOrder(with: stateStorage?.sortType ?? .name)
+    }
+
+    func didTapSortButton() {
+        router?.presentSortTypePickerAlert()
     }
 }
 
@@ -36,6 +41,14 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
 
         view?.reloadData()
         view?.setupPurchaseButton(nfts ?? [])
+    }
+}
+
+extension ShoppingBagPresenter: ShoppingBagRouterOutput {
+    func didSelectSortType(_ sortType: ShoppingBagSortType) {
+        view?.showProgressHUD(with: "Загрузка корзины")
+        stateStorage?.sortType = sortType
+        interactor?.loadShoppingOrder(with: stateStorage?.sortType ?? .name)
     }
 }
 

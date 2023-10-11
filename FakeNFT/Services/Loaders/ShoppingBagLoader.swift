@@ -8,13 +8,17 @@
 import Foundation
 
 protocol ShoppingBagLoader {
-    func loadShoppingOrder(_ completion: @escaping (ShoppingOrder?) -> Void)
+    func loadShoppingOrder(with sortType: ShoppingBagSortType, _ completion: @escaping (ShoppingOrder?) -> Void)
     func loadNFT(with nftId: String, completion: @escaping (NFT?) -> Void)
 }
 
 final class ShoppingBagLoaderImpl {
     struct ShoppingBagRequest: NetworkRequest {
-        let endpoint: URL? = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/orders/1")
+        var endpoint: URL? = nil
+
+        init(with sortType: ShoppingBagSortType) {
+            endpoint = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/orders/1?sortBy=\(sortType.rawValue)")
+        }
     }
 
     struct NFTRequest: NetworkRequest {
@@ -36,14 +40,14 @@ final class ShoppingBagLoaderImpl {
 }
 
 extension ShoppingBagLoaderImpl: ShoppingBagLoader {
-    func loadShoppingOrder(_ completion: @escaping (ShoppingOrder?) -> Void) {
+    func loadShoppingOrder(with sortType: ShoppingBagSortType, _ completion: @escaping (ShoppingOrder?) -> Void) {
         if shoppingOrderTask != nil {
             shoppingOrderTask?.cancel()
             shoppingOrderTask = nil
         }
 
         shoppingOrderTask = client.send(
-            request: ShoppingBagRequest(),
+            request: ShoppingBagRequest(with: sortType),
             type: ShoppingOrder.self
         ) { [weak self] result in
             guard let self else { return }

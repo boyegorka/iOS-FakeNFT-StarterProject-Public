@@ -7,4 +7,5 @@
 
 protocol ShoppingBagViewOutput {
     func viewDidLoad()
+    func didTapSortButton()
 }

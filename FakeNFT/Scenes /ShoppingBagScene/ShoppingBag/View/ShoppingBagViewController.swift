@@ -164,7 +164,7 @@ private extension ShoppingBagViewController {
     }
 
     @objc func didTapSortBarButtonItem() {
-        print(#function)
+        output?.didTapSortButton()
     }
 
     @objc func didTapPurchaseButton() {

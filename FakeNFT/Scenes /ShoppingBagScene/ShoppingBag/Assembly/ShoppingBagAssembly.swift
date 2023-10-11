@@ -15,6 +15,7 @@ final class ShoppingBagAssembly {
     static func assemble(viewController: ShoppingBagViewController & ShoppingBagViewInput) {
         let stateStorage = ShoppingBagStateStorage()
         let interactor = ShoppngBagInteractorImpl()
+        let router = ShoppingBagRouterImpl()
         let dataSource = ShoppingBagDataSource()
         let presenter = ShoppingBagPresenter()
 
@@ -24,9 +25,12 @@ final class ShoppingBagAssembly {
         presenter.view = viewController
         presenter.stateStorage = stateStorage
         presenter.interactor = interactor
+        presenter.router = router
         presenter.dataSource = dataSource
 
+        router.viewController = viewController
         interactor.output = presenter
+        router.output = presenter
         dataSource.module = presenter
     }
 }
