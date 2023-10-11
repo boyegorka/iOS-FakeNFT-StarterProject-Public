@@ -35,6 +35,7 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
         stateStorage?.nfts = nfts
 
         view?.reloadData()
+        view?.setupPurchaseButton(nfts ?? [])
     }
 }
 

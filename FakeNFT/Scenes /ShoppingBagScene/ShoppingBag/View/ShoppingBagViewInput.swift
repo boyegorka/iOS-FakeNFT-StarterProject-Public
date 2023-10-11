@@ -10,4 +10,6 @@ protocol ShoppingBagViewInput: AnyObject {
 
     func showProgressHUD(with message: String?)
     func hideProgressHUD()
+
+    func setupPurchaseButton(_ nfts: [NFT])
 }
