@@ -14,15 +14,24 @@ final class ShoppingBagViewController: UIViewController {
     private let nftsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
 
         return tableView
     }()
+
+    func setDataSource(_ dataSource: UITableViewDataSource) {
+        nftsTableView.dataSource = dataSource
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ShoppingBagAssembly.assemble(viewController: self)
 
-        view.backgroundColor = .white
+        nftsTableView.register(OrderCell.self)
+
+        view.backgroundColor = .background
+
+        view.addSubview(nftsTableView)
 
         setupNavBar()
         setupConstraints()
@@ -33,6 +42,10 @@ final class ShoppingBagViewController: UIViewController {
 }
 
 extension ShoppingBagViewController: ShoppingBagViewInput {
+    func reloadData() {
+        nftsTableView.reloadData()
+    }
+
     func showProgressHUD(with message: String? = nil) {
         UIBlockingProgressHUD.show(with: message)
     }
@@ -56,6 +69,12 @@ private extension ShoppingBagViewController {
     }
 
     func setupConstraints() {
+        NSLayoutConstraint.activate([
+            nftsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            nftsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            nftsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            nftsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     @objc func didTapSortBarButtonItem() {
