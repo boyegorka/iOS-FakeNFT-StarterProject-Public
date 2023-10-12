@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import Kingfisher
+
+let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
 
 final class RatingCell: UITableViewCell {
     var ratingPositionLabel: UILabel = {
@@ -31,12 +34,10 @@ final class RatingCell: UITableViewCell {
     }()
     
     var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "person.crop.circle.fill")!)
+        let imageView = UIImageView(image: unknownAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-       
+ 
         return imageView
     }()
 
@@ -64,11 +65,15 @@ final class RatingCell: UITableViewCell {
         return title
     }()
 
-    func configure(ratingPosition: Int, name: String, avatar: UIImage, rating: String) {
-        ratingPositionLabel.text = ratingPosition.description
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarView.kf.cancelDownloadTask()
+    }
+    
+    func configure(indexPath: IndexPath, name: String, avatarUrl: String, rating: String) {
+        ratingPositionLabel.text = (indexPath.row + 1).description
         nameLabel.text = name
         ratingLabel.text = rating
-        avatarView.image = avatar
         
         contentView.addSubview(ratingPositionLabel)
         contentView.addSubview(userCard)
@@ -76,6 +81,23 @@ final class RatingCell: UITableViewCell {
         userCard.addSubview(nameLabel)
         userCard.addSubview(ratingLabel)
         
+        setConstraint()
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 42)
+        
+        guard let url = URL(string: avatarUrl) else {
+            print("failed to create URL from \(avatarUrl)")
+            return
+        }
+                
+        avatarView.kf.setImage(
+            with: url,
+            placeholder: unknownAvatar,
+            options: [.processor(processor)]
+        )
+    }
+    
+    func setConstraint() {
         NSLayoutConstraint.activate([
             ratingPositionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             ratingPositionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

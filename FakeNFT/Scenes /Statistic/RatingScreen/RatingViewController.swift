@@ -12,7 +12,6 @@ import Kingfisher
 let horizontalPadding: CGFloat = 16
 let rowHeight: CGFloat = 88
 
-let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
 
 protocol RatingViewPresenterProtocol: AnyObject {
     var users: [User] { get }
@@ -99,48 +98,19 @@ extension RatingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = RatingCell()
         
-        configCell(for: cell, with: indexPath)
-        return cell
-    }
-    
-    func configCell(for userCell: RatingCell, with indexPath: IndexPath) {
         if indexPath.row >= presenter.users.count {
             assertionFailure("configCell: indexPath.row >= users.count")
-            return
+            return cell
         }
 
-        let imageView = UIImageView()
-        
-        do {
-            try loadImage(
-                to: imageView,
-                url: presenter.users[indexPath.row].avatarUrl
-            ) { [weak self] result in
-                guard let self = self else {
-                    assertionFailure("load image: self is empty")
-                    return
-                }
-                
-                switch result {
-                case .success(_):
-                    self.table.reloadRows(at: [indexPath], with: .automatic)
-                 case .failure(let error):
-                    print("load image failed with error: \(error)")
-                    return
-                }
-            }
-        }
-        catch {
-            print("load image failed with error: \(error)")
-            return
-        }
-        
-        userCell.configure(
-            ratingPosition: indexPath.row + 1,
+        cell.configure(
+            indexPath: indexPath,
             name: presenter.users[indexPath.row].name,
-            avatar: imageView.image ?? unknownAvatar!,
+            avatarUrl: presenter.users[indexPath.row].avatarUrl,
             rating: presenter.users[indexPath.row].rating
         )
+
+        return cell
     }
 }
 
@@ -237,30 +207,5 @@ extension RatingViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true)
-    }
-}
-
-extension RatingViewController {
-    private func loadImage(
-        to imageView: UIImageView,
-        url: String,
-        handler: @escaping(Result<RetrieveImageResult, KingfisherError>) -> Void
-    ) throws {
-        guard let avatarURL = URL(string: url) else {
-            print("failed to create URL from \(url)")
-            imageView.image = unknownAvatar
-            return
-        }
-        
-        let processor = RoundCornerImageProcessor(cornerRadius: 16)
-        
-        imageView.kf.setImage(
-            with: avatarURL,
-            placeholder: unknownAvatar,
-            options: [.processor(processor)],
-            completionHandler: {result in
-                handler(result)
-            }
-        )
     }
 }
