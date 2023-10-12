@@ -278,8 +278,9 @@
 		3F6806C929CBBCAF00B4F915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F6806D829CC979D00B4F915 /* Network */,
+				900C9EA52AD7B0BB005E4BE9 /* Common */,
 				D9F34D1F625167B40CB2747D /* ShoppingBag */,
+				3F6806D829CC979D00B4F915 /* Network */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,6 +421,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		900C9EA52AD7B0BB005E4BE9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7F74BE45F354B452EF6EBC02 /* NFT.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		9BEACF0B656023FD83E7BCDC /* ShoppingBagPaymentPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,7 +440,6 @@
 		D9F34D1F625167B40CB2747D /* ShoppingBag */ = {
 			isa = PBXGroup;
 			children = (
-				7F74BE45F354B452EF6EBC02 /* NFT.swift */,
 				0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */,
 			);
 			path = ShoppingBag;
