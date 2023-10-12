@@ -125,7 +125,6 @@ extension RatingViewController: UITableViewDataSource {
                 case .success(_):
                     self.table.reloadRows(at: [indexPath], with: .automatic)
                  case .failure(let error):
-                    self.showAlert(msg: NSLocalizedString("alert.general.message", comment: ""))
                     print("load image failed with error: \(error)")
                     return
                 }
@@ -162,13 +161,13 @@ extension RatingViewController: RatingViewPresenterDelegate {
     
     func showAlert(msg: String) {
         let alert = UIAlertController(
-            title: NSLocalizedString("alert.title", comment: ""),
+            title: NSLocalizedString("alert.title", tableName: "RatingScreen", comment: ""),
             message: msg,
             preferredStyle: .alert
         )
         
         let actionExit = UIAlertAction(
-            title: NSLocalizedString("alert.close", comment: ""),
+            title: NSLocalizedString("alert.close", tableName: "RatingScreen", comment: ""),
             style: .default
         ) { _ in }
         
