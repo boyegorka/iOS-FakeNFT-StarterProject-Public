@@ -29,8 +29,12 @@
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
-		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
+		4D5902DD2AD7C8E1009F3756 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902DC2AD7C8E1009F3756 /* User.swift */; };
+		4D5902E62AD7C903009F3756 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902E22AD7C903009F3756 /* RatingCell.swift */; };
+		4D5902E72AD7C903009F3756 /* RatingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902E32AD7C903009F3756 /* RatingViewPresenter.swift */; };
+		4D5902E82AD7C903009F3756 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5902E42AD7C903009F3756 /* RatingViewController.swift */; };
 		900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EA72AD7B138005E4BE9 /* NFT.swift */; };
+		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +79,12 @@
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		4D142D972AD53BC40048BE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
-		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		4D5902DC2AD7C8E1009F3756 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4D5902E22AD7C903009F3756 /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		4D5902E32AD7C903009F3756 /* RatingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewPresenter.swift; sourceTree = "<group>"; };
+		4D5902E42AD7C903009F3756 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		900C9EA72AD7B138005E4BE9 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
+		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,7 @@
 		3F6806C729CBBC5B00B4F915 /* Scenes  */ = {
 			isa = PBXGroup;
 			children = (
+				4D5902DE2AD7C903009F3756 /* Statistic */,
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 			);
 			path = "Scenes ";
@@ -199,6 +208,7 @@
 		3F6806C929CBBCAF00B4F915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D5902DB2AD7C8E1009F3756 /* Statistic */,
 				900C9EA62AD7B12F005E4BE9 /* Common */,
 				3F6806D829CC979D00B4F915 /* Network */,
 			);
@@ -266,20 +276,46 @@
 			path = ru;
 			sourceTree = "<group>";
 		};
-		900C9EA92AD7B173005E4BE9 /* Helpers */ = {
+		4D5902DB2AD7C8E1009F3756 /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
-				900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */,
+				4D5902DC2AD7C8E1009F3756 /* User.swift */,
 			);
-			path = Helpers;
-            sourceTree = "<group>";
-        };
+			path = Statistic;
+			sourceTree = "<group>";
+		};
+		4D5902DE2AD7C903009F3756 /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				4D5902E12AD7C903009F3756 /* RatingScreen */,
+			);
+			path = Statistic;
+			sourceTree = "<group>";
+		};
+		4D5902E12AD7C903009F3756 /* RatingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D5902E22AD7C903009F3756 /* RatingCell.swift */,
+				4D5902E32AD7C903009F3756 /* RatingViewPresenter.swift */,
+				4D5902E42AD7C903009F3756 /* RatingViewController.swift */,
+			);
+			path = RatingScreen;
+			sourceTree = "<group>";
+		};
 		900C9EA62AD7B12F005E4BE9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				900C9EA72AD7B138005E4BE9 /* NFT.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		900C9EA92AD7B173005E4BE9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,10 +461,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
+				4D5902E82AD7C903009F3756 /* RatingViewController.swift in Sources */,
+				4D5902E72AD7C903009F3756 /* RatingViewPresenter.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
+				4D5902DD2AD7C8E1009F3756 /* User.swift in Sources */,
 				900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */,
+				4D5902E62AD7C903009F3756 /* RatingCell.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,

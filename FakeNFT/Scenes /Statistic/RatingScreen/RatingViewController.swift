@@ -18,7 +18,10 @@ protocol RatingViewPresenterProtocol: AnyObject {
     var users: [User] { get }
     
     func setDelegate(delegate: RatingViewPresenterDelegate)
-    func listUsers(sortParameter: UsersSortParameter, sortOrder: UsersSortOrder)
+    func listUsers()
+    
+    func setSortParameter(_ sortParameter: UsersSortParameter)
+    func setSortOrder(_ sortOrder: UsersSortOrder)
 }
 
 final class RatingViewController: UIViewController {
@@ -64,13 +67,9 @@ final class RatingViewController: UIViewController {
         view.addSubview(table)
         
         setupConstraints()
-        loadUsers()
+        presenter.listUsers()
     }
-    
-    func loadUsers() {
-        presenter.listUsers(sortParameter: UsersSortParameter.byRating, sortOrder: UsersSortOrder.asc)
-    }
-        
+            
     func setupConstraints() {
         NSLayoutConstraint.activate([
             sortButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -84,38 +83,6 @@ final class RatingViewController: UIViewController {
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
-    @objc func didTapSortButton() {
-        let nameSort = UIAlertAction(
-            title: NSLocalizedString("sort.byname", tableName: "RatingScreen", comment: ""),
-            style: .destructive
-        ) {_ in
-           // сортировка по имени
-        }
-        
-        let ratingSort = UIAlertAction(
-            title: NSLocalizedString("sort.byrating", tableName: "RatingScreen", comment: ""),
-            style: .destructive
-        ) {_ in
-           // сортировка по рейтингу
-        }
-        
-        let cancel = UIAlertAction(
-            title: NSLocalizedString("sort.close", tableName: "RatingScreen", comment: ""),
-            style: .cancel
-        )
-        
-        let alert = UIAlertController(
-            title: NSLocalizedString("sort.title", tableName: "RatingScreen", comment: ""),
-            message: "",
-            preferredStyle: .actionSheet)
-        
-        alert.addAction(nameSort)
-        alert.addAction(ratingSort)
-        alert.addAction(cancel)
-        
-        self.present(alert, animated: true)
-    }
 }
 
 extension RatingViewController: UITableViewDataSource {
@@ -125,7 +92,7 @@ extension RatingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == presenter.users.count - 1 {
-            loadUsers()
+            presenter.listUsers()
         }
     }
     
@@ -148,14 +115,17 @@ extension RatingViewController: UITableViewDataSource {
             try loadImage(
                 to: imageView,
                 url: presenter.users[indexPath.row].avatarUrl
-            ) { result in
+            ) { [weak self] result in
+                guard let self = self else {
+                    assertionFailure("load image: self is empty")
+                    return
+                }
+                
                 switch result {
                 case .success(_):
                     self.table.reloadRows(at: [indexPath], with: .automatic)
-                    
-                    //TODO: ratingPosition не будет работать при сортировке по имени, надо придумать решение
-                    
-                case .failure(let error):
+                 case .failure(let error):
+                    self.showAlert(msg: NSLocalizedString("alert.general.message", comment: ""))
                     print("load image failed with error: \(error)")
                     return
                 }
@@ -175,7 +145,6 @@ extension RatingViewController: UITableViewDataSource {
     }
 }
 
-
 extension RatingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -192,13 +161,83 @@ extension RatingViewController: RatingViewPresenterDelegate {
     }
     
     func showAlert(msg: String) {
-        print("show alert")
+        let alert = UIAlertController(
+            title: NSLocalizedString("alert.title", comment: ""),
+            message: msg,
+            preferredStyle: .alert
+        )
+        
+        let actionExit = UIAlertAction(
+            title: NSLocalizedString("alert.close", comment: ""),
+            style: .default
+        ) { _ in }
+        
+        alert.addAction(actionExit)
+        
+        present(alert, animated: true)
     }
     
     func performBatchUpdates(indexPaths: [IndexPath]) {
-        self.table.performBatchUpdates {
+        table.performBatchUpdates {
             self.table.insertRows(at: indexPaths, with: .automatic)
         }
+    }
+    
+    func reloadData() {
+        table.reloadData()
+        if table.numberOfRows(inSection: 0) != 0 {
+            table.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+    }
+}
+
+extension RatingViewController {
+    @objc func didTapSortButton() {
+        let nameSort = UIAlertAction(
+            title: NSLocalizedString("sort.byname", tableName: "RatingScreen", comment: ""),
+            style: .destructive
+        ) { [weak self] _ in
+            guard let self = self else {
+                assertionFailure("didTapSortButton: self is empty")
+                return
+            }
+
+            self.presenter.setSortParameter(UsersSortParameter.byName)
+            self.presenter.setSortOrder(UsersSortOrder.asc)
+            
+            self.presenter.listUsers()
+        }
+        
+        let ratingSort = UIAlertAction(
+            title: NSLocalizedString("sort.byrating", tableName: "RatingScreen", comment: ""),
+            style: .destructive
+        ) { [weak self] _ in
+            guard let self = self else {
+                assertionFailure("didTapSortButton: self is empty")
+                return
+            }
+
+            self.presenter.setSortParameter(UsersSortParameter.byRating)
+            self.presenter.setSortOrder(UsersSortOrder.asc)
+            
+            self.presenter.listUsers()
+        }
+        
+        let cancel = UIAlertAction(
+            title: NSLocalizedString("sort.close", tableName: "RatingScreen", comment: ""),
+            style: .cancel
+        )
+        
+        let alert = UIAlertController(
+            title: NSLocalizedString("sort.title", tableName: "RatingScreen", comment: ""),
+            message: "",
+            preferredStyle: .actionSheet)
+        
+        alert.addAction(nameSort)
+        alert.addAction(ratingSort)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
     }
 }
 
@@ -208,19 +247,17 @@ extension RatingViewController {
         url: String,
         handler: @escaping(Result<RetrieveImageResult, KingfisherError>) -> Void
     ) throws {
-        guard let photoURL = URL(string: url) else {
-            //TODO: do something with error
-            print("failed to get avatar")
+        guard let avatarURL = URL(string: url) else {
+            print("failed to create URL from \(url)")
             imageView.image = unknownAvatar
             return
         }
         
-        //TODO: пересчитать угол скругления
         let processor = RoundCornerImageProcessor(cornerRadius: 16)
         
         imageView.kf.setImage(
-            with: photoURL,
-            placeholder: UIImage(named: "Stub"),
+            with: avatarURL,
+            placeholder: unknownAvatar,
             options: [.processor(processor)],
             completionHandler: {result in
                 handler(result)

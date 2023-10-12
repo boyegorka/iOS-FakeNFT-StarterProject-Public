@@ -2,3 +2,6 @@
 "sort.byrating" = "По рейтингу";
 "sort.close" = "Закрыть";
 "sort.title" = "Сортировка";
+"alert.title" = "Ошибка";
+"alert.general.message" = "Что-то пошло не так =(";
+"alert.close" = "Закрыть";
