@@ -29,6 +29,7 @@ final class RatingCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .backgroundLightGray
         view.layer.cornerRadius = 12
+        view.clipsToBounds = true
         
         return view
     }()
@@ -37,6 +38,8 @@ final class RatingCell: UITableViewCell {
         let imageView = UIImageView(image: unknownAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
+        imageView.layer.cornerRadius = 14
+        imageView.clipsToBounds = true
  
         return imageView
     }()
@@ -83,18 +86,12 @@ final class RatingCell: UITableViewCell {
         
         setConstraint()
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 42)
-        
         guard let url = URL(string: avatarUrl) else {
             print("failed to create URL from \(avatarUrl)")
             return
         }
                 
-        avatarView.kf.setImage(
-            with: url,
-            placeholder: unknownAvatar,
-            options: [.processor(processor)]
-        )
+        avatarView.kf.setImage(with: url, placeholder: unknownAvatar)
     }
     
     func setConstraint() {
