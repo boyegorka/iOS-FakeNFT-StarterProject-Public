@@ -1,5 +1,5 @@
 //
-//  ShoppingBagPaymentPicker.swift
+//  ShoppingBagPaymentPickerViewController.swift
 //  FakeNFT
 //
 //  Created by Олег Аксененко on 11.10.2023.
@@ -7,9 +7,24 @@
 
 import UIKit
 
-final class ShoppingBagPaymentPicker: UIViewController {
+final class ShoppingBagPaymentPickerViewController: UIViewController {
+    var output: ShoppingBagPaymentPickerViewOutput?
+
     override func viewDidLoad() {
         view.backgroundColor = .white
+
+        setupNavBar()
+        setupConstraints()
+
+        output?.viewDidLoad()
+    }
+}
+
+extension ShoppingBagPaymentPickerViewController: ShoppingBagPaymentPickerViewInput {
+}
+
+private extension ShoppingBagPaymentPickerViewController {
+    func setupNavBar() {
         navigationItem.title = "Выберите способ оплаты"
         navigationItem.hidesBackButton = true
 
@@ -23,9 +38,10 @@ final class ShoppingBagPaymentPicker: UIViewController {
         leftBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-}
 
-private extension ShoppingBagPaymentPicker {
+    func setupConstraints() {
+    }
+
     @objc func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }

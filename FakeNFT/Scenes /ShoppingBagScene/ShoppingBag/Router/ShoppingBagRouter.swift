@@ -47,7 +47,7 @@ extension ShoppingBagRouterImpl: ShoppingBagRouter {
     }
 
     func presentPaymentTypePicker() {
-        let paymentPickerViewController = ShoppingBagPaymentPicker()
+        let paymentPickerViewController = ShoppingBagPaymentPickerAssembly.assemble()
         viewController?.navigationController?.pushViewController(paymentPickerViewController, animated: true)
     }
 }
