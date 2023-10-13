@@ -14,8 +14,6 @@ let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
 final class RatingCell: UITableViewCell {
     var ratingPositionLabel: UILabel = {
         let title = UILabel()
-        //TODO: Добавить шрифт SF Pro Text
-        // https://developer.apple.com/fonts/
         title.font = .systemFont(ofSize: 15, weight: .regular)
         title.textColor = .textPrimary
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -46,8 +44,6 @@ final class RatingCell: UITableViewCell {
 
     var nameLabel: UILabel = {
         let title = UILabel()
-        //TODO: Добавить шрифт SF Pro Text
-        // https://developer.apple.com/fonts/
         title.font = .systemFont(ofSize: 22, weight: .bold)
         title.textColor = .textPrimary
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -58,8 +54,6 @@ final class RatingCell: UITableViewCell {
 
     var ratingLabel: UILabel = {
         let title = UILabel()
-        //TODO: Добавить шрифт SF Pro Text
-        // https://developer.apple.com/fonts/
         title.font = .systemFont(ofSize: 22, weight: .bold)
         title.textColor = .textPrimary
         title.translatesAutoresizingMaskIntoConstraints = false
