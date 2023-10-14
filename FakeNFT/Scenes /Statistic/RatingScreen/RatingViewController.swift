@@ -130,18 +130,28 @@ extension RatingViewController: RatingViewPresenterDelegate {
     }
     
     func showAlert(msg: String) {
-        let alert = UIAlertController(
-            title: NSLocalizedString("alert.title", tableName: "RatingScreen", comment: ""),
-            message: msg,
-            preferredStyle: .alert
-        )
+        let alert = UIAlertController(title: msg, message: "", preferredStyle: .alert)
         
         let actionExit = UIAlertAction(
-            title: NSLocalizedString("alert.close", tableName: "RatingScreen", comment: ""),
-            style: .default
+            title: NSLocalizedString("alert.cancel", tableName: "RatingScreen", comment: ""),
+            style: .cancel
         ) { _ in }
         
+        let actionRetry = UIAlertAction(
+            title: NSLocalizedString("alert.retry", tableName: "RatingScreen", comment: ""),
+            style: .default
+        ) { [weak self] _ in
+            guard let self = self else {
+                assertionFailure("alert retry: self is empty")
+                return
+            }
+            
+            self.presenter.listUsers()
+        }
+
+        
         alert.addAction(actionExit)
+        alert.addAction(actionRetry)
         
         present(alert, animated: true)
     }

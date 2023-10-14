@@ -77,7 +77,7 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
                     if let delegate = self.delegate {
                         print("list users failed: \(error)")
                         delegate.showAlert(
-                            msg: NSLocalizedString("alert.general.message", tableName: "RatingScreen", comment: "")
+                            msg: NSLocalizedString("alert.message", tableName: "RatingScreen", comment: "")
                         )
                     }
                 case .success(let newUsers):

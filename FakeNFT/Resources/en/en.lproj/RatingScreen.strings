@@ -2,6 +2,6 @@
 "sort.byrating" = "By rating";
 "sort.close" = "Close";
 "sort.title" = "Sort";
-"alert.title" = "Error";
-"alert.general.message" = "Something was wrong =(";
-"alert.close" = "Close";
+"alert.message" = "Failed to retrieve data";
+"alert.cancel" = "Cancel";
+"alert.retry" = "Retry";
