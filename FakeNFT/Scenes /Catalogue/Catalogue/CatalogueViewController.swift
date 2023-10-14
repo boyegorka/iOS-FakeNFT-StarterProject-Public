@@ -6,15 +6,24 @@
 //
 
 import UIKit
+import Kingfisher
 
-final class CatalogueViewController: UIViewController {
-    
+protocol CatalogueViewControllerProtocol: AnyObject {
+    var presenter: CataloguePresenterProtocol { get set }
+    func updateTableView()
+    func tableViewAddRows(indexPaths: [IndexPath])
+}
+
+final class CatalogueViewController: UIViewController, CatalogueViewControllerProtocol {
     
     // MARK: - Enums
     private enum Contstant {
         static let catalogueCellIdentifier = "CatalogueCell"
     }
     
+    // MARK: - Public Properties
+    var presenter: CataloguePresenterProtocol = CataloguePresenter()
+
     // MARK: - Private Properties
     private lazy var catalogueTableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -35,7 +44,21 @@ final class CatalogueViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.view = self
+        presenter.viewDidLoad()
+        
         setupScreen()
+    }
+    
+    // MARK: - Public methods
+    func tableViewAddRows(indexPaths: [IndexPath]) {
+        catalogueTableView.performBatchUpdates {
+            catalogueTableView.insertRows(at: indexPaths, with: .automatic)
+        } completion: { _ in }
+    }
+    
+    func updateTableView() {
+        catalogueTableView.reloadData()
     }
     
     // MARK: - Private methods
@@ -66,14 +89,23 @@ final class CatalogueViewController: UIViewController {
         navigationBar.topItem?.setRightBarButton(rightButton, animated: true)
     }
     
+    private func configCell(for cell: CatalogueCell, indexPath: IndexPath) {
+        
+        let collection = presenter.collections[indexPath.row]
+        cell.picture.kf.setImage(with: collection.cover) { _ in
+            self.catalogueTableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        cell.labelText.text = "\(collection.name) (\(collection.nfts.count))"
+    }
+    
     @objc
     private func showFilterSheet() {
         let alert = AlertPresenter(delegate: self)
         let sortByNameButton = UIAlertAction(title: "По названию", style: .default) { _ in
-            
+            self.presenter.filterCollections(.byName)
         }
         let sortByCountButton = UIAlertAction(title: "По количеству NFT", style: .default) { _ in
-            
+            self.presenter.filterCollections(.NFTcount)
         }
         let closeButton = UIAlertAction(title: "Закрыть", style: .cancel)
         let model = AlertModel(style: .actionSheet, title: "Сортировка", message: nil, actions: [sortByNameButton, sortByCountButton, closeButton])
@@ -87,21 +119,24 @@ extension CatalogueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 187
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (presenter.collections.count) - 1 {
+            presenter.loadCollections()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension CatalogueViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        presenter.collections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Contstant.catalogueCellIdentifier) as? CatalogueCell
         else { return UITableViewCell() }
-        
-        cell.picture = UIImage()
-        cell.labelText = "Коллекция (число элементов)"
-        
+        configCell(for: cell, indexPath: indexPath)
         return cell
     }
 }

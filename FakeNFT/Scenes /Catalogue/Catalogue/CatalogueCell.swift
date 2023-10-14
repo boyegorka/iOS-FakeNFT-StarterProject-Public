@@ -9,19 +9,23 @@ import UIKit
 
 final class CatalogueCell: UITableViewCell {
     
-    var picture: UIImage? {
-        get { collectionPicture.image }
-        set { collectionPicture.image = newValue }
+    // MARK: - Public Properties
+    var picture: UIImageView {
+        get { collectionPicture }
+        set { collectionPicture = newValue }
     }
     
-    var labelText: String? {
-        get { collectionLabel.text }
-        set { collectionLabel.text = newValue }
+    var labelText: UILabel {
+        get { collectionLabel }
+        set { collectionLabel = newValue }
     }
     
+    // MARK: - Private Properties
     private lazy var collectionPicture: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
