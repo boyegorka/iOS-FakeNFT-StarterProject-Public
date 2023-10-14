@@ -148,7 +148,6 @@ extension RatingViewController: RatingViewPresenterDelegate {
             
             self.presenter.listUsers()
         }
-
         
         alert.addAction(actionExit)
         alert.addAction(actionRetry)
