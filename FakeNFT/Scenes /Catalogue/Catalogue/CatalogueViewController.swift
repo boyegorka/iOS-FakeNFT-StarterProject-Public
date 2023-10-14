@@ -92,8 +92,8 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     private func configCell(for cell: CatalogueCell, indexPath: IndexPath) {
         
         let collection = presenter.collections[indexPath.row]
-        cell.picture.kf.setImage(with: collection.cover) { _ in
-            self.catalogueTableView.reloadRows(at: [indexPath], with: .automatic)
+        cell.picture.kf.setImage(with: collection.cover) { [weak self] _ in
+            self?.catalogueTableView.reloadRows(at: [indexPath], with: .automatic)
         }
         cell.labelText.text = "\(collection.name) (\(collection.nfts.count))"
     }
