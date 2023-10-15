@@ -9,10 +9,6 @@ import Foundation
 import UIKit
 import Kingfisher
 
-let horizontalPadding: CGFloat = 16
-let rowHeight: CGFloat = 88
-
-
 protocol RatingViewPresenterProtocol: AnyObject {
     var users: [User] { get }
     
@@ -24,8 +20,9 @@ protocol RatingViewPresenterProtocol: AnyObject {
 }
 
 final class RatingViewController: UIViewController {
-    private let cellIdentifier = "cell"
-    
+    private let horizontalPadding: CGFloat = 16
+    private let rowHeight: CGFloat = 88
+
     lazy private var presenter: RatingViewPresenterProtocol = {
         let defaultNetworkClient = DefaultNetworkClient()
         presenter = RatingViewPresenter(networkClient: defaultNetworkClient)
@@ -54,7 +51,7 @@ final class RatingViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         
-        table.register(RatingCell.self, forCellReuseIdentifier: cellIdentifier)
+        table.register(RatingCell.self, forCellReuseIdentifier: RatingCell.reuseIdentifier)
         
         return table
     }()
@@ -96,21 +93,25 @@ extension RatingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = RatingCell()
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: RatingCell.reuseIdentifier, for: indexPath)
+       
+        guard let ratingCell = cell as? RatingCell else {
+            return UITableViewCell()
+        }
+
         if indexPath.row >= presenter.users.count {
             assertionFailure("configCell: indexPath.row >= users.count")
             return cell
         }
 
-        cell.configure(
+        ratingCell.configure(
             indexPath: indexPath,
             name: presenter.users[indexPath.row].name,
             avatarUrl: presenter.users[indexPath.row].avatarUrl,
             rating: presenter.users[indexPath.row].rating
         )
 
-        return cell
+        return ratingCell
     }
 }
 

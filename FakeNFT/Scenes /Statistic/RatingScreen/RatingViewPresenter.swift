@@ -7,8 +7,6 @@
 
 import Foundation
 
-let usersPerPage = 20
-
 enum ListUserError: Error {
     case unknownError
 }
@@ -33,10 +31,14 @@ protocol RatingViewPresenterDelegate: AnyObject {
 }
 
 final class RatingViewPresenter: RatingViewPresenterProtocol {
-    private var sortParameter = UsersSortParameter.byRating
-    private var sortOrder = UsersSortOrder.asc
+    private let usersPerPage = 20
+    private let sortParameterKey = "sortParameter"
+    private let sortOrderKey = "sortOrderKey"
+    
     private var lastLoadedPage = 0
-        
+    private var sortParameter: UsersSortParameter
+    private var sortOrder: UsersSortOrder
+    
     private var service: UserServiceProtocol
     
     weak var delegate: RatingViewPresenterDelegate?
@@ -44,6 +46,26 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
     var users: [User] = []
 
     init(networkClient: NetworkClient) {
+        switch UserDefaults.standard.string(forKey: sortParameterKey) {
+        case UsersSortParameter.byRating.rawValue:
+            sortParameter = UsersSortParameter.byRating
+        case UsersSortParameter.byName.rawValue:
+            sortParameter = UsersSortParameter.byName
+        default:
+            print("failed to get sortParameter from userDefaults")
+            sortParameter = UsersSortParameter.byRating
+        }
+    
+        switch UserDefaults.standard.string(forKey: sortOrderKey) {
+        case UsersSortOrder.asc.rawValue:
+            sortOrder = UsersSortOrder.asc
+        case UsersSortOrder.desc.rawValue:
+            sortOrder = UsersSortOrder.desc
+        default:
+            print("failed to get sortOrder from userDefaults")
+            sortOrder = UsersSortOrder.asc
+        }
+
         self.service = UserService(networkClient: networkClient)
     }
         
@@ -105,6 +127,7 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
     
     func setSortParameter(_ sortParameter: UsersSortParameter) {
         self.sortParameter = sortParameter
+        UserDefaults.standard.set(sortParameter.rawValue, forKey: sortParameterKey)
         
         lastLoadedPage = 0
         users = []
@@ -112,5 +135,6 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
     
     func setSortOrder(_ sortOrder: UsersSortOrder) {
         self.sortOrder = sortOrder
+        UserDefaults.standard.set(sortOrder.rawValue, forKey: sortOrderKey)
     }
 }

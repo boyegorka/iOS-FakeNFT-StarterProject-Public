@@ -12,7 +12,9 @@ import Kingfisher
 let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
 
 final class RatingCell: UITableViewCell {
-    var ratingPositionLabel: UILabel = {
+    static let reuseIdentifier = "RatingCell"
+    
+    private var ratingPositionLabel: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 15, weight: .regular)
         title.textColor = .textPrimary
@@ -22,7 +24,7 @@ final class RatingCell: UITableViewCell {
         return title
     }()
     
-    var userCard: UIView = {
+    private var userCard: UIView = {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .backgroundLightGray
@@ -32,7 +34,7 @@ final class RatingCell: UITableViewCell {
         return view
     }()
     
-    var avatarView: UIImageView = {
+    private var avatarView: UIImageView = {
         let imageView = UIImageView(image: unknownAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
@@ -42,7 +44,7 @@ final class RatingCell: UITableViewCell {
         return imageView
     }()
 
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 22, weight: .bold)
         title.textColor = .textPrimary
@@ -52,7 +54,7 @@ final class RatingCell: UITableViewCell {
         return title
     }()
 
-    var ratingLabel: UILabel = {
+    private var ratingLabel: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 22, weight: .bold)
         title.textColor = .textPrimary
@@ -62,6 +64,22 @@ final class RatingCell: UITableViewCell {
         return title
     }()
 
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.addSubview(ratingPositionLabel)
+        contentView.addSubview(userCard)
+        userCard.addSubview(avatarView)
+        userCard.addSubview(nameLabel)
+        userCard.addSubview(ratingLabel)
+        
+        setConstraint()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarView.kf.cancelDownloadTask()
@@ -71,14 +89,6 @@ final class RatingCell: UITableViewCell {
         ratingPositionLabel.text = (indexPath.row + 1).description
         nameLabel.text = name
         ratingLabel.text = rating
-        
-        contentView.addSubview(ratingPositionLabel)
-        contentView.addSubview(userCard)
-        userCard.addSubview(avatarView)
-        userCard.addSubview(nameLabel)
-        userCard.addSubview(ratingLabel)
-        
-        setConstraint()
         
         guard let url = URL(string: avatarUrl) else {
             print("failed to create URL from \(avatarUrl)")
@@ -95,7 +105,7 @@ final class RatingCell: UITableViewCell {
             ratingPositionLabel.widthAnchor.constraint(equalToConstant: 27),
             
             userCard.leadingAnchor.constraint(equalTo: ratingPositionLabel.trailingAnchor, constant: 8),
-            userCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            userCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             userCard.heightAnchor.constraint(equalToConstant: 80),
             userCard.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
