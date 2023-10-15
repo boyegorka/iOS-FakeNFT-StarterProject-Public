@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E826D980755408A69318 /* ShoppingBagRouter.swift */; };
 		30CD119FA2150D79B3DC9ED9 /* ShoppingBagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEB86D1D659C14D80940E93 /* ShoppingBagLoader.swift */; };
+		33F6AD971A5BC1A922CB0421 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29508ED8966F86422649F842 /* WebViewController.swift */; };
 		3B79CC1108DD433714A4B612 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3060E22772B8804787D1E5 /* OrderCell.swift */; };
 		3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F478ECE29DB474E00F6D39E /* Colors.swift */; };
 		3F478ED129DB476500F6D39E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F478ED029DB476500F6D39E /* Fonts.swift */; };
@@ -71,6 +72,7 @@
 		0C3D14AAA4C1DE764E495CC0 /* ShoppingBagViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewOutput.swift; sourceTree = "<group>"; };
 		0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingOrder.swift; sourceTree = "<group>"; };
 		1498E6AC50D227FD8CFAE824 /* ShoppingBagInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagInteractor.swift; sourceTree = "<group>"; };
+		29508ED8966F86422649F842 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3F478ECE29DB474E00F6D39E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3F478ED029DB476500F6D39E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3F68069329CBBAF100B4F915 /* FakeNFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeNFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +264,7 @@
 			children = (
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 				272B1829C899659589BF9891 /* ShoppingBagScene */,
+				E1CDA116CF103212B144D853 /* Common */,
 			);
 			path = "Scenes ";
 			sourceTree = "<group>";
@@ -375,6 +378,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		69040E2F9DE1AC06CBC03966 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				29508ED8966F86422649F842 /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		7276B07CF431B3EE48F01A36 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +454,14 @@
 				0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */,
 			);
 			path = ShoppingBag;
+			sourceTree = "<group>";
+		};
+		E1CDA116CF103212B144D853 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				69040E2F9DE1AC06CBC03966 /* WebView */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		E94B611F0504AC25FCEC42CD /* DataSource */ = {
@@ -556,7 +575,7 @@
 			mainGroup = 3F68068A29CBBAF100B4F915;
 			packageReferences = (
 				3F603CCB29DB4A53000C43D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
-				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 3F68069429CBBAF100B4F915 /* Products */;
 			projectDirPath = "";
@@ -635,6 +654,7 @@
 				306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */,
 				5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */,
 				3FE13BC9D366ECE53E0DAA94 /* NFTPreviewView.swift in Sources */,
+				33F6AD971A5BC1A922CB0421 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,7 +1021,7 @@
 				minimumVersion = 13.0.0;
 			};
 		};
-		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1019,7 +1039,7 @@
 		};
 		3F603CCF29DB4A74000C43D7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
