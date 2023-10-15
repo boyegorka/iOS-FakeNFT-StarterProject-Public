@@ -18,6 +18,7 @@ final class ShoppingBagPaymentPickerAssembly {
         let viewController = ShoppingBagPaymentPickerViewController()
         viewController.output = presenter
 
+        router.viewController = viewController
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router

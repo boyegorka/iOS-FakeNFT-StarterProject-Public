@@ -17,8 +17,11 @@ final class ShoppingBagPresenter {
 
 extension ShoppingBagPresenter: ShoppingBagViewOutput {
     func viewDidLoad() {
-        view?.showProgressHUD(with: "Загрузка корзины")
-        interactor?.loadShoppingOrder(with: stateStorage?.sortType ?? .name)
+        // FIXME: Раскомментировать код ниже
+//        view?.showProgressHUD(with: "Загрузка корзины")
+//        interactor?.loadShoppingOrder(with: stateStorage?.sortType ?? .name)
+        // FIXME: Удалить код ниже
+        router?.presentPaymentTypePicker()
     }
 
     func didTapSortButton() {
