@@ -10,6 +10,14 @@ import UIKit
 final class ShoppingBagPaymentPickerViewController: UIViewController {
     var output: ShoppingBagPaymentPickerViewOutput?
 
+    private let currenciesCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16)
+
+        return collectionView
+    }()
+
     private let rulesContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,13 +70,22 @@ final class ShoppingBagPaymentPickerViewController: UIViewController {
         return button
     }()
 
+    func setDataSource(_ dataSource: UICollectionViewDataSource) {
+        currenciesCollectionView.dataSource = dataSource
+    }
+
     override func viewDidLoad() {
         view.backgroundColor = .white
 
-        rulesTextView.delegate = self
+        purchaseButton.addTarget(self, action: #selector(didTapPurchaseButton), for: .touchUpInside)
 
+        currenciesCollectionView.register(CurrencyCell.self)
+
+        currenciesCollectionView.delegate = self
+        rulesTextView.delegate = self
         tabBarController?.tabBar.isHidden = true
 
+        view.addSubview(currenciesCollectionView)
         view.addSubview(rulesContainer)
         rulesContainer.addSubview(rulesTextView)
         rulesContainer.addSubview(purchaseButton)
@@ -81,6 +98,53 @@ final class ShoppingBagPaymentPickerViewController: UIViewController {
 }
 
 extension ShoppingBagPaymentPickerViewController: ShoppingBagPaymentPickerViewInput {
+}
+
+extension ShoppingBagPaymentPickerViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CurrencyCell else {
+            return
+        }
+
+        cell.setActiveState(true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CurrencyCell else {
+            return
+        }
+
+        cell.setActiveState(false)
+    }
+}
+
+extension ShoppingBagPaymentPickerViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(
+            width: (collectionView.frame.width - 32 - 7) / 2,
+            height: 46
+        )
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        7
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        7
+    }
 }
 
 extension ShoppingBagPaymentPickerViewController: UITextViewDelegate {
@@ -114,6 +178,11 @@ private extension ShoppingBagPaymentPickerViewController {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            currenciesCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            currenciesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            currenciesCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            currenciesCollectionView.bottomAnchor.constraint(equalTo: rulesContainer.topAnchor),
+
             rulesContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             rulesContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             rulesContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -133,5 +202,9 @@ private extension ShoppingBagPaymentPickerViewController {
 
     @objc func didTapBackButton() {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc func didTapPurchaseButton() {
+        print(#function)
     }
 }
