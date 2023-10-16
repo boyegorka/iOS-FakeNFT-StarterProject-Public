@@ -36,6 +36,10 @@
 		CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */; };
 		CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */; };
 		CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */; };
+		900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EA72AD7B138005E4BE9 /* NFT.swift */; };
+		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
+		908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908CF2592AD9656B0028EEB4 /* WebViewController.swift */; };
+		CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,10 @@
 		CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 		CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionModel.swift; sourceTree = "<group>"; };
 		CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueService.swift; sourceTree = "<group>"; };
+		900C9EA72AD7B138005E4BE9 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
+		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		908CF2592AD9656B0028EEB4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC8C38F29D245250081F015 /* Requests */,
+				900C9EA92AD7B173005E4BE9 /* Helpers */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				CAD3D7252AD6DD6200B39A72 /* Catalogue */,
+				908CF2572AD9654E0028EEB4 /* Common */,
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 			);
 			path = "Scenes ";
@@ -209,6 +219,7 @@
 		3F6806C929CBBCAF00B4F915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				900C9EA62AD7B12F005E4BE9 /* Common */,
 				3F6806D829CC979D00B4F915 /* Network */,
 			);
 			path = Models;
@@ -311,6 +322,39 @@
 				CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		900C9EA62AD7B12F005E4BE9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				900C9EA72AD7B138005E4BE9 /* NFT.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		900C9EA92AD7B173005E4BE9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */,
+				900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		908CF2572AD9654E0028EEB4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				908CF2582AD9655D0028EEB4 /* WebView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		908CF2582AD9655D0028EEB4 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				908CF2592AD9656B0028EEB4 /* WebViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +503,7 @@
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
+				900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
@@ -466,6 +511,7 @@
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
+				CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */,
 				CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */,
@@ -475,6 +521,8 @@
 				CAD3D72D2AD6DD6200B39A72 /* UIBlockingProgressHUD.swift in Sources */,
 				CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */,
 				CAD3D72F2AD6DD6200B39A72 /* AlertPresenter.swift in Sources */,
+				900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */,
+				908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
