@@ -62,7 +62,6 @@ extension ShoppingBagPaymentPickerLoaderImpl: ShoppingBagPaymentPickerLoader {
         }
 
         paymentTask = client.send(request: PaymentRequest(currencyId: currencyId), type: PaymentInfo.self) { [weak self] result in
-            print(result)
             guard let self else { return }
 
             switch result {

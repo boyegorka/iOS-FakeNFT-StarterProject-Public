@@ -51,7 +51,6 @@ final class CurrencyCell: UICollectionViewCell, ReuseIdentifying {
 
         contentView.layer.borderColor = UIColor.ypBlackUniversal.cgColor
         contentView.layer.cornerRadius = 12
-//        contentView.clipsToBounds = true
         contentView.backgroundColor = .ypLightGray
 
         iconImageViewContainer.addSubview(iconImageView)
