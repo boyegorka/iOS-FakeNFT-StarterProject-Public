@@ -12,7 +12,7 @@ class CatalogueService {
     // MARK: - Public Properties
 
     let baseUrl = "https://651ff00f906e276284c3bfac.mockapi.io"
-    var collections: [CollectionModel] = []
+    var collections: [NFTCollectionModel] = []
     
     // MARK: - Private Properties
     private let networkClient = DefaultNetworkClient()
@@ -28,12 +28,12 @@ class CatalogueService {
         let url = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/collections?page=\(nextPage)&limit=10")
 
         networkClient.send(request: CollectionsRequest(endpoint: url, httpMethod: .get),
-                           type: [CollectionResult].self) { result in
+                           type: [NFTCollectionResult].self) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
                     self.lastLoadedPage = nextPage
-                    self.collections.append(contentsOf: data.map({ CollectionModel(collectionResult: $0) }))
+                    self.collections.append(contentsOf: data.map({ NFTCollectionModel(collectionResult: $0) }))
                     NotificationCenter.default
                         .post(name: CataloguePresenter.didChangeCollectionsListNotification, object: self)
                 }
@@ -49,10 +49,6 @@ class CatalogueService {
         var httpMethod: HttpMethod
         var dto: Encodable?
         
-//        init(endpoint: , httpMethod: HttpMethod, dto: Encodable? = nil) {
-//            self.httpMethod = httpMethod
-//            self.dto = dto
-//        }
         init(endpoint: URL? = nil, httpMethod: HttpMethod, dto: Encodable? = nil) {
             self.endpoint = endpoint
             self.httpMethod = httpMethod

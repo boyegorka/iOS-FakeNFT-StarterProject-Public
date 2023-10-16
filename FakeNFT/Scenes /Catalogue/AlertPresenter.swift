@@ -25,3 +25,10 @@ final class AlertPresenter {
         viewController?.present(alert, animated: true, completion: nil)
     }
 }
+
+struct AlertModel {
+    var style: UIAlertController.Style
+    var title: String
+    var message: String?
+    var actions: [UIAlertAction]
+}

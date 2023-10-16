@@ -30,12 +30,11 @@
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		CAD3D72D2AD6DD6200B39A72 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7262AD6DD6200B39A72 /* UIBlockingProgressHUD.swift */; };
-		CAD3D72E2AD6DD6200B39A72 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */; };
 		CAD3D72F2AD6DD6200B39A72 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7282AD6DD6200B39A72 /* AlertPresenter.swift */; };
 		CAD3D7302AD6DD6200B39A72 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */; };
 		CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */; };
 		CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */; };
-		CAD3D7342AD71EB800B39A72 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7332AD71EB800B39A72 /* CollectionModel.swift */; };
+		CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */; };
 		CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,12 +81,11 @@
 		4D142D972AD53BC40048BE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		CAD3D7262AD6DD6200B39A72 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
-		CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		CAD3D7282AD6DD6200B39A72 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CataloguePresenter.swift; sourceTree = "<group>"; };
 		CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueCell.swift; sourceTree = "<group>"; };
 		CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
-		CAD3D7332AD71EB800B39A72 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
+		CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionModel.swift; sourceTree = "<group>"; };
 		CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,8 +300,7 @@
 		CAD3D7352AD71F3000B39A72 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CAD3D7272AD6DD6200B39A72 /* AlertModel.swift */,
-				CAD3D7332AD71EB800B39A72 /* CollectionModel.swift */,
+				CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -463,7 +460,7 @@
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
-				CAD3D7342AD71EB800B39A72 /* CollectionModel.swift in Sources */,
+				CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
@@ -474,7 +471,6 @@
 				CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
-				CAD3D72E2AD6DD6200B39A72 /* AlertModel.swift in Sources */,
 				CAD3D7302AD6DD6200B39A72 /* CataloguePresenter.swift in Sources */,
 				CAD3D72D2AD6DD6200B39A72 /* UIBlockingProgressHUD.swift in Sources */,
 				CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */,

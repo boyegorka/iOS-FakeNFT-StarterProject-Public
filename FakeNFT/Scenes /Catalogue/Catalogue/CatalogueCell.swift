@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CatalogueCell: UITableViewCell {
+final class CatalogueCell: UITableViewCell, ReuseIdentifying {
     
     // MARK: - Public Properties
     var picture: UIImageView {

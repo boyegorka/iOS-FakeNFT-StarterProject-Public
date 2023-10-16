@@ -37,7 +37,7 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         tableView.alwaysBounceVertical = false
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
-        tableView.register(CatalogueCell.self, forCellReuseIdentifier: Contstant.catalogueCellIdentifier)
+        tableView.register(CatalogueCell.self)
         return tableView
     }()
     
@@ -134,8 +134,7 @@ extension CatalogueViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Contstant.catalogueCellIdentifier) as? CatalogueCell
-        else { return UITableViewCell() }
+        let cell: CatalogueCell = tableView.dequeueReusableCell()
         configCell(for: cell, indexPath: indexPath)
         return cell
     }

@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct CollectionResult: Codable {
+struct NFTCollectionResult: Codable {
     let name: String
     let cover: String
     let nfts: [String]
     let id: String
 }
 
-struct CollectionModel {
+struct NFTCollectionModel {
     let name: String
     let cover: URL?
     let nfts: [String]
     let id: String
     
-    init(collectionResult: CollectionResult) {
+    init(collectionResult: NFTCollectionResult) {
         self.name = collectionResult.name
         self.cover = URL(string: collectionResult.cover)
         self.nfts = collectionResult.nfts

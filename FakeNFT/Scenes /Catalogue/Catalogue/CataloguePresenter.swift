@@ -9,7 +9,7 @@ import Foundation
 
 protocol CataloguePresenterProtocol {
     var view: CatalogueViewControllerProtocol? { get set }
-    var collections: [CollectionModel] { get }
+    var collections: [NFTCollectionModel] { get }
     func loadCollections()
     func viewDidLoad()
     func filterCollections(_ filterType: FilterType)
@@ -19,7 +19,7 @@ final class CataloguePresenter: CataloguePresenterProtocol {
     
     // MARK: - Public Properties
     weak var view: CatalogueViewControllerProtocol?
-    private (set) var collections: [CollectionModel] = []
+    private (set) var collections: [NFTCollectionModel] = []
     static let didChangeCollectionsListNotification = Notification.Name(rawValue: "ChangeCollectionsList")
     
     // MARK: - Private Properties
