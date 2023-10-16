@@ -12,11 +12,13 @@ final class ShoppingBagPaymentPickerPresenter {
     var interactor: ShoppingBagPaymentPickerInteractor?
     var router: ShoppingBagPaymentPickerRouter?
     var dataSource: ShoppingBagPaymentPickerDataSource?
+    var stateStorage: ShoppingBagPaymentPickerStateStorage?
 }
 
 extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerViewOutput {
     func viewDidLoad() {
-        print(#function)
+        view?.showProgressHUD(with: "Загрузка списка валют")
+        interactor?.loadCurrencies()
     }
 
     func didTapRulesLink(with url: URL) {
@@ -24,37 +26,25 @@ extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerViewOutput 
     }
 }
 
+extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerInteractorOutput {
+    func didLoadCurrencies(_ currencies: [Currency]?) {
+        view?.hideProgressHUD()
+
+        guard let currencies else { return }
+
+        stateStorage?.currencies = currencies
+        view?.reloadData()
+    }
+}
+
 extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerModule {
     var numberOfCurrencies: Int {
-        3
+        stateStorage?.currencies?.count ?? .zero
     }
 
     var cellModels: [CurrencyCellModel] {
-        [
-            CurrencyCellModel(
-                currency: Currency(
-                    title: "Bitcoin",
-                    name: "BTC",
-                    image: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Bitcoin_(BTC).png",
-                    id: "1"
-                )
-            ),
-            CurrencyCellModel(
-                currency: Currency(
-                    title: "Dogecoin",
-                    name: "DOGE",
-                    image: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Dogecoin_(DOGE).png",
-                    id: "2"
-                )
-            ),
-            CurrencyCellModel(
-                currency: Currency(
-                    title: "Tether",
-                    name: "USDT",
-                    image: "https://code.s3.yandex.net/Mobile/iOS/Currencies/Tether_(USDT).png",
-                    id: "3"
-                )
-            )
-        ]
+        stateStorage?.currencies?.map { currency in
+            CurrencyCellModel(currency: currency)
+        } ?? []
     }
 }

@@ -98,6 +98,17 @@ final class ShoppingBagPaymentPickerViewController: UIViewController {
 }
 
 extension ShoppingBagPaymentPickerViewController: ShoppingBagPaymentPickerViewInput {
+    func reloadData() {
+        currenciesCollectionView.reloadData()
+    }
+
+    func showProgressHUD(with message: String?) {
+        UIBlockingProgressHUD.show(with: message)
+    }
+
+    func hideProgressHUD() {
+        UIBlockingProgressHUD.dismiss()
+    }
 }
 
 extension ShoppingBagPaymentPickerViewController: UICollectionViewDelegate {
