@@ -9,6 +9,7 @@ import Foundation
 
 protocol ShoppingBagPaymentPickerLoader {
     func loadCurrencies(_ completion: @escaping ([Currency]?) -> Void)
+    func sendPayment(currencyId: String, _ completion: @escaping (Bool) -> Void)
 }
 
 final class ShoppingBagPaymentPickerLoaderImpl {
@@ -16,8 +17,17 @@ final class ShoppingBagPaymentPickerLoaderImpl {
         var endpoint: URL? = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/currencies")
     }
 
+    struct PaymentRequest: NetworkRequest {
+        var endpoint: URL?
+
+        init(currencyId: String) {
+            self.endpoint = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/orders/1/payment/\(currencyId)")
+        }
+    }
+
     private let client: NetworkClient = DefaultNetworkClient()
     private var currenciesTask: NetworkTask?
+    private var paymentTask: NetworkTask?
 }
 
 extension ShoppingBagPaymentPickerLoaderImpl: ShoppingBagPaymentPickerLoader {
@@ -27,7 +37,7 @@ extension ShoppingBagPaymentPickerLoaderImpl: ShoppingBagPaymentPickerLoader {
             currenciesTask = nil
         }
 
-        let task = client.send(request: CurrenciesRequest(), type: [Currency].self) { [weak self] result in
+        currenciesTask = client.send(request: CurrenciesRequest(), type: [Currency].self) { [weak self] result in
             guard let self else { return }
 
             switch result {
@@ -43,6 +53,30 @@ extension ShoppingBagPaymentPickerLoaderImpl: ShoppingBagPaymentPickerLoader {
 
             currenciesTask = nil
         }
-        currenciesTask = task
+    }
+
+    func sendPayment(currencyId: String, _ completion: @escaping (Bool) -> Void) {
+        if paymentTask != nil {
+            paymentTask?.cancel()
+            paymentTask = nil
+        }
+
+        paymentTask = client.send(request: PaymentRequest(currencyId: currencyId), type: PaymentInfo.self) { [weak self] result in
+            print(result)
+            guard let self else { return }
+
+            switch result {
+            case .success(let paymentInfo):
+                DispatchQueue.main.async {
+                    completion(paymentInfo.success)
+                }
+            case .failure:
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+
+            paymentTask = nil
+        }
     }
 }

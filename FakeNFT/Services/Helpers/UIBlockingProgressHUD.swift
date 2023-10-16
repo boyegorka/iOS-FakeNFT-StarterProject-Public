@@ -18,6 +18,15 @@ final class UIBlockingProgressHUD {
         ProgressHUD.show(message)
     }
 
+    static func showError(_ errorMessage: String? = nil) {
+        window?.isUserInteractionEnabled = false
+        ProgressHUD.showError(errorMessage)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            UIBlockingProgressHUD.dismiss()
+        }
+    }
+
     static func dismiss() {
         window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()

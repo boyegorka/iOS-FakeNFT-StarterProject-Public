@@ -102,6 +102,10 @@ extension ShoppingBagPaymentPickerViewController: ShoppingBagPaymentPickerViewIn
         currenciesCollectionView.reloadData()
     }
 
+    func showError(with message: String?) {
+        UIBlockingProgressHUD.showError(message)
+    }
+
     func showProgressHUD(with message: String?) {
         UIBlockingProgressHUD.show(with: message)
     }
@@ -118,6 +122,7 @@ extension ShoppingBagPaymentPickerViewController: UICollectionViewDelegate {
         }
 
         cell.setActiveState(true)
+        output?.didSelectCurrency(at: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -216,6 +221,6 @@ private extension ShoppingBagPaymentPickerViewController {
     }
 
     @objc func didTapPurchaseButton() {
-        print(#function)
+        output?.didTapPurchaseButton()
     }
 }

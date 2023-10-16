@@ -21,8 +21,23 @@ extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerViewOutput 
         interactor?.loadCurrencies()
     }
 
+    func didSelectCurrency(at indexPath: IndexPath) {
+        stateStorage?.selectedCurrency = stateStorage?.currencies?[indexPath.row]
+    }
+
     func didTapRulesLink(with url: URL) {
         router?.presentWebView(with: url)
+    }
+
+    func didTapPurchaseButton() {
+        guard let currency = stateStorage?.selectedCurrency else {
+            view?.showError(with: "Выберите валюту для оплаты")
+
+            return
+        }
+
+        view?.showProgressHUD(with: "Обработка покупки")
+        interactor?.sendPayment(with: currency)
     }
 }
 
@@ -34,6 +49,11 @@ extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerInteractorO
 
         stateStorage?.currencies = currencies
         view?.reloadData()
+    }
+
+    func didSendPayment(_ status: Bool) {
+        view?.hideProgressHUD()
+        print("Payment status is \(status)")
     }
 }
 

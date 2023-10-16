@@ -7,4 +7,5 @@
 
 final class ShoppingBagPaymentPickerStateStorage {
     var currencies: [Currency]?
+    var selectedCurrency: Currency?
 }

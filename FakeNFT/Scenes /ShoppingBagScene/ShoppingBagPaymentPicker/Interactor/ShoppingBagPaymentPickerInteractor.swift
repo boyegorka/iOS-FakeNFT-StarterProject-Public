@@ -7,10 +7,12 @@
 
 protocol ShoppingBagPaymentPickerInteractor {
     func loadCurrencies()
+    func sendPayment(with currency: Currency)
 }
 
 protocol ShoppingBagPaymentPickerInteractorOutput: AnyObject {
     func didLoadCurrencies(_ currencies: [Currency]?)
+    func didSendPayment(_ status: Bool)
 }
 
 final class ShoppingBagPaymentPickerInteractorImpl {
@@ -24,6 +26,12 @@ extension ShoppingBagPaymentPickerInteractorImpl: ShoppingBagPaymentPickerIntera
             guard let self else { return }
 
             output?.didLoadCurrencies(currencies)
+        }
+    }
+
+    func sendPayment(with currency: Currency) {
+        loader?.sendPayment(currencyId: currency.id) { [weak self] status in
+            self?.output?.didSendPayment(status)
         }
     }
 }

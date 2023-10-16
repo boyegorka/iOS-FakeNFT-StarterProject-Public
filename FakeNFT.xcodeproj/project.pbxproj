@@ -48,6 +48,7 @@
 		90BB35042ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35032ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift */; };
 		90BB35062ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35052ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift */; };
 		90BB35082ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */; };
+		90BB350A2ADCD1330087D331 /* PaymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35092ADCD1330087D331 /* PaymentInfo.swift */; };
 		999A265F2962BAB370D7B467 /* ShoppingBagPaymentPickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CF74525008D7DC093401ED /* ShoppingBagPaymentPickerRouter.swift */; };
 		9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */; };
 		AC30C20A583A7C01C69F8EB5 /* ShoppingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */; };
@@ -128,6 +129,7 @@
 		90BB35032ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerModule.swift; sourceTree = "<group>"; };
 		90BB35052ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerLoader.swift; sourceTree = "<group>"; };
 		90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerStateStorage.swift; sourceTree = "<group>"; };
+		90BB35092ADCD1330087D331 /* PaymentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfo.swift; sourceTree = "<group>"; };
 		99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceWrapper.swift; sourceTree = "<group>"; };
 		ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagModule.swift; sourceTree = "<group>"; };
 		B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagAssembly.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 			children = (
 				7F74BE45F354B452EF6EBC02 /* NFT.swift */,
 				90BB34F92ADCB3710087D331 /* Currency.swift */,
+				90BB35092ADCD1330087D331 /* PaymentInfo.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				6148E5713829F171A4CF7699 /* ShoppingBagStateStorage.swift in Sources */,
 				90BB35042ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift in Sources */,
 				3B79CC1108DD433714A4B612 /* OrderCell.swift in Sources */,
+				90BB350A2ADCD1330087D331 /* PaymentInfo.swift in Sources */,
 				C792ACE471FA8CD0CA3EA40C /* ShoppingBagDataSource.swift in Sources */,
 				9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */,
 				5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */,
