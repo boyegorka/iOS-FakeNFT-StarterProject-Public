@@ -12,7 +12,7 @@ protocol ShoppingBagPaymentPickerInteractor {
 
 protocol ShoppingBagPaymentPickerInteractorOutput: AnyObject {
     func didLoadCurrencies(_ currencies: [Currency]?)
-    func didSendPayment(_ status: Bool)
+    func didSendPayment(_ success: Bool)
 }
 
 final class ShoppingBagPaymentPickerInteractorImpl {

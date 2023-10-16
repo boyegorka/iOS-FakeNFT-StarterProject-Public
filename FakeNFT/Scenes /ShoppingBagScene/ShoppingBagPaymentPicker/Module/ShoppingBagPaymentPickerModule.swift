@@ -9,3 +9,7 @@ protocol ShoppingBagPaymentPickerModule: AnyObject {
     var numberOfCurrencies: Int { get }
     var cellModels: [CurrencyCellModel] { get }
 }
+
+protocol ShoppingBagPaymentPickerModuleOutput: AnyObject {
+    func didRecieveSuccessPaymentResults()
+}

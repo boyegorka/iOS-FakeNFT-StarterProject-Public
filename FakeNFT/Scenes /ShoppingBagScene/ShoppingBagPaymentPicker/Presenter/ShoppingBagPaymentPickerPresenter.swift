@@ -9,6 +9,7 @@ import Foundation
 
 final class ShoppingBagPaymentPickerPresenter {
     weak var view: ShoppingBagPaymentPickerViewInput?
+    weak var moduleOutput: ShoppingBagPaymentPickerModuleOutput?
     var interactor: ShoppingBagPaymentPickerInteractor?
     var router: ShoppingBagPaymentPickerRouter?
     var dataSource: ShoppingBagPaymentPickerDataSource?
@@ -51,9 +52,14 @@ extension ShoppingBagPaymentPickerPresenter: ShoppingBagPaymentPickerInteractorO
         view?.reloadData()
     }
 
-    func didSendPayment(_ status: Bool) {
+    func didSendPayment(_ success: Bool) {
         view?.hideProgressHUD()
-        print("Payment status is \(status)")
+
+        if success {
+            moduleOutput?.didRecieveSuccessPaymentResults()
+        } else {
+            router?.showPaymentErrorAlert()
+        }
     }
 }
 
