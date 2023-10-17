@@ -98,6 +98,8 @@ final class ProfileViewController: UIViewController {
         return view
     }()
     
+    private var webView: WebViewController?
+        
     init(user: User) {
         self.user = user
         
@@ -165,19 +167,33 @@ final class ProfileViewController: UIViewController {
     
     @objc func didTapProfileWebsite() {
         guard let url = URL(string: user.website) else {
-            print("failed to create url from \(user.website)")
+            let alertModel = AlertModel(
+                style: .alert,
+                title: NSLocalizedString("alert.bad.url", tableName: "StatisticProfileScreen", comment: ""),
+                actions: [
+                    UIAlertAction(
+                        title: NSLocalizedString("alert.bad.url.close", tableName: "StatisticProfileScreen", comment: ""),
+                        style: .cancel
+                    ) { _ in }
+                ]
+            )
+            let alert = AlertPresenter(delegate: self)
+            alert.show(result: alertModel)
+            
             return
         }
         
-        print(user.website)
-        let webView = WebViewController(with: url, output: self)
+        webView = WebViewController(with: url, output: self)
         
-        navigationController!.pushViewController(webView, animated: true)
-        webView.startLoading()
+        navigationController!.pushViewController(webView!, animated: true)
     }
 }
 
 extension ProfileViewController: WebViewControllerOutput {
+    func webViewDidLoad() {
+        webView?.startLoading()
+    }
+    
     func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }

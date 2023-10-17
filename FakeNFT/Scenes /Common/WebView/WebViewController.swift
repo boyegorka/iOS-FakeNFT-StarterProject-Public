@@ -50,7 +50,7 @@ final class WebViewController: UIViewController {
         setupConstraints()
         setupNavBar()
 
-        output?.webviewDidLoad()
+        output?.webViewDidLoad()
     }
 }
 
