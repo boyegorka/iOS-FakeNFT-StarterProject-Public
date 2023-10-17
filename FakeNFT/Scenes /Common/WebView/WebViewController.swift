@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 protocol WebViewControllerOutput {
-    func viewDidLoad()
+    func webViewDidLoad()
     func didTapBackButton()
 }
 
@@ -50,7 +50,7 @@ final class WebViewController: UIViewController {
         setupConstraints()
         setupNavBar()
 
-        output?.viewDidLoad()
+        output?.webviewDidLoad()
     }
 }
 
