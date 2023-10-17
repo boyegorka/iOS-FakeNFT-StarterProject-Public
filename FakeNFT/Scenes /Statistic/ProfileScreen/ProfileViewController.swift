@@ -173,11 +173,12 @@ final class ProfileViewController: UIViewController {
         let webView = WebViewController(with: url, output: self)
         
         navigationController!.pushViewController(webView, animated: true)
+        webView.startLoading()
     }
 }
 
 extension ProfileViewController: WebViewControllerOutput {
     func didTapBackButton() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
