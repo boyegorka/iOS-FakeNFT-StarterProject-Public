@@ -29,17 +29,10 @@
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
-		4D8CEE6F2ADD212D00556FD7 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE6C2ADD212D00556FD7 /* RatingCell.swift */; };
-		4D8CEE702ADD212D00556FD7 /* RatingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE6D2ADD212D00556FD7 /* RatingViewPresenter.swift */; };
-		4D8CEE712ADD212D00556FD7 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE6E2ADD212D00556FD7 /* RatingViewController.swift */; };
-		4D8CEE742ADD214000556FD7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE732ADD214000556FD7 /* UserService.swift */; };
-		4D8CEE772ADD216700556FD7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE762ADD216700556FD7 /* User.swift */; };
-		4D8CEE7A2ADD252800556FD7 /* StatisticProfileScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D8CEE7C2ADD252800556FD7 /* StatisticProfileScreen.strings */; };
-		4D8CEE7F2ADD254200556FD7 /* StatisticProfileScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D8CEE812ADD254200556FD7 /* StatisticProfileScreen.strings */; };
-		4D8CEE842ADD25AF00556FD7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE832ADD25AF00556FD7 /* ProfileViewController.swift */; };
 		900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EA72AD7B138005E4BE9 /* NFT.swift */; };
 		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
 		908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908CF2592AD9656B0028EEB4 /* WebViewController.swift */; };
+		CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,17 +77,10 @@
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
 		4D142D972AD53BC40048BE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
-		4D8CEE6C2ADD212D00556FD7 /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
-		4D8CEE6D2ADD212D00556FD7 /* RatingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewPresenter.swift; sourceTree = "<group>"; };
-		4D8CEE6E2ADD212D00556FD7 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
-		4D8CEE732ADD214000556FD7 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		4D8CEE762ADD216700556FD7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4D8CEE7B2ADD252800556FD7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/StatisticProfileScreen.strings; sourceTree = "<group>"; };
-		4D8CEE802ADD254200556FD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatisticProfileScreen.strings; sourceTree = "<group>"; };
-		4D8CEE832ADD25AF00556FD7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		900C9EA72AD7B138005E4BE9 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
 		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		908CF2592AD9656B0028EEB4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +177,6 @@
 		3F6806C629CBBC4E00B4F915 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4D8CEE722ADD214000556FD7 /* Statistic */,
 				3FC8C38F29D245250081F015 /* Requests */,
 				900C9EA92AD7B173005E4BE9 /* Helpers */,
 			);
@@ -201,7 +186,6 @@
 		3F6806C729CBBC5B00B4F915 /* Scenes  */ = {
 			isa = PBXGroup;
 			children = (
-				4D8CEE6A2ADD212D00556FD7 /* Statistic */,
 				908CF2572AD9654E0028EEB4 /* Common */,
 				3F6806C829CBBC8100B4F915 /* ProductDetails */,
 			);
@@ -220,7 +204,6 @@
 		3F6806C929CBBCAF00B4F915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D8CEE752ADD216700556FD7 /* Statistic */,
 				900C9EA62AD7B12F005E4BE9 /* Common */,
 				3F6806D829CC979D00B4F915 /* Network */,
 			);
@@ -276,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				4D142D982AD53BC40048BE2D /* RatingScreen.strings */,
-				4D8CEE812ADD254200556FD7 /* StatisticProfileScreen.strings */,
 			);
 			path = en;
 			sourceTree = "<group>";
@@ -285,52 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				4D142D952AD53BC00048BE2D /* RatingScreen.strings */,
-				4D8CEE7C2ADD252800556FD7 /* StatisticProfileScreen.strings */,
 			);
 			path = ru;
-			sourceTree = "<group>";
-		};
-		4D8CEE6A2ADD212D00556FD7 /* Statistic */ = {
-			isa = PBXGroup;
-			children = (
-				4D8CEE822ADD259900556FD7 /* ProfileScreen */,
-				4D8CEE6B2ADD212D00556FD7 /* RatingScreen */,
-			);
-			path = Statistic;
-			sourceTree = "<group>";
-		};
-		4D8CEE6B2ADD212D00556FD7 /* RatingScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4D8CEE6C2ADD212D00556FD7 /* RatingCell.swift */,
-				4D8CEE6D2ADD212D00556FD7 /* RatingViewPresenter.swift */,
-				4D8CEE6E2ADD212D00556FD7 /* RatingViewController.swift */,
-			);
-			path = RatingScreen;
-			sourceTree = "<group>";
-		};
-		4D8CEE722ADD214000556FD7 /* Statistic */ = {
-			isa = PBXGroup;
-			children = (
-				4D8CEE732ADD214000556FD7 /* UserService.swift */,
-			);
-			path = Statistic;
-			sourceTree = "<group>";
-		};
-		4D8CEE752ADD216700556FD7 /* Statistic */ = {
-			isa = PBXGroup;
-			children = (
-				4D8CEE762ADD216700556FD7 /* User.swift */,
-			);
-			path = Statistic;
-			sourceTree = "<group>";
-		};
-		4D8CEE822ADD259900556FD7 /* ProfileScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4D8CEE832ADD25AF00556FD7 /* ProfileViewController.swift */,
-			);
-			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
 		900C9EA62AD7B12F005E4BE9 /* Common */ = {
@@ -344,6 +282,7 @@
 		900C9EA92AD7B173005E4BE9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */,
 				900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Helpers;
@@ -479,12 +418,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6806A329CBBAF200B4F915 /* LaunchScreen.storyboard in Resources */,
-				4D8CEE7A2ADD252800556FD7 /* StatisticProfileScreen.strings in Resources */,
 				4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */,
 				3F6806A029CBBAF200B4F915 /* Assets.xcassets in Resources */,
 				3F68069E29CBBAF100B4F915 /* Main.storyboard in Resources */,
 				4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */,
-				4D8CEE7F2ADD254200556FD7 /* StatisticProfileScreen.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,25 +449,20 @@
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
-				4D8CEE6F2ADD212D00556FD7 /* RatingCell.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */,
-				4D8CEE842ADD25AF00556FD7 /* ProfileViewController.swift in Sources */,
-				4D8CEE702ADD212D00556FD7 /* RatingViewPresenter.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
+				CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
-				4D8CEE712ADD212D00556FD7 /* RatingViewController.swift in Sources */,
-				4D8CEE742ADD214000556FD7 /* UserService.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */,
 				908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */,
-				4D8CEE772ADD216700556FD7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,22 +528,6 @@
 				4D142D972AD53BC40048BE2D /* en */,
 			);
 			name = RatingScreen.strings;
-			sourceTree = "<group>";
-		};
-		4D8CEE7C2ADD252800556FD7 /* StatisticProfileScreen.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D8CEE7B2ADD252800556FD7 /* ru */,
-			);
-			name = StatisticProfileScreen.strings;
-			sourceTree = "<group>";
-		};
-		4D8CEE812ADD254200556FD7 /* StatisticProfileScreen.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D8CEE802ADD254200556FD7 /* en */,
-			);
-			name = StatisticProfileScreen.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
