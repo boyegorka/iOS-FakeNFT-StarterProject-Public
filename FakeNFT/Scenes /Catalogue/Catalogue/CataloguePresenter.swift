@@ -10,11 +10,11 @@ import Foundation
 protocol CataloguePresenterProtocol {
     var view: CatalogueViewControllerProtocol? { get set }
     var collections: [NFTCollectionModel] { get }
-    func loadCollections()
     func viewDidLoad()
     func didTapFilterButton()
     func filterCollections()
     func willDisplayCell(_ indexPath: IndexPath)
+    func setDataForUserDefaults(by type: Int, for key: String)
 }
 
 final class CataloguePresenter: CataloguePresenterProtocol {
@@ -41,17 +41,6 @@ final class CataloguePresenter: CataloguePresenterProtocol {
         loadCollections()
     }
     
-    func loadCollections() {
-        service.loadCollections { [weak self] result in
-            switch result {
-            case .success(_):
-                break
-            case .failure(let errorForAlert):
-                self?.view?.showErrorAlert(errorForAlert.localizedDescription)
-            }
-        }
-    }
-    
     func filterCollections() {
         let filterTypeInt = userDefaults.integer(forKey: "CatalogueFilterType")
         let filterType = FilterType(rawValue: filterTypeInt)
@@ -76,6 +65,10 @@ final class CataloguePresenter: CataloguePresenterProtocol {
         }
     }
     
+    func setDataForUserDefaults(by type: Int, for key: String) {
+        self.userDefaults.setValue(type, forKey: "CatalogueFilterType")
+    }
+    
     // MARK: - Private methods
     private func updateTableView(animated: Bool) {
         guard animated else {
@@ -90,6 +83,17 @@ final class CataloguePresenter: CataloguePresenterProtocol {
                 IndexPath(row: row, section: 0)
             }
             view?.tableViewAddRows(indexPaths: indexPaths)
+        }
+    }
+    
+    private func loadCollections() {
+        service.loadCollections { [weak self] result in
+            switch result {
+            case .success(_):
+                break
+            case .failure(let errorForAlert):
+                self?.view?.showErrorAlert(errorForAlert.localizedDescription)
+            }
         }
     }
 }

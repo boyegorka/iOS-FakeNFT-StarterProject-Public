@@ -23,17 +23,16 @@ final class CatalogueService {
     
     // MARK: - Public methods
     func loadCollections(completion: @escaping (Result<Bool, Error>) -> Void) {
-        if isLoading || allDownloaded {
-            return
-        }
+        guard !isLoading, !allDownloaded else { return }
         
         let nextPage = lastLoadedPage + 1
         
         let url = URL(string: "\(baseUrl)/api/v1/collections?page=\(nextPage)&limit=\(limitForLoadind)")
-
+        
+        self.isLoading = true
+        
         networkClient.send(request: CollectionsRequest(endpoint: url, httpMethod: .get),
                            type: [NFTCollectionResult].self) { [weak self] result in
-            self?.isLoading = true
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -53,7 +52,6 @@ final class CatalogueService {
             }
             self?.isLoading = false
         }
-        self.isLoading = true
     }
     
     // MARK: - Structs

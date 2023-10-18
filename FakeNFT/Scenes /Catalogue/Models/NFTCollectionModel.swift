@@ -22,7 +22,7 @@ struct NFTCollectionModel {
     
     init(collectionResult: NFTCollectionResult) {
         self.name = collectionResult.name
-        self.cover = URL(string: collectionResult.cover)
+        self.cover = collectionResult.cover.getUrl()
         self.nfts = collectionResult.nfts
         self.id = collectionResult.id
     }

@@ -26,8 +26,6 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     var presenter: CataloguePresenterProtocol = CataloguePresenter()
 
     // MARK: - Private Properties
-    private let userDefaults = UserDefaults.standard
-    
     private lazy var catalogueTableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,9 +102,7 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         
         let collection = presenter.collections[indexPath.row]
         cell.picture.kf.indicatorType = .activity
-        cell.picture.kf.setImage(with: collection.cover) { [weak self] _ in
-            self?.catalogueTableView.reloadRows(at: [indexPath], with: .automatic)
-        }
+        cell.picture.kf.setImage(with: collection.cover)
         cell.labelText.text = "\(collection.name) (\(collection.nfts.count))"
     }
     
@@ -114,11 +110,11 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     private func showFilterSheet() {
         let alert = AlertPresenter(delegate: self)
         let sortByNameButton = UIAlertAction(title: "По названию", style: .default) { [weak self] _ in
-            self?.userDefaults.setValue(FilterType.byName.rawValue, forKey: "CatalogueFilterType")
+            self?.presenter.setDataForUserDefaults(by: FilterType.byName.rawValue, for: "CatalogueFilterType")
             self?.presenter.didTapFilterButton()
         }
         let sortByCountButton = UIAlertAction(title: "По количеству NFT", style: .default) { [weak self] _ in
-            self?.userDefaults.setValue(FilterType.NFTcount.rawValue, forKey: "CatalogueFilterType")
+            self?.presenter.setDataForUserDefaults(by: FilterType.NFTcount.rawValue, for: "CatalogueFilterType")
             self?.presenter.didTapFilterButton()
         }
         let closeButton = UIAlertAction(title: "Закрыть", style: .cancel)

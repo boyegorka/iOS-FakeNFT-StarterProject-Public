@@ -38,6 +38,7 @@
 		CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */; };
 		CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */; };
 		CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */; };
+		CADBD6FD2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FC2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionModel.swift; sourceTree = "<group>"; };
 		CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueService.swift; sourceTree = "<group>"; };
 		CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		CADBD6FC2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogueString+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 		CAD3D7252AD6DD6200B39A72 /* Catalogue */ = {
 			isa = PBXGroup;
 			children = (
+				CADBD6FC2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift */,
 				CAD3D7292AD6DD6200B39A72 /* Catalogue */,
 				CAD3D7352AD71F3000B39A72 /* Models */,
 				CAD3D7362AD7232E00B39A72 /* Service */,
@@ -500,6 +503,7 @@
 				900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */,
+				CADBD6FD2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
