@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CatalogueService {
+final class CatalogueService {
 
     // MARK: - Public Properties
 
@@ -16,31 +16,44 @@ class CatalogueService {
     
     // MARK: - Private Properties
     private let networkClient = DefaultNetworkClient()
-    private var lastCollectionsLenght: Int = 0
     private var lastLoadedPage: Int = 0
+    private var isLoading: Bool = false
+    private let limitForLoadind = 10
+    private var allDownloaded: Bool = false
     
     // MARK: - Public methods
-    func loadCollections() {
-        lastCollectionsLenght = collections.count
+    func loadCollections(completion: @escaping (Result<Bool, Error>) -> Void) {
+        if isLoading || allDownloaded {
+            return
+        }
         
         let nextPage = lastLoadedPage + 1
         
-        let url = URL(string: "https://651ff00f906e276284c3bfac.mockapi.io/api/v1/collections?page=\(nextPage)&limit=10")
+        let url = URL(string: "\(baseUrl)/api/v1/collections?page=\(nextPage)&limit=\(limitForLoadind)")
 
         networkClient.send(request: CollectionsRequest(endpoint: url, httpMethod: .get),
-                           type: [NFTCollectionResult].self) { result in
+                           type: [NFTCollectionResult].self) { [weak self] result in
+            self?.isLoading = true
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
-                    self.lastLoadedPage = nextPage
-                    self.collections.append(contentsOf: data.map({ NFTCollectionModel(collectionResult: $0) }))
+                    self?.lastLoadedPage = nextPage
+                    let collectionsResult = data.map({NFTCollectionModel(collectionResult: $0)})
+                    if collectionsResult.count < self?.limitForLoadind ?? 0 {
+                        self?.allDownloaded = true
+                    }
+                    self?.collections.append(contentsOf: collectionsResult)
+                    completion(.success(true))
                     NotificationCenter.default
                         .post(name: CataloguePresenter.didChangeCollectionsListNotification, object: self)
                 }
             case .failure(let error):
+                completion(.failure(error))
                 print(error)
             }
+            self?.isLoading = false
         }
+        self.isLoading = true
     }
     
     // MARK: - Structs

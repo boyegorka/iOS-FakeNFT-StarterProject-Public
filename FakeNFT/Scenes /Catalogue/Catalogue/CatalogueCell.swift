@@ -33,7 +33,7 @@ final class CatalogueCell: UITableViewCell, ReuseIdentifying {
     private lazy var collectionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .ypBlack
         label.font = .bodyBold
         label.numberOfLines = 0
         return label
@@ -54,7 +54,7 @@ final class CatalogueCell: UITableViewCell, ReuseIdentifying {
     private func setupSubviews() {
         addSubviews()
         constraintSubviews()
-        backgroundColor = .white
+        backgroundColor = .ypWhite
         selectionStyle = .none
     }
     private func addSubviews() {

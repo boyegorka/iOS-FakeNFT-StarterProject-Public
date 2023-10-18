@@ -12,6 +12,7 @@ protocol CatalogueViewControllerProtocol: AnyObject {
     var presenter: CataloguePresenterProtocol { get set }
     func updateTableView()
     func tableViewAddRows(indexPaths: [IndexPath])
+    func showErrorAlert(_ message: String)
 }
 
 final class CatalogueViewController: UIViewController, CatalogueViewControllerProtocol {
@@ -25,12 +26,14 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     var presenter: CataloguePresenterProtocol = CataloguePresenter()
 
     // MARK: - Private Properties
+    private let userDefaults = UserDefaults.standard
+    
     private lazy var catalogueTableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .ypWhite
         tableView.isScrollEnabled = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -61,8 +64,16 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         catalogueTableView.reloadData()
     }
     
+    func showErrorAlert(_ message: String) {
+        let actionOK = UIAlertAction(title: "OK", style: .default) { _ in }
+        let viewModel = AlertModel(style: .alert, title: "Что-то пошло не так", message: message, actions: [actionOK])
+        let presenter = AlertPresenter(delegate: self)
+        presenter.show(result: viewModel)
+    }
+    
     // MARK: - Private methods
     private func setupScreen() {
+        view.backgroundColor = .ypWhite
         setupNavigationBar()
         addSubviews()
         contstraintSubviews()
@@ -84,14 +95,15 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     private func setupNavigationBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
-        let rightButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showFilterSheet))
-        rightButton.tintColor = .black
+        let rightButton = UIBarButtonItem(image: UIImage(named: "sortIcon"), style: .plain, target: self, action: #selector(showFilterSheet))
+        rightButton.tintColor = .ypBlack
         navigationBar.topItem?.setRightBarButton(rightButton, animated: true)
     }
     
     private func configCell(for cell: CatalogueCell, indexPath: IndexPath) {
         
         let collection = presenter.collections[indexPath.row]
+        cell.picture.kf.indicatorType = .activity
         cell.picture.kf.setImage(with: collection.cover) { [weak self] _ in
             self?.catalogueTableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -101,11 +113,13 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     @objc
     private func showFilterSheet() {
         let alert = AlertPresenter(delegate: self)
-        let sortByNameButton = UIAlertAction(title: "По названию", style: .default) { _ in
-            self.presenter.filterCollections(.byName)
+        let sortByNameButton = UIAlertAction(title: "По названию", style: .default) { [weak self] _ in
+            self?.userDefaults.setValue(FilterType.byName.rawValue, forKey: "CatalogueFilterType")
+            self?.presenter.didTapFilterButton()
         }
-        let sortByCountButton = UIAlertAction(title: "По количеству NFT", style: .default) { _ in
-            self.presenter.filterCollections(.NFTcount)
+        let sortByCountButton = UIAlertAction(title: "По количеству NFT", style: .default) { [weak self] _ in
+            self?.userDefaults.setValue(FilterType.NFTcount.rawValue, forKey: "CatalogueFilterType")
+            self?.presenter.didTapFilterButton()
         }
         let closeButton = UIAlertAction(title: "Закрыть", style: .cancel)
         let model = AlertModel(style: .actionSheet, title: "Сортировка", message: nil, actions: [sortByNameButton, sortByCountButton, closeButton])
@@ -121,9 +135,7 @@ extension CatalogueViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == (presenter.collections.count) - 1 {
-            presenter.loadCollections()
-        }
+        presenter.willDisplayCell(indexPath)
     }
 }
 

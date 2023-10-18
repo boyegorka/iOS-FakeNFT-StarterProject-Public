@@ -12,7 +12,9 @@ protocol CataloguePresenterProtocol {
     var collections: [NFTCollectionModel] { get }
     func loadCollections()
     func viewDidLoad()
-    func filterCollections(_ filterType: FilterType)
+    func didTapFilterButton()
+    func filterCollections()
+    func willDisplayCell(_ indexPath: IndexPath)
 }
 
 final class CataloguePresenter: CataloguePresenterProtocol {
@@ -24,6 +26,7 @@ final class CataloguePresenter: CataloguePresenterProtocol {
     
     // MARK: - Private Properties
     private let service = CatalogueService()
+    private let userDefaults = UserDefaults.standard
     
     // MARK: - Public methods
     func viewDidLoad() {
@@ -32,23 +35,44 @@ final class CataloguePresenter: CataloguePresenterProtocol {
             .addObserver(forName: CataloguePresenter.didChangeCollectionsListNotification, object: nil, queue: .main) { [weak self] _ in
                 guard let self = self else { return }
                 self.updateTableView(animated: true)
+                filterCollections()
                 UIBlockingProgressHUD.dismiss()
             }
         loadCollections()
     }
     
     func loadCollections() {
-        service.loadCollections()
+        service.loadCollections { [weak self] result in
+            switch result {
+            case .success(_):
+                break
+            case .failure(let errorForAlert):
+                self?.view?.showErrorAlert(errorForAlert.localizedDescription)
+            }
+        }
     }
     
-    func filterCollections(_ filterType: FilterType) {
-        switch filterType {
+    func filterCollections() {
+        let filterTypeInt = userDefaults.integer(forKey: "CatalogueFilterType")
+        let filterType = FilterType(rawValue: filterTypeInt)
+        switch filterType { 
         case .byName:
             self.collections = collections.sorted(by: { $0.name < $1.name })
-            updateTableView(animated: false)
         case .NFTcount:
             self.collections = collections.sorted(by: { $0.nfts.count > $1.nfts.count })
-            updateTableView(animated: false)
+        default:
+            break
+        }
+        updateTableView(animated: false)
+    }
+    
+    func didTapFilterButton() {
+        filterCollections()
+    }
+    
+    func willDisplayCell(_ indexPath: IndexPath) {
+        if indexPath.row == (self.collections.count) - 1 {
+            loadCollections()
         }
     }
     
@@ -71,7 +95,7 @@ final class CataloguePresenter: CataloguePresenterProtocol {
 }
 
 // MARK: - Enums
-enum FilterType {
+enum FilterType: Int {
     case byName
     case NFTcount
 }
