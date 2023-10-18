@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 protocol WebViewControllerOutput {
-    func viewDidLoad()
+    func webViewDidLoad()
     func didTapBackButton()
 }
 
@@ -31,7 +31,7 @@ final class WebViewController: UIViewController {
         startUrl = url
         self.output = output
 
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -41,6 +41,8 @@ final class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        webView.backgroundColor = .ypWhite
+        
         webView.navigationDelegate = self
 
         view.addSubview(webView)
@@ -48,7 +50,7 @@ final class WebViewController: UIViewController {
         setupConstraints()
         setupNavBar()
 
-        output?.viewDidLoad()
+        output?.webviewDidLoad()
     }
 }
 
