@@ -120,9 +120,10 @@ extension RatingViewController: UITableViewDelegate {
             return
         }
         
-        let profileVC = ProfileViewController(user: presenter.users[indexPath.row])
-        
-        navigationController!.pushViewController(profileVC, animated: true)
+        let profilePresenter = ProfileViewPresenter()
+        let profileVC = ProfileViewController(user: presenter.users[indexPath.row], presenter: profilePresenter)
+        profilePresenter.delegate = profileVC
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

@@ -11,8 +11,9 @@ import Kingfisher
 
 final class ProfileViewController: UIViewController {
     var user: User
+    var presenter: ProfileViewPresenterProtocol
     
-    lazy private var avatarView: UIImageView = {
+    lazy internal var avatarView: UIImageView = {
         let imageView = UIImageView(image: unknownAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
@@ -97,11 +98,10 @@ final class ProfileViewController: UIViewController {
         
         return view
     }()
-    
-    private var webView: WebViewController?
         
-    init(user: User) {
+    init(user: User, presenter: ProfileViewPresenter) {
         self.user = user
+        self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -130,12 +130,8 @@ final class ProfileViewController: UIViewController {
         view.addSubview(collectionView)
         
         setupConstraint()
-        
-        guard let url = URL(string: user.avatarUrl) else {
-            print("failed to get url from \(user.avatarUrl)")
-            return
-        }
-        avatarView.kf.setImage(with: url, placeholder: unknownAvatar)
+
+        presenter.setImage()
     }
     
     func setupConstraint() {
@@ -166,35 +162,21 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc func didTapProfileWebsite() {
-        guard let url = URL(string: user.website) else {
-            let alertModel = AlertModel(
-                style: .alert,
-                title: NSLocalizedString("alert.bad.url", tableName: "StatisticProfileScreen", comment: ""),
-                actions: [
-                    UIAlertAction(
-                        title: NSLocalizedString("alert.bad.url.close", tableName: "StatisticProfileScreen", comment: ""),
-                        style: .cancel
-                    ) { _ in }
-                ]
-            )
-            let alert = AlertPresenter(delegate: self)
-            alert.show(result: alertModel)
-            
-            return
-        }
-        
-        webView = WebViewController(with: url, output: self)
-        
-        navigationController!.pushViewController(webView!, animated: true)
+        presenter.didTapProfileWebsite()
     }
 }
 
-extension ProfileViewController: WebViewControllerOutput {
-    func webViewDidLoad() {
-        webView?.startLoading()
+extension ProfileViewController: ProfileViewPresenterDelegateProtocol {
+    func showAlert(alert: AlertModel) {
+        let alertPresenter = AlertPresenter(delegate: self)
+        alertPresenter.show(result: alert)
     }
     
-    func didTapBackButton() {
+    func showWebView(_ webView: UIViewController) {
+        navigationController?.pushViewController(webView, animated: true)
+    }
+    
+    func closeWebView() {
         navigationController?.popViewController(animated: true)
     }
 }
