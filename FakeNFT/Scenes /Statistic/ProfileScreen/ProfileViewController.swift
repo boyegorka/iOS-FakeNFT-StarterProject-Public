@@ -19,7 +19,7 @@ final class ProfileViewController: UIViewController {
         imageView.tintColor = .gray
         imageView.layer.cornerRadius = 35
         imageView.clipsToBounds = true
- 
+        
         return imageView
     }()
     
@@ -67,7 +67,7 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.textColor = .ypBlack
         label.textAlignment = .left
- 
+        
         return label
     }()
     
@@ -98,7 +98,7 @@ final class ProfileViewController: UIViewController {
         
         return view
     }()
-        
+    
     init(user: User, presenter: ProfileViewPresenter) {
         self.user = user
         self.presenter = presenter
@@ -117,7 +117,7 @@ final class ProfileViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .ypBlack
-
+        
         titleLabel.text = user.name
         descriptionLabel.text = user.description
         let nftCollection = NSLocalizedString("nft.collection", tableName: "StatisticProfileScreen", comment: "")
@@ -130,7 +130,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(collectionView)
         
         setupConstraint()
-
+        
         presenter.setImage()
     }
     
@@ -144,7 +144,7 @@ final class ProfileViewController: UIViewController {
             titleLabel.centerYAnchor.constraint(equalTo: avatarView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-          
+            
             descriptionLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

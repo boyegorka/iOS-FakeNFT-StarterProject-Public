@@ -25,7 +25,7 @@ protocol ProfileViewPresenterDelegateProtocol: AnyObject {
 final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     weak var delegate: ProfileViewPresenterDelegateProtocol?
     var webViewController: WebViewControllerInput?
-        
+    
     func didTapProfileWebsite() {
         guard
             let delegate = delegate,
@@ -48,7 +48,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
         
         let webViewController = WebViewController(with: url, output: self)
         self.webViewController = webViewController
-    
+        
         delegate.showWebView(webViewController)
     }
     
