@@ -115,6 +115,11 @@ final class ShoppingBagViewController: UIViewController {
         output?.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
 extension ShoppingBagViewController: ShoppingBagViewInput {

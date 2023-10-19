@@ -31,7 +31,7 @@ final class WebViewController: UIViewController {
         startUrl = url
         self.output = output
 
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -43,6 +43,7 @@ final class WebViewController: UIViewController {
 
         webView.navigationDelegate = self
 
+        view.backgroundColor = .ypWhite
         view.addSubview(webView)
 
         setupConstraints()

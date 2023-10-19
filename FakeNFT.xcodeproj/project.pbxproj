@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13F1B41338C1417BC0F19BC1 /* ShoppingBagPaymentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F2911D4D4BD23594ABEB9B /* ShoppingBagPaymentPickerViewController.swift */; };
 		306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E826D980755408A69318 /* ShoppingBagRouter.swift */; };
 		30CD119FA2150D79B3DC9ED9 /* ShoppingBagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEB86D1D659C14D80940E93 /* ShoppingBagLoader.swift */; };
 		33F6AD971A5BC1A922CB0421 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29508ED8966F86422649F842 /* WebViewController.swift */; };
@@ -32,22 +33,35 @@
 		3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39029D2453B0081F015 /* ExampleRequest.swift */; };
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
 		3FE13BC9D366ECE53E0DAA94 /* NFTPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317BD3B105F781B960ABC98 /* NFTPreviewView.swift */; };
+		42C6D2E0E5F0D26AEED47544 /* ShoppingBagPaymentPickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5915AE7C18162155BAD5C4 /* ShoppingBagPaymentPickerPresenter.swift */; };
+		4A9BFD99ECCA28254493A3B6 /* ShoppingBagPaymentPickerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F1072824F9A6657B35353 /* ShoppingBagPaymentPickerViewInput.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */; };
-		5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */; };
 		6148E5713829F171A4CF7699 /* ShoppingBagStateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E7D9EA54BA897D97EAD38 /* ShoppingBagStateStorage.swift */; };
+		6A69F611D5166C7B55596ADC /* ShoppingBagPaymentPickerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71A0D2B8904D1CD354BDBA5 /* ShoppingBagPaymentPickerAssembly.swift */; };
 		6FF2D2BA73DEE7A4D1E75D8A /* ShoppingBagAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */; };
+		90BB34FA2ADCB3710087D331 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB34F92ADCB3710087D331 /* Currency.swift */; };
+		90BB34FC2ADCB3A90087D331 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB34FB2ADCB3A90087D331 /* CurrencyCell.swift */; };
+		90BB34FE2ADCB3B10087D331 /* CurrencyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB34FD2ADCB3B10087D331 /* CurrencyCellModel.swift */; };
+		90BB35012ADCBA4F0087D331 /* ShoppingBagPaymentPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35002ADCBA4F0087D331 /* ShoppingBagPaymentPickerDataSource.swift */; };
+		90BB35042ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35032ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift */; };
+		90BB35062ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35052ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift */; };
+		90BB35082ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */; };
+		90BB350A2ADCD1330087D331 /* PaymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35092ADCD1330087D331 /* PaymentInfo.swift */; };
+		999A265F2962BAB370D7B467 /* ShoppingBagPaymentPickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CF74525008D7DC093401ED /* ShoppingBagPaymentPickerRouter.swift */; };
 		9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */; };
 		AC30C20A583A7C01C69F8EB5 /* ShoppingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */; };
 		B15A0FB5A97872028A7713FE /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */; };
 		B1C009F74AA70BD534A88D2A /* ReferenceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */; };
+		B77D5FF860225FF08A47E863 /* ShoppingBagPaymentPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5706649048DCEA1155FCE551 /* ShoppingBagPaymentPickerInteractor.swift */; };
 		C792ACE471FA8CD0CA3EA40C /* ShoppingBagDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97A7C2A61D4DB8AFA9644B /* ShoppingBagDataSource.swift */; };
 		DA1BFAF6C75C2B82D50046D0 /* ShoppingBagViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3D14AAA4C1DE764E495CC0 /* ShoppingBagViewOutput.swift */; };
 		DBA5E96FDAB8286204290B4A /* ShoppingBagViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */; };
 		E5A4D13B6A2C907AFF44F276 /* ShoppingBagInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E6AC50D227FD8CFAE824 /* ShoppingBagInteractor.swift */; };
 		E81E1BB47021F7EC51A28131 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F74BE45F354B452EF6EBC02 /* NFT.swift */; };
 		EBC71A6AC9587CA66676A636 /* ShoppingBagPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6CD9C8783F99C8323D49D0 /* ShoppingBagPresenter.swift */; };
+		ED66FB8680707B7700C00841 /* ShoppingBagPaymentPickerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668975D73F5F847581EC6DE1 /* ShoppingBagPaymentPickerViewOutput.swift */; };
 		F6549B40D4AD313E8FAE64BC /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF19F083FDA850262124F91 /* ShoppingBagViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +86,8 @@
 		0C3D14AAA4C1DE764E495CC0 /* ShoppingBagViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewOutput.swift; sourceTree = "<group>"; };
 		0C85FC311AA77E038102AAC9 /* ShoppingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingOrder.swift; sourceTree = "<group>"; };
 		1498E6AC50D227FD8CFAE824 /* ShoppingBagInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagInteractor.swift; sourceTree = "<group>"; };
+		16F2911D4D4BD23594ABEB9B /* ShoppingBagPaymentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerViewController.swift; sourceTree = "<group>"; };
+		1F5915AE7C18162155BAD5C4 /* ShoppingBagPaymentPickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerPresenter.swift; sourceTree = "<group>"; };
 		29508ED8966F86422649F842 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3F478ECE29DB474E00F6D39E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3F478ED029DB476500F6D39E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -99,9 +115,21 @@
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4E97A7C2A61D4DB8AFA9644B /* ShoppingBagDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagDataSource.swift; sourceTree = "<group>"; };
 		4F3060E22772B8804787D1E5 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		501F1072824F9A6657B35353 /* ShoppingBagPaymentPickerViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerViewInput.swift; sourceTree = "<group>"; };
 		5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		5706649048DCEA1155FCE551 /* ShoppingBagPaymentPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerInteractor.swift; sourceTree = "<group>"; };
+		668975D73F5F847581EC6DE1 /* ShoppingBagPaymentPickerViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerViewOutput.swift; sourceTree = "<group>"; };
 		6C6CD9C8783F99C8323D49D0 /* ShoppingBagPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPresenter.swift; sourceTree = "<group>"; };
 		7F74BE45F354B452EF6EBC02 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
+		82CF74525008D7DC093401ED /* ShoppingBagPaymentPickerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerRouter.swift; sourceTree = "<group>"; };
+		90BB34F92ADCB3710087D331 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		90BB34FB2ADCB3A90087D331 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		90BB34FD2ADCB3B10087D331 /* CurrencyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCellModel.swift; sourceTree = "<group>"; };
+		90BB35002ADCBA4F0087D331 /* ShoppingBagPaymentPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerDataSource.swift; sourceTree = "<group>"; };
+		90BB35032ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerModule.swift; sourceTree = "<group>"; };
+		90BB35052ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerLoader.swift; sourceTree = "<group>"; };
+		90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerStateStorage.swift; sourceTree = "<group>"; };
+		90BB35092ADCD1330087D331 /* PaymentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfo.swift; sourceTree = "<group>"; };
 		99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceWrapper.swift; sourceTree = "<group>"; };
 		ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagModule.swift; sourceTree = "<group>"; };
 		B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagAssembly.swift; sourceTree = "<group>"; };
@@ -110,9 +138,9 @@
 		C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewInput.swift; sourceTree = "<group>"; };
 		C417E826D980755408A69318 /* ShoppingBagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagRouter.swift; sourceTree = "<group>"; };
 		CE5E7D9EA54BA897D97EAD38 /* ShoppingBagStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagStateStorage.swift; sourceTree = "<group>"; };
-		DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPicker.swift; sourceTree = "<group>"; };
 		DCEB86D1D659C14D80940E93 /* ShoppingBagLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagLoader.swift; sourceTree = "<group>"; };
 		F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellModel.swift; sourceTree = "<group>"; };
+		F71A0D2B8904D1CD354BDBA5 /* ShoppingBagPaymentPickerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				DCEB86D1D659C14D80940E93 /* ShoppingBagLoader.swift */,
+				90BB35052ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";
@@ -370,12 +399,28 @@
 			path = ShoppingBagPaymentResults;
 			sourceTree = "<group>";
 		};
+		5A4A627061959E1F9D932BD5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				82CF74525008D7DC093401ED /* ShoppingBagPaymentPickerRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		5DDED29F96785624655B194D /* Router */ = {
 			isa = PBXGroup;
 			children = (
 				C417E826D980755408A69318 /* ShoppingBagRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		62BEF7B92AAF30F27471446C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5706649048DCEA1155FCE551 /* ShoppingBagPaymentPickerInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		69040E2F9DE1AC06CBC03966 /* WebView */ = {
@@ -418,9 +463,22 @@
 		84B721FFE0CAAEC9694AB545 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DC8D72AD0B2F239C8349404F /* ShoppingBagPaymentPicker.swift */,
+				501F1072824F9A6657B35353 /* ShoppingBagPaymentPickerViewInput.swift */,
+				668975D73F5F847581EC6DE1 /* ShoppingBagPaymentPickerViewOutput.swift */,
+				16F2911D4D4BD23594ABEB9B /* ShoppingBagPaymentPickerViewController.swift */,
+				90BB34F72ADCB3210087D331 /*  Cells */,
+				90BB34F82ADCB3320087D331 /* CellModels */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8601CDE957FE9C2AED50AB52 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F5915AE7C18162155BAD5C4 /* ShoppingBagPaymentPickerPresenter.swift */,
+				90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		861F02C0959794CF5917F016 /* Helpers */ = {
@@ -436,14 +494,54 @@
 			isa = PBXGroup;
 			children = (
 				7F74BE45F354B452EF6EBC02 /* NFT.swift */,
+				90BB34F92ADCB3710087D331 /* Currency.swift */,
+				90BB35092ADCD1330087D331 /* PaymentInfo.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		90BB34F72ADCB3210087D331 /*  Cells */ = {
+			isa = PBXGroup;
+			children = (
+				90BB34FB2ADCB3A90087D331 /* CurrencyCell.swift */,
+			);
+			path = " Cells";
+			sourceTree = "<group>";
+		};
+		90BB34F82ADCB3320087D331 /* CellModels */ = {
+			isa = PBXGroup;
+			children = (
+				90BB34FD2ADCB3B10087D331 /* CurrencyCellModel.swift */,
+			);
+			path = CellModels;
+			sourceTree = "<group>";
+		};
+		90BB34FF2ADCBA2F0087D331 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				90BB35002ADCBA4F0087D331 /* ShoppingBagPaymentPickerDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		90BB35022ADCBA990087D331 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				90BB35032ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 		9BEACF0B656023FD83E7BCDC /* ShoppingBagPaymentPicker */ = {
 			isa = PBXGroup;
 			children = (
 				84B721FFE0CAAEC9694AB545 /* View */,
+				F6D8ADCB9F256FEF80F05054 /* Assembly */,
+				8601CDE957FE9C2AED50AB52 /* Presenter */,
+				62BEF7B92AAF30F27471446C /* Interactor */,
+				5A4A627061959E1F9D932BD5 /* Router */,
+				90BB35022ADCBA990087D331 /* Module */,
+				90BB34FF2ADCBA2F0087D331 /* DataSource */,
 			);
 			path = ShoppingBagPaymentPicker;
 			sourceTree = "<group>";
@@ -478,6 +576,14 @@
 				4F3060E22772B8804787D1E5 /* OrderCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F6D8ADCB9F256FEF80F05054 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				F71A0D2B8904D1CD354BDBA5 /* ShoppingBagPaymentPickerAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,7 +681,7 @@
 			mainGroup = 3F68068A29CBBAF100B4F915;
 			packageReferences = (
 				3F603CCB29DB4A53000C43D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
-				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 3F68069429CBBAF100B4F915 /* Products */;
 			projectDirPath = "";
@@ -626,6 +732,8 @@
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
+				90BB35012ADCBA4F0087D331 /* ShoppingBagPaymentPickerDataSource.swift in Sources */,
+				90BB35082ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
@@ -640,6 +748,8 @@
 				EBC71A6AC9587CA66676A636 /* ShoppingBagPresenter.swift in Sources */,
 				DA1BFAF6C75C2B82D50046D0 /* ShoppingBagViewOutput.swift in Sources */,
 				6FF2D2BA73DEE7A4D1E75D8A /* ShoppingBagAssembly.swift in Sources */,
+				90BB34FC2ADCB3A90087D331 /* CurrencyCell.swift in Sources */,
+				90BB35062ADCC88C0087D331 /* ShoppingBagPaymentPickerLoader.swift in Sources */,
 				DBA5E96FDAB8286204290B4A /* ShoppingBagViewInput.swift in Sources */,
 				30CD119FA2150D79B3DC9ED9 /* ShoppingBagLoader.swift in Sources */,
 				F6549B40D4AD313E8FAE64BC /* ShoppingBagViewController.swift in Sources */,
@@ -647,14 +757,24 @@
 				B15A0FB5A97872028A7713FE /* UIBlockingProgressHUD.swift in Sources */,
 				B1C009F74AA70BD534A88D2A /* ReferenceWrapper.swift in Sources */,
 				6148E5713829F171A4CF7699 /* ShoppingBagStateStorage.swift in Sources */,
+				90BB35042ADCBAB90087D331 /* ShoppingBagPaymentPickerModule.swift in Sources */,
 				3B79CC1108DD433714A4B612 /* OrderCell.swift in Sources */,
+				90BB350A2ADCD1330087D331 /* PaymentInfo.swift in Sources */,
 				C792ACE471FA8CD0CA3EA40C /* ShoppingBagDataSource.swift in Sources */,
 				9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */,
 				5E7F0EEDA754C6DC12A832F7 /* ShoppingBagModule.swift in Sources */,
 				306BA5B59ACBAB7D17580AAE /* ShoppingBagRouter.swift in Sources */,
-				5FDACD56BF7CF8740A20A33D /* ShoppingBagPaymentPicker.swift in Sources */,
 				3FE13BC9D366ECE53E0DAA94 /* NFTPreviewView.swift in Sources */,
 				33F6AD971A5BC1A922CB0421 /* WebViewController.swift in Sources */,
+				999A265F2962BAB370D7B467 /* ShoppingBagPaymentPickerRouter.swift in Sources */,
+				6A69F611D5166C7B55596ADC /* ShoppingBagPaymentPickerAssembly.swift in Sources */,
+				42C6D2E0E5F0D26AEED47544 /* ShoppingBagPaymentPickerPresenter.swift in Sources */,
+				ED66FB8680707B7700C00841 /* ShoppingBagPaymentPickerViewOutput.swift in Sources */,
+				90BB34FA2ADCB3710087D331 /* Currency.swift in Sources */,
+				90BB34FE2ADCB3B10087D331 /* CurrencyCellModel.swift in Sources */,
+				13F1B41338C1417BC0F19BC1 /* ShoppingBagPaymentPickerViewController.swift in Sources */,
+				B77D5FF860225FF08A47E863 /* ShoppingBagPaymentPickerInteractor.swift in Sources */,
+				4A9BFD99ECCA28254493A3B6 /* ShoppingBagPaymentPickerViewInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,7 +1141,7 @@
 				minimumVersion = 13.0.0;
 			};
 		};
-		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1039,7 +1159,7 @@
 		};
 		3F603CCF29DB4A74000C43D7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
