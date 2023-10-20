@@ -8,12 +8,12 @@
 import UIKit
 import WebKit
 
-protocol WebViewControllerOutput {
+protocol WebViewControllerOutput: AnyObject {
     func webViewDidLoad()
     func didTapBackButton()
 }
 
-protocol WebViewControllerInput {
+protocol WebViewControllerInput: AnyObject {
     func startLoading()
 }
 
