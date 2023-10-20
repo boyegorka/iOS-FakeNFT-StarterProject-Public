@@ -8,18 +8,18 @@
 import UIKit
 import WebKit
 
-protocol WebViewControllerOutput {
+protocol WebViewControllerOutput: AnyObject {
     func webViewDidLoad()
     func didTapBackButton()
 }
 
-protocol WebViewControllerInput {
+protocol WebViewControllerInput: AnyObject {
     func startLoading()
 }
 
 final class WebViewController: UIViewController {
     private let startUrl: URL
-    private let output: WebViewControllerOutput?
+    weak private var output: WebViewControllerOutput?
     private let webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
