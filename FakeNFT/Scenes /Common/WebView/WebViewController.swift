@@ -8,18 +8,18 @@
 import UIKit
 import WebKit
 
-protocol WebViewControllerOutput {
-    func viewDidLoad()
+protocol WebViewControllerOutput: AnyObject {
+    func webViewDidLoad()
     func didTapBackButton()
 }
 
-protocol WebViewControllerInput {
+protocol WebViewControllerInput: AnyObject {
     func startLoading()
 }
 
 final class WebViewController: UIViewController {
     private let startUrl: URL
-    private let output: WebViewControllerOutput?
+    weak private var output: WebViewControllerOutput?
     private let webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +41,8 @@ final class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        webView.backgroundColor = .ypWhite
+        
         webView.navigationDelegate = self
 
         view.backgroundColor = .ypWhite
@@ -49,7 +51,7 @@ final class WebViewController: UIViewController {
         setupConstraints()
         setupNavBar()
 
-        output?.viewDidLoad()
+        output?.webViewDidLoad()
     }
 }
 

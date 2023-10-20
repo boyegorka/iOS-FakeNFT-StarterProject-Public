@@ -59,6 +59,7 @@
 		DA1BFAF6C75C2B82D50046D0 /* ShoppingBagViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3D14AAA4C1DE764E495CC0 /* ShoppingBagViewOutput.swift */; };
 		DBA5E96FDAB8286204290B4A /* ShoppingBagViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */; };
 		E5A4D13B6A2C907AFF44F276 /* ShoppingBagInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E6AC50D227FD8CFAE824 /* ShoppingBagInteractor.swift */; };
+		E6C82C6AEA394A8FDEB1B0C8 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC72EB1084B5E79AAC3C913 /* AlertPresenter.swift */; };
 		E81E1BB47021F7EC51A28131 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F74BE45F354B452EF6EBC02 /* NFT.swift */; };
 		EBC71A6AC9587CA66676A636 /* ShoppingBagPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6CD9C8783F99C8323D49D0 /* ShoppingBagPresenter.swift */; };
 		ED66FB8680707B7700C00841 /* ShoppingBagPaymentPickerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668975D73F5F847581EC6DE1 /* ShoppingBagPaymentPickerViewOutput.swift */; };
@@ -131,6 +132,7 @@
 		90BB35072ADCCBE10087D331 /* ShoppingBagPaymentPickerStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerStateStorage.swift; sourceTree = "<group>"; };
 		90BB35092ADCD1330087D331 /* PaymentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfo.swift; sourceTree = "<group>"; };
 		99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceWrapper.swift; sourceTree = "<group>"; };
+		AAC72EB1084B5E79AAC3C913 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		ABCDAA78463214FAE248059B /* ShoppingBagModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagModule.swift; sourceTree = "<group>"; };
 		B1D0B569DF9D905421C5B7AC /* ShoppingBagAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagAssembly.swift; sourceTree = "<group>"; };
 		B317BD3B105F781B960ABC98 /* NFTPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTPreviewView.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			children = (
 				5537B9F742DA034F2E676D22 /* UIBlockingProgressHUD.swift */,
 				99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */,
+				AAC72EB1084B5E79AAC3C913 /* AlertPresenter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -681,7 +684,7 @@
 			mainGroup = 3F68068A29CBBAF100B4F915;
 			packageReferences = (
 				3F603CCB29DB4A53000C43D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
-				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 3F68069429CBBAF100B4F915 /* Products */;
 			projectDirPath = "";
@@ -775,6 +778,7 @@
 				13F1B41338C1417BC0F19BC1 /* ShoppingBagPaymentPickerViewController.swift in Sources */,
 				B77D5FF860225FF08A47E863 /* ShoppingBagPaymentPickerInteractor.swift in Sources */,
 				4A9BFD99ECCA28254493A3B6 /* ShoppingBagPaymentPickerViewInput.swift in Sources */,
+				E6C82C6AEA394A8FDEB1B0C8 /* AlertPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,7 +1145,7 @@
 				minimumVersion = 13.0.0;
 			};
 		};
-		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1159,7 +1163,7 @@
 		};
 		3F603CCF29DB4A74000C43D7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
