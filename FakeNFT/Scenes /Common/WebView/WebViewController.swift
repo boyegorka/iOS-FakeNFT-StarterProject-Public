@@ -19,7 +19,7 @@ protocol WebViewControllerInput: AnyObject {
 
 final class WebViewController: UIViewController {
     private let startUrl: URL
-    private let output: WebViewControllerOutput?
+    weak private var output: WebViewControllerOutput?
     private let webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
