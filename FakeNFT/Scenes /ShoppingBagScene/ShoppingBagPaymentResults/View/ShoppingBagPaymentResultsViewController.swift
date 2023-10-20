@@ -17,7 +17,7 @@ protocol ShoppingBagPaymentResultsViewOutput {
 final class ShoppingBagPaymentResultsViewController: UIViewController {
     var output: ShoppingBagPaymentResultsViewOutput?
 
-    private let digitalArtImageView: UIImageView = {
+    private lazy var digitalArtImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -26,7 +26,7 @@ final class ShoppingBagPaymentResultsViewController: UIViewController {
         return imageView
     }()
 
-    private let descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .headline3
@@ -37,7 +37,7 @@ final class ShoppingBagPaymentResultsViewController: UIViewController {
         return label
     }()
 
-    private let backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 16

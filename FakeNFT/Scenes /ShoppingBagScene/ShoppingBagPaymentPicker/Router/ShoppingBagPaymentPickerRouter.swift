@@ -13,8 +13,8 @@ protocol ShoppingBagPaymentPickerRouter {
 }
 
 final class ShoppingBagPaymentPickerRouterImpl {
-    var viewController: UIViewController?
-    var webViewController: WebViewControllerInput?
+    weak var viewController: UIViewController?
+    weak var webViewController: WebViewControllerInput?
 }
 
 extension ShoppingBagPaymentPickerRouterImpl: ShoppingBagPaymentPickerRouter {
@@ -37,7 +37,7 @@ extension ShoppingBagPaymentPickerRouterImpl: ShoppingBagPaymentPickerRouter {
 }
 
 extension ShoppingBagPaymentPickerRouterImpl: WebViewControllerOutput {
-    func viewDidLoad() {
+    func webViewDidLoad() {
         webViewController?.startLoading()
     }
 

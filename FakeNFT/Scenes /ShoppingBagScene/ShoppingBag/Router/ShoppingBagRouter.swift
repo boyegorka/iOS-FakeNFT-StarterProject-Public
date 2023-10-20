@@ -15,13 +15,13 @@ protocol ShoppingBagRouter {
     func hidePaymentResults()
 }
 
-protocol ShoppingBagRouterOutput {
+protocol ShoppingBagRouterOutput: AnyObject {
     func didSelectSortType(_ sortType: ShoppingBagSortType)
 }
 
 final class ShoppingBagRouterImpl {
-    var viewController: UIViewController?
-    var output: ShoppingBagRouterOutput?
+    weak var viewController: UIViewController?
+    weak var output: ShoppingBagRouterOutput?
 }
 
 extension ShoppingBagRouterImpl: ShoppingBagRouter {
