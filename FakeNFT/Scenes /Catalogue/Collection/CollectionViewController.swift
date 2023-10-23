@@ -118,7 +118,7 @@ final class CollectionViewController: UIViewController, CollectionViewController
     
     private func addSubviews() {
         
-        let authorStack = createStackView(axis: .horizontal, alignment: .leading, distribution: .fill, spacing: 4, margins: .zero, applyMargins: false)
+        let authorStack = createStackView(axis: .horizontal, alignment: .bottom, distribution: .fill, spacing: 4, margins: .zero, applyMargins: false)
         addArrangedSubviews(stackView: authorStack, views: [collectionAuthor, collectionAuthorLink])
         
         let nameAndAuthorStack = createStackView(axis: .vertical, alignment: .leading, distribution: .fill, spacing: 15, margins: .zero, applyMargins: false)
