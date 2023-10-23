@@ -31,12 +31,15 @@
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EA72AD7B138005E4BE9 /* NFT.swift */; };
 		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
+		906C2BF62AE3604600659B03 /* ShoppingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C2BF52AE3604600659B03 /* ShoppingOrder.swift */; };
+		906C2BF92AE361DA00659B03 /* ShoppingOrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C2BF82AE361DA00659B03 /* ShoppingOrderService.swift */; };
 		908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908CF2592AD9656B0028EEB4 /* WebViewController.swift */; };
 		CAD3D7302AD6DD6200B39A72 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */; };
 		CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */; };
 		CAD3D7322AD6DD6200B39A72 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */; };
 		CAD3D7342AD71EB800B39A72 /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */; };
 		CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */; };
+		909358E32AE35F810052C5A4 /* ShoppingBagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909358E22AE35F810052C5A4 /* ShoppingBagLoader.swift */; };
 		CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */; };
 		CADBD6FD2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBD6FC2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -85,12 +88,15 @@
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		900C9EA72AD7B138005E4BE9 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
 		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
+		906C2BF52AE3604600659B03 /* ShoppingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingOrder.swift; sourceTree = "<group>"; };
+		906C2BF82AE361DA00659B03 /* ShoppingOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingOrderService.swift; sourceTree = "<group>"; };
 		908CF2592AD9656B0028EEB4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		CAD3D72A2AD6DD6200B39A72 /* CataloguePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CataloguePresenter.swift; sourceTree = "<group>"; };
 		CAD3D72B2AD6DD6200B39A72 /* CatalogueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueCell.swift; sourceTree = "<group>"; };
 		CAD3D72C2AD6DD6200B39A72 /* CatalogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 		CAD3D7332AD71EB800B39A72 /* NFTCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionModel.swift; sourceTree = "<group>"; };
 		CAD3D7372AD7238C00B39A72 /* CatalogueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueService.swift; sourceTree = "<group>"; };
+		909358E22AE35F810052C5A4 /* ShoppingBagLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagLoader.swift; sourceTree = "<group>"; };
 		CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		CADBD6FC2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogueString+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +197,7 @@
 			children = (
 				3FC8C38F29D245250081F015 /* Requests */,
 				900C9EA92AD7B173005E4BE9 /* Helpers */,
+				906C2BF72AE360DF00659B03 /* Loaders */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -288,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				900C9EA72AD7B138005E4BE9 /* NFT.swift */,
+				906C2BF52AE3604600659B03 /* ShoppingOrder.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -297,8 +305,17 @@
 			children = (
 				CADBD6FA2ADD3E8E002D0CC0 /* AlertPresenter.swift */,
 				900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */,
+				906C2BF82AE361DA00659B03 /* ShoppingOrderService.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		906C2BF72AE360DF00659B03 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				909358E22AE35F810052C5A4 /* ShoppingBagLoader.swift */,
+			);
+			path = Loaders;
 			sourceTree = "<group>";
 		};
 		908CF2572AD9654E0028EEB4 /* Common */ = {
@@ -506,6 +523,9 @@
 				CADBD6FD2ADF95AB002D0CC0 /* CatalogueString+Extensions.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
+				909358E32AE35F810052C5A4 /* ShoppingBagLoader.swift in Sources */,
+				906C2BF62AE3604600659B03 /* ShoppingOrder.swift in Sources */,
+				906C2BF92AE361DA00659B03 /* ShoppingOrderService.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
