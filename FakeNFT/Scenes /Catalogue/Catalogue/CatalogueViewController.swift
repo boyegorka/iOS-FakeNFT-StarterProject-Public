@@ -17,11 +17,6 @@ protocol CatalogueViewControllerProtocol: AnyObject {
 
 final class CatalogueViewController: UIViewController, CatalogueViewControllerProtocol {
     
-    // MARK: - Enums
-    private enum Contstant {
-        static let catalogueCellIdentifier = "CatalogueCell"
-    }
-    
     // MARK: - Public Properties
     var presenter: CataloguePresenterProtocol = CataloguePresenter()
 
@@ -106,6 +101,16 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         cell.labelText.text = "\(collection.name) (\(collection.nfts.count))"
     }
     
+    private func showCollectionInfo() {
+        let vc = CollectionViewController()
+        let presenter = CollectionPresenter()
+        
+        vc.presenter = presenter
+        presenter.view = vc
+        
+        self.show(vc, sender: self)
+    }
+    
     @objc
     private func showFilterSheet() {
         let alert = AlertPresenter(delegate: self)
@@ -132,6 +137,10 @@ extension CatalogueViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         presenter.willDisplayCell(indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showCollectionInfo()
     }
 }
 
