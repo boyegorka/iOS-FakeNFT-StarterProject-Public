@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 import Kingfisher
 
-let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
-
 final class RatingCell: UITableViewCell {
     static let reuseIdentifier = "RatingCell"
     

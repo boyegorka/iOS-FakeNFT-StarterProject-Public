@@ -49,6 +49,7 @@ final class RatingViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavBar()
+        tabBarController?.tabBar.isHidden = false
         
         view.addSubview(table)
         
@@ -120,8 +121,8 @@ extension RatingViewController: UITableViewDelegate {
             return
         }
         
-        let profilePresenter = ProfileViewPresenter()
-        let profileVC = ProfileViewController(user: presenter.users[indexPath.row], presenter: profilePresenter)
+        let profilePresenter = ProfileViewPresenter(user: presenter.users[indexPath.row])
+        let profileVC = ProfileViewController(presenter: profilePresenter)
         profilePresenter.delegate = profileVC
         navigationController?.pushViewController(profileVC, animated: true)
     }

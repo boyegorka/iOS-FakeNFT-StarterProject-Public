@@ -38,6 +38,7 @@
 		4D8CEE9A2ADE617600556FD7 /* RatingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE962ADE617600556FD7 /* RatingViewPresenter.swift */; };
 		4D8CEE9B2ADE617600556FD7 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE972ADE617600556FD7 /* RatingViewController.swift */; };
 		4D8CEE9D2ADFB54300556FD7 /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CEE9C2ADFB54300556FD7 /* ProfileViewPresenter.swift */; };
+		4DA25ECB2AE7AD2200746F72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA25ECA2AE7AD2200746F72 /* Constants.swift */; };
 		900C9EA82AD7B138005E4BE9 /* NFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EA72AD7B138005E4BE9 /* NFT.swift */; };
 		900C9EAB2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */; };
 		908CF25A2AD9656B0028EEB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908CF2592AD9656B0028EEB4 /* WebViewController.swift */; };
@@ -95,6 +96,7 @@
 		4D8CEE962ADE617600556FD7 /* RatingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewPresenter.swift; sourceTree = "<group>"; };
 		4D8CEE972ADE617600556FD7 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		4D8CEE9C2ADFB54300556FD7 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenter.swift; sourceTree = "<group>"; };
+		4DA25ECA2AE7AD2200746F72 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		900C9EA72AD7B138005E4BE9 /* NFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFT.swift; sourceTree = "<group>"; };
 		900C9EAA2AD7B188005E4BE9 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		908CF2592AD9656B0028EEB4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		4D8CEE912ADE617600556FD7 /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
+				4DA25ECA2AE7AD2200746F72 /* Constants.swift */,
 				4D8CEE922ADE617600556FD7 /* ProfileScreen */,
 				4D8CEE942ADE617600556FD7 /* RatingScreen */,
 			);
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA25ECB2AE7AD2200746F72 /* Constants.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				4D8CEE9D2ADFB54300556FD7 /* ProfileViewPresenter.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,

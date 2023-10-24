@@ -10,10 +10,9 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
-    var user: User
-    var presenter: ProfileViewPresenterProtocol
+    private var presenter: ProfileViewPresenterProtocol
     
-    lazy internal var avatarView: UIImageView = {
+    lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: unknownAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .gray
@@ -61,7 +60,7 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    lazy var nftcCllectionLabel: UILabel = {
+    lazy private var nftcCllectionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -99,8 +98,7 @@ final class ProfileViewController: UIViewController {
         return view
     }()
     
-    init(user: User, presenter: ProfileViewPresenter) {
-        self.user = user
+    init(presenter: ProfileViewPresenter) {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
@@ -114,14 +112,16 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .ypWhite
         
+        tabBarController?.tabBar.isHidden = true
+        
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .ypBlack
         
-        titleLabel.text = user.name
-        descriptionLabel.text = user.description
+        titleLabel.text = presenter.user.name
+        descriptionLabel.text = presenter.user.description
         let nftCollection = NSLocalizedString("nft.collection", tableName: "StatisticProfileScreen", comment: "")
-        nftcCllectionLabel.text = "\(nftCollection) (\(user.nfts.count))"
+        nftcCllectionLabel.text = "\(nftCollection) (\(presenter.user.nfts.count))"
         
         view.addSubview(avatarView)
         view.addSubview(titleLabel)
@@ -178,5 +178,9 @@ extension ProfileViewController: ProfileViewPresenterDelegateProtocol {
     
     func closeWebView() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func setImage(url: URL) {
+        avatarView.kf.setImage(with: url, placeholder: unknownAvatar)
     }
 }

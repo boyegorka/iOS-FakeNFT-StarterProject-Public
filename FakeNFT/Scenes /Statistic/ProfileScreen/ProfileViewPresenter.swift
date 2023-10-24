@@ -9,27 +9,35 @@ import Foundation
 import UIKit
 
 protocol ProfileViewPresenterProtocol {
+    var user: User { get }
+    
     func didTapProfileWebsite()
     func setImage()
 }
 
 protocol ProfileViewPresenterDelegateProtocol: AnyObject {
-    var user: User { get }
     var avatarView: UIImageView { get set }
     
     func showAlert(alert: AlertModel)
     func showWebView(_ webView: UIViewController)
     func closeWebView()
+    func setImage(url: URL)
 }
 
 final class ProfileViewPresenter: ProfileViewPresenterProtocol {
+    var user: User
+    
     weak var delegate: ProfileViewPresenterDelegateProtocol?
     var webViewController: WebViewControllerInput?
+    
+    init(user: User) {
+        self.user = user
+    }
     
     func didTapProfileWebsite() {
         guard
             let delegate = delegate,
-            let url = URL(string: delegate.user.website)
+            let url = URL(string: user.website)
         else {
             let alertModel = AlertModel(
                 style: .alert,
@@ -55,12 +63,12 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     func setImage() {
         guard
             let delegate = delegate,
-            let url = URL(string: delegate.user.avatarUrl)
+            let url = URL(string: user.avatarUrl)
         else {
             print("failed to get url")
             return
         }
-        delegate.avatarView.kf.setImage(with: url, placeholder: unknownAvatar)
+        delegate.setImage(url: url)
     }
 }
 
