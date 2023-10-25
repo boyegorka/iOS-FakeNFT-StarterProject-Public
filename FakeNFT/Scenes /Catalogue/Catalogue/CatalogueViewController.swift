@@ -40,6 +40,7 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         presenter.view = self
         presenter.viewDidLoad()
         
@@ -101,13 +102,13 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         cell.labelText.text = "\(collection.name) (\(collection.nfts.count))"
     }
     
-    private func showCollectionInfo() {
+    private func showCollectionInfo(for collection: NFTCollectionModel) {
         let vc = CollectionViewController()
-        let presenter = CollectionPresenter()
+        let presenter = CollectionPresenter(collection: collection)
         
         vc.presenter = presenter
         presenter.view = vc
-        
+        //navigationController?.pushViewController(vc, animated: true)
         self.show(vc, sender: self)
     }
     
@@ -140,7 +141,7 @@ extension CatalogueViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showCollectionInfo()
+        showCollectionInfo(for: presenter.collections[indexPath.row])
     }
 }
 

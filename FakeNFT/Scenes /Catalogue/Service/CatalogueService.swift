@@ -31,7 +31,7 @@ final class CatalogueService {
         
         self.isLoading = true
         
-        networkClient.send(request: CollectionsRequest(endpoint: url, httpMethod: .get),
+        networkClient.send(request: CatalogueGetRequest(endpoint: url),
                            type: [NFTCollectionResult].self) { [weak self] result in
             switch result {
             case .success(let data):
@@ -54,16 +54,88 @@ final class CatalogueService {
         }
     }
     
-    // MARK: - Structs
-    struct CollectionsRequest: NetworkRequest {
-        var endpoint: URL?
-        var httpMethod: HttpMethod
-        var dto: Encodable?
+    func loadUser(_ id: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/users/\(id)")
         
-        init(endpoint: URL? = nil, httpMethod: HttpMethod, dto: Encodable? = nil) {
+        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: UserResult.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let authorProfile = UserModel(userResult: data)
+                    completion(.success(authorProfile))
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func loadNFT(_ id: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/nft/\(id)")
+        
+        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: NFT.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let nft = NFTModel(nft: data)
+                    completion(.success(nft))
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func loadProfile(completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/profile/1")
+        
+        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: ProfileResult.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let profile = ProfileModel(profileResult: data)
+                    completion(.success(profile))
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func loadCart(completion: @escaping (Result<CartModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/orders/1")
+        
+        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: CartResult.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let cart = CartModel(cartResult: data)
+                    completion(.success(cart))
+                }
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func uploadLikes() {
+        
+    }
+    
+    func uploadOrders() {
+        
+    }
+    
+    // MARK: - Structs
+    struct CatalogueGetRequest: NetworkRequest {
+        var endpoint: URL?
+        
+        init(endpoint: URL? = nil) {
             self.endpoint = endpoint
-            self.httpMethod = httpMethod
-            self.dto = dto
         }
     }
 }

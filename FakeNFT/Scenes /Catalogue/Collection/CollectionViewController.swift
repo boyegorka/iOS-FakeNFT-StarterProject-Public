@@ -10,6 +10,8 @@ import Kingfisher
 
 protocol CollectionViewControllerProtocol: AnyObject {
     var presenter: CollectionPresenterProtocol? { get }
+    func showErrorAlert(_ message: String)
+    func updateData()
 }
 
 final class CollectionViewController: UIViewController, CollectionViewControllerProtocol {
@@ -23,6 +25,7 @@ final class CollectionViewController: UIViewController, CollectionViewController
     
     // MARK: - Public Properties
     var presenter: CollectionPresenterProtocol?
+    var webViewController: WebViewControllerInput?
     
     // MARK: - Private Properties
     
@@ -66,8 +69,10 @@ final class CollectionViewController: UIViewController, CollectionViewController
         var label = UILabel()
         label.textColor = .ypBlueUniversal
         label.font = .caption1
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapProfileLink))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
         return label
     }()
     
@@ -98,8 +103,54 @@ final class CollectionViewController: UIViewController, CollectionViewController
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter?.viewDidLoad()
+        //updateData()
         setupScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        //navigationBar.backgroundColor = view.backgroundColor
+        //        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //        navigationBar.shadowImage = UIImage()
+        //        navigationBar.isTranslucent = true
+        
+//        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().tintColor = .red
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = .blue
+////        appearance.shadowImage = Constants.Appearance.NavigationBar.shadowColor.as1ptImage()
+//        appearance.titleTextAttributes[.foregroundColor] = UIColor.green
+//        appearance.largeTitleTextAttributes[.foregroundColor] = UIColor.orange
+//        appearance.titleTextAttributes[.font] = UIFont.headline2
+//        appearance.setBackIndicatorImage(
+//            UIImage.strokedCheckmark,
+//            transitionMaskImage: UIImage.strokedCheckmark
+//        )
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().compactAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        
+    }
+    
+    // MARK: - Public methods
+    func showErrorAlert(_ message: String) {
+        let actionOK = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
+            self?.presenter?.viewDidLoad()
+        }
+        let actionCancel = UIAlertAction(title: "Отменить", style: .cancel) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        let viewModel = AlertModel(style: .alert, title: "Что-то пошло не так", message: message, actions: [actionOK, actionCancel])
+        let presenter = AlertPresenter(delegate: self)
+        presenter.show(result: viewModel)
     }
     
     // MARK: - Private methods
@@ -108,12 +159,7 @@ final class CollectionViewController: UIViewController, CollectionViewController
         setupNavigationBar()
         addSubviews()
         
-        // это временные данные, поскольку для второго эпика стояла задача сделать вёрстку
-        collectionName.text = "Имя коллекции"
-        coverImage.kf.setImage(with: "https://image.mel.fm/i/l/lgMrg9iMvS/640.jpg".getUrl())
-        collectionAuthor.text = "Автор коллекции"
-        collectionAuthorLink.text = "Имя автора"
-        collectionDescription.text = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        setData()
     }
     
     private func addSubviews() {
@@ -150,16 +196,38 @@ final class CollectionViewController: UIViewController, CollectionViewController
     
     private func setupNavigationBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
-        
         navigationBar.backIndicatorImage = UIImage(named: "backButton")
         navigationBar.topItem?.backButtonTitle = ""
         navigationBar.tintColor = .ypBlack
     }
     
-    func createStackView(axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment, distribution: UIStackView.Distribution, spacing: CGFloat, margins: UIEdgeInsets?, applyMargins: Bool) -> UIStackView {
+    func updateData() {
+        self.collectionAuthorLink.text = self.presenter?.authorProfile?.name
+        nftsCollectionView.reloadData()
+    }
+    
+    private func setData() {
+        DispatchQueue.main.async {
+            self.collectionName.text = self.presenter?.collection.name
+            self.coverImage.kf.setImage(with: self.presenter?.collection.cover)
+            self.collectionAuthor.text = "Автор коллекции:"
+            self.collectionDescription.text = self.presenter?.collection.description
+        }
+    }
+    
+    @objc
+    private func didTapProfileLink(_ sender: UITapGestureRecognizer) {
+        guard let url = presenter?.authorProfile?.website else { return }
+        let webView = WebViewController(with: url, output: self)
+        webViewController = webView
+        self.show(webView, sender: self)
+        //navigationController?.pushViewController(webView, animated: true)
+        //self.view.addSubview(webView)
+        //self.present(webView, animated: true, completion: nil)
+        
+    }
+    
+    private func createStackView(axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment, distribution: UIStackView.Distribution, spacing: CGFloat, margins: UIEdgeInsets?, applyMargins: Bool) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = axis
         stackView.alignment = alignment
@@ -171,7 +239,7 @@ final class CollectionViewController: UIViewController, CollectionViewController
         return stackView
     }
     
-    func addArrangedSubviews(stackView: UIStackView, views: [UIView]) {
+    private func addArrangedSubviews(stackView: UIStackView, views: [UIView]) {
         for view in views {
             stackView.addArrangedSubview(view)
         }
@@ -180,12 +248,16 @@ final class CollectionViewController: UIViewController, CollectionViewController
 
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        presenter?.nfts.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: NFTCell = collectionView.dequeueReusableCell(indexPath: indexPath)
-        cell.viewModel = NFTModel(nft: NFT(id: "1", name: "Picachu", images: ["https://avatars.mds.yandex.net/i?id=57f147a252093a28d9793aa75c4cfa78713a0dd4-9220617-images-thumbs&n=13"], rating: 3, price: 1.2))
+        if let nft = presenter?.nfts[indexPath.row] {
+            cell.viewModel = nft
+            cell.isLikedNFT = presenter?.isLikedNFT(nft.id) ?? false
+            cell.isAddedToCart = presenter?.isInCart(nft.id) ?? false
+        }
         return cell
     }
 }
@@ -206,5 +278,15 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return Contstants.spacing
+    }
+}
+
+extension CollectionViewController: WebViewControllerOutput {
+    func webViewDidLoad() {
+        webViewController?.startLoading()
+    }
+    
+    func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
     }
 }

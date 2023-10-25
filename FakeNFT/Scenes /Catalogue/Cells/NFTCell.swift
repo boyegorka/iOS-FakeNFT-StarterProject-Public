@@ -71,6 +71,7 @@ class NFTCell: UICollectionViewCell, ReuseIdentifying {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
+        button.tintColor = .ypBlack
         return button
     }()
     
