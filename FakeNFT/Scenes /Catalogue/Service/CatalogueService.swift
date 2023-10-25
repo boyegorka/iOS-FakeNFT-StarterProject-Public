@@ -13,6 +13,7 @@ final class CatalogueService {
 
     let baseUrl = "https://651ff00f906e276284c3bfac.mockapi.io"
     var collections: [NFTCollectionModel] = []
+    let userId: String = "1"
     
     // MARK: - Private Properties
     private let networkClient = DefaultNetworkClient()
@@ -31,7 +32,7 @@ final class CatalogueService {
         
         self.isLoading = true
         
-        networkClient.send(request: CatalogueGetRequest(endpoint: url),
+        networkClient.send(request: CatalogueRequest(endpoint: url),
                            type: [NFTCollectionResult].self) { [weak self] result in
             switch result {
             case .success(let data):
@@ -57,7 +58,7 @@ final class CatalogueService {
     func loadUser(_ id: String, completion: @escaping (Result<UserModel, Error>) -> Void) {
         let url = URL(string: "\(baseUrl)/api/v1/users/\(id)")
         
-        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: UserResult.self) { result in
+        networkClient.send(request: CatalogueRequest(endpoint: url), type: UserResult.self) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -71,15 +72,15 @@ final class CatalogueService {
         }
     }
     
-    func loadNFT(_ id: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
-        let url = URL(string: "\(baseUrl)/api/v1/nft/\(id)")
+    func loadNFTS(_ ids: [String], completion: @escaping (Result<[NFTModel], Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/nft")
         
-        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: NFT.self) { result in
+        networkClient.send(request: CatalogueRequest(endpoint: url), type: [NFT].self) { result in
             switch result {
             case .success(let data):
+                let filterData = data.filter{ ids.contains($0.id) }.map{ NFTModel(nft: $0) }
                 DispatchQueue.main.async {
-                    let nft = NFTModel(nft: data)
-                    completion(.success(nft))
+                    completion(.success(filterData))
                 }
             case .failure(let error):
                 print(error)
@@ -89,9 +90,9 @@ final class CatalogueService {
     }
     
     func loadProfile(completion: @escaping (Result<ProfileModel, Error>) -> Void) {
-        let url = URL(string: "\(baseUrl)/api/v1/profile/1")
+        let url = URL(string: "\(baseUrl)/api/v1/profile/\(userId)")
         
-        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: ProfileResult.self) { result in
+        networkClient.send(request: CatalogueRequest(endpoint: url), type: ProfileResult.self) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -106,9 +107,9 @@ final class CatalogueService {
     }
     
     func loadCart(completion: @escaping (Result<CartModel, Error>) -> Void) {
-        let url = URL(string: "\(baseUrl)/api/v1/orders/1")
+        let url = URL(string: "\(baseUrl)/api/v1/orders/\(userId)")
         
-        networkClient.send(request: CatalogueGetRequest(endpoint: url), type: CartResult.self) { result in
+        networkClient.send(request: CatalogueRequest(endpoint: url), type: CartResult.self) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -122,20 +123,48 @@ final class CatalogueService {
         }
     }
     
-    func uploadLikes() {
+    func uploadLikes(likes: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/profile/\(userId)")
         
+        networkClient.send(request: CatalogueRequest(endpoint: url, httpMethod: .put, dto: LikesDTO(likes: likes)), type: ProfileResult.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let profile = ProfileModel(profileResult: data)
+                    completion(.success(profile))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
-    func uploadOrders() {
+    func uploadOrders(orders: [String], completion: @escaping (Result<CartModel, Error>) -> Void) {
+        let url = URL(string: "\(baseUrl)/api/v1/orders/\(userId)")
         
+        networkClient.send(request: CatalogueRequest(endpoint: url, httpMethod: .put, dto: OrdersDTO(nfts: orders)), type: CartResult.self) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let cart = CartModel(cartResult: data)
+                    completion(.success(cart))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     // MARK: - Structs
-    struct CatalogueGetRequest: NetworkRequest {
+    struct CatalogueRequest: NetworkRequest {
         var endpoint: URL?
+        var httpMethod: HttpMethod
+        var dto: Encodable?
         
-        init(endpoint: URL? = nil) {
+        init(endpoint: URL? = nil, httpMethod: HttpMethod = .get, dto: Encodable? = nil) {
             self.endpoint = endpoint
+            self.httpMethod = httpMethod
+            self.dto = dto
         }
     }
 }

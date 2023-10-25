@@ -95,7 +95,6 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
     }
     
     private func configCell(for cell: CatalogueCell, indexPath: IndexPath) {
-        
         let collection = presenter.collections[indexPath.row]
         cell.picture.kf.indicatorType = .activity
         cell.picture.kf.setImage(with: collection.cover)
@@ -108,8 +107,7 @@ final class CatalogueViewController: UIViewController, CatalogueViewControllerPr
         
         vc.presenter = presenter
         presenter.view = vc
-        //navigationController?.pushViewController(vc, animated: true)
-        self.show(vc, sender: self)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc

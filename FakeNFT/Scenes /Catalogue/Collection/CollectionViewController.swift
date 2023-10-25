@@ -10,7 +10,7 @@ import Kingfisher
 
 protocol CollectionViewControllerProtocol: AnyObject {
     var presenter: CollectionPresenterProtocol? { get }
-    func showErrorAlert(_ message: String)
+    func showErrorAlert(_ message: String, repeatAction: Selector?, target: AnyObject?)
     func updateData()
 }
 
@@ -104,51 +104,26 @@ final class CollectionViewController: UIViewController, CollectionViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        //updateData()
         setupScreen()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        //navigationBar.backgroundColor = view.backgroundColor
-        //        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //        navigationBar.shadowImage = UIImage()
-        //        navigationBar.isTranslucent = true
-        
-//        UINavigationBar.appearance().isTranslucent = true
-//        UINavigationBar.appearance().tintColor = .red
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = .blue
-////        appearance.shadowImage = Constants.Appearance.NavigationBar.shadowColor.as1ptImage()
-//        appearance.titleTextAttributes[.foregroundColor] = UIColor.green
-//        appearance.largeTitleTextAttributes[.foregroundColor] = UIColor.orange
-//        appearance.titleTextAttributes[.font] = UIFont.headline2
-//        appearance.setBackIndicatorImage(
-//            UIImage.strokedCheckmark,
-//            transitionMaskImage: UIImage.strokedCheckmark
-//        )
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().compactAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        
-        
-    }
-    
     // MARK: - Public methods
-    func showErrorAlert(_ message: String) {
-        let actionOK = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
-            self?.presenter?.viewDidLoad()
-        }
+    func showErrorAlert(_ message: String, repeatAction: Selector? = nil, target: AnyObject? = nil) {
+        
         let actionCancel = UIAlertAction(title: "Отменить", style: .cancel) { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }
-        let viewModel = AlertModel(style: .alert, title: "Что-то пошло не так", message: message, actions: [actionOK, actionCancel])
+        
+        var actions = [actionCancel]
+        
+        if repeatAction != nil {
+            let actionOK = UIAlertAction(title: "Повторить", style: .default) { _ in
+                _ = target?.perform(repeatAction)
+            }
+            actions.append(actionOK)
+        }
+        
+        let viewModel = AlertModel(style: .alert, title: "Что-то пошло не так", message: message, actions: actions)
         let presenter = AlertPresenter(delegate: self)
         presenter.show(result: viewModel)
     }
@@ -158,7 +133,6 @@ final class CollectionViewController: UIViewController, CollectionViewController
         view.backgroundColor = .ypWhite
         setupNavigationBar()
         addSubviews()
-        
         setData()
     }
     
@@ -220,11 +194,7 @@ final class CollectionViewController: UIViewController, CollectionViewController
         guard let url = presenter?.authorProfile?.website else { return }
         let webView = WebViewController(with: url, output: self)
         webViewController = webView
-        self.show(webView, sender: self)
-        //navigationController?.pushViewController(webView, animated: true)
-        //self.view.addSubview(webView)
-        //self.present(webView, animated: true, completion: nil)
-        
+        navigationController?.pushViewController(webView, animated: true)
     }
     
     private func createStackView(axis: NSLayoutConstraint.Axis, alignment: UIStackView.Alignment, distribution: UIStackView.Distribution, spacing: CGFloat, margins: UIEdgeInsets?, applyMargins: Bool) -> UIStackView {
@@ -255,6 +225,7 @@ extension CollectionViewController: UICollectionViewDataSource {
         let cell: NFTCell = collectionView.dequeueReusableCell(indexPath: indexPath)
         if let nft = presenter?.nfts[indexPath.row] {
             cell.viewModel = nft
+            cell.delegate = self
             cell.isLikedNFT = presenter?.isLikedNFT(nft.id) ?? false
             cell.isAddedToCart = presenter?.isInCart(nft.id) ?? false
         }
@@ -288,5 +259,15 @@ extension CollectionViewController: WebViewControllerOutput {
     
     func didTapBackButton() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension CollectionViewController: NFTCellDelegate {
+    func didTapLikeButton(_ id: String) {
+        presenter?.setLikeForNFT(id)
+    }
+    
+    func didTapCartButton(_ id: String) {
+        presenter?.addNFTToCart(id)
     }
 }

@@ -8,9 +8,16 @@
 import UIKit
 import Kingfisher
 
+protocol NFTCellDelegate: AnyObject {
+    func didTapLikeButton(_ id: String)
+    func didTapCartButton(_ id: String)
+}
+
 class NFTCell: UICollectionViewCell, ReuseIdentifying {
     
     // MARK: - Public Properties
+    weak var delegate: NFTCellDelegate?
+    
     var isLikedNFT: Bool = false {
         didSet {
             updateLikedButton()
@@ -197,12 +204,15 @@ class NFTCell: UICollectionViewCell, ReuseIdentifying {
     
     @objc
     private func addToFavourites() {
+        guard let viewModel else { return }
         isLikedNFT.toggle()
-        print("isLikedNFT")
+        delegate?.didTapLikeButton(viewModel.id)
     }
     
     @objc
     private func addToCart() {
+        guard let viewModel else { return }
         isAddedToCart.toggle()
+        delegate?.didTapCartButton(viewModel.id)
     }
 }

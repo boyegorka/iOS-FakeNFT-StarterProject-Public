@@ -50,6 +50,8 @@
 		CAF375F42AE7F94F00644869 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF375F32AE7F94F00644869 /* UserModel.swift */; };
 		CAF375F72AE8641E00644869 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF375F62AE8641E00644869 /* ProfileModel.swift */; };
 		CAF375F92AE8660800644869 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF375F82AE8660800644869 /* CartModel.swift */; };
+		CAF375FB2AE939CB00644869 /* LikesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF375FA2AE939CB00644869 /* LikesDTO.swift */; };
+		CAF375FD2AE93C1700644869 /* OrdersDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF375FC2AE93C1700644869 /* OrdersDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		CAF375F32AE7F94F00644869 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CAF375F62AE8641E00644869 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		CAF375F82AE8660800644869 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		CAF375FA2AE939CB00644869 /* LikesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesDTO.swift; sourceTree = "<group>"; };
+		CAF375FC2AE93C1700644869 /* OrdersDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +385,8 @@
 				CAF375F32AE7F94F00644869 /* UserModel.swift */,
 				CAF375F62AE8641E00644869 /* ProfileModel.swift */,
 				CAF375F82AE8660800644869 /* CartModel.swift */,
+				CAF375FA2AE939CB00644869 /* LikesDTO.swift */,
+				CAF375FC2AE93C1700644869 /* OrdersDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				CADBD7002AE04171002D0CC0 /* CollectionViewController.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
+				CAF375FB2AE939CB00644869 /* LikesDTO.swift in Sources */,
 				CADBD6FB2ADD3E8E002D0CC0 /* AlertPresenter.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				CAD3D7382AD7238C00B39A72 /* CatalogueService.swift in Sources */,
@@ -580,6 +587,7 @@
 				CAD3D7312AD6DD6200B39A72 /* CatalogueCell.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				CADBD7042AE0638E002D0CC0 /* NFTCell.swift in Sources */,
+				CAF375FD2AE93C1700644869 /* OrdersDTO.swift in Sources */,
 				CAF375F92AE8660800644869 /* CartModel.swift in Sources */,
 				CAF375F42AE7F94F00644869 /* UserModel.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
