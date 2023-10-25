@@ -48,8 +48,10 @@ final class CatalogueService {
                         .post(name: CataloguePresenter.didChangeCollectionsListNotification, object: self)
                 }
             case .failure(let error):
-                completion(.failure(error))
-                print(error)
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                    print(error)
+                }
             }
             self?.isLoading = false
         }
@@ -61,13 +63,15 @@ final class CatalogueService {
         networkClient.send(request: CatalogueRequest(endpoint: url), type: UserResult.self) { result in
             switch result {
             case .success(let data):
+                let authorProfile = UserModel(userResult: data)
                 DispatchQueue.main.async {
-                    let authorProfile = UserModel(userResult: data)
                     completion(.success(authorProfile))
                 }
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    print(error)
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -83,8 +87,10 @@ final class CatalogueService {
                     completion(.success(filterData))
                 }
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    print(error)
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -95,13 +101,15 @@ final class CatalogueService {
         networkClient.send(request: CatalogueRequest(endpoint: url), type: ProfileResult.self) { result in
             switch result {
             case .success(let data):
+                let profile = ProfileModel(profileResult: data)
                 DispatchQueue.main.async {
-                    let profile = ProfileModel(profileResult: data)
                     completion(.success(profile))
                 }
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    print(error)
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -112,13 +120,15 @@ final class CatalogueService {
         networkClient.send(request: CatalogueRequest(endpoint: url), type: CartResult.self) { result in
             switch result {
             case .success(let data):
+                let cart = CartModel(cartResult: data)
                 DispatchQueue.main.async {
-                    let cart = CartModel(cartResult: data)
                     completion(.success(cart))
                 }
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    print(error)
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -129,12 +139,14 @@ final class CatalogueService {
         networkClient.send(request: CatalogueRequest(endpoint: url, httpMethod: .put, dto: LikesDTO(likes: likes)), type: ProfileResult.self) { result in
             switch result {
             case .success(let data):
+                let profile = ProfileModel(profileResult: data)
                 DispatchQueue.main.async {
-                    let profile = ProfileModel(profileResult: data)
                     completion(.success(profile))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -145,12 +157,14 @@ final class CatalogueService {
         networkClient.send(request: CatalogueRequest(endpoint: url, httpMethod: .put, dto: OrdersDTO(nfts: orders)), type: CartResult.self) { result in
             switch result {
             case .success(let data):
+                let cart = CartModel(cartResult: data)
                 DispatchQueue.main.async {
-                    let cart = CartModel(cartResult: data)
                     completion(.success(cart))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
         }
     }
