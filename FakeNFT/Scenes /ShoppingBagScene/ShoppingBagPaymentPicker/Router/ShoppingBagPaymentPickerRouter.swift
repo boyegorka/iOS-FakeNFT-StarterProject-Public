@@ -9,11 +9,12 @@ import UIKit
 
 protocol ShoppingBagPaymentPickerRouter {
     func presentWebView(with url: URL)
+    func showPaymentErrorAlert()
 }
 
 final class ShoppingBagPaymentPickerRouterImpl {
-    var viewController: UIViewController?
-    var webViewController: WebViewControllerInput?
+    weak var viewController: UIViewController?
+    weak var webViewController: WebViewControllerInput?
 }
 
 extension ShoppingBagPaymentPickerRouterImpl: ShoppingBagPaymentPickerRouter {
@@ -22,10 +23,21 @@ extension ShoppingBagPaymentPickerRouterImpl: ShoppingBagPaymentPickerRouter {
         self.webViewController = webViewController
         viewController?.navigationController?.pushViewController(webViewController, animated: true)
     }
+
+    func showPaymentErrorAlert() {
+        let alertController = UIAlertController(
+            title: "Упс! Что-то пошло не так:(",
+            message: "Попробуйте ещё раз!",
+            preferredStyle: .alert
+        )
+        let continueAction = UIAlertAction(title: "ОК", style: .default)
+        alertController.addAction(continueAction)
+        viewController?.present(alertController, animated: true)
+    }
 }
 
 extension ShoppingBagPaymentPickerRouterImpl: WebViewControllerOutput {
-    func viewDidLoad() {
+    func webViewDidLoad() {
         webViewController?.startLoading()
     }
 

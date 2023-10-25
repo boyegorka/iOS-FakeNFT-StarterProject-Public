@@ -9,16 +9,19 @@ import UIKit
 
 protocol ShoppingBagRouter {
     func presentSortTypePickerAlert()
-    func presentPaymentTypePicker()
+    func presentPaymentTypePicker(moduleOutput: ShoppingBagPaymentPickerModuleOutput)
+    func hidePaymentTypePicker()
+    func presentPaymentResults(moduleOutput: ShoppingBagPaymentResultsModuleOutput)
+    func hidePaymentResults()
 }
 
-protocol ShoppingBagRouterOutput {
+protocol ShoppingBagRouterOutput: AnyObject {
     func didSelectSortType(_ sortType: ShoppingBagSortType)
 }
 
 final class ShoppingBagRouterImpl {
-    var viewController: UIViewController?
-    var output: ShoppingBagRouterOutput?
+    weak var viewController: UIViewController?
+    weak var output: ShoppingBagRouterOutput?
 }
 
 extension ShoppingBagRouterImpl: ShoppingBagRouter {
@@ -46,8 +49,21 @@ extension ShoppingBagRouterImpl: ShoppingBagRouter {
         viewController?.present(alertController, animated: true)
     }
 
-    func presentPaymentTypePicker() {
-        let paymentPickerViewController = ShoppingBagPaymentPickerAssembly.assemble()
+    func presentPaymentTypePicker(moduleOutput: ShoppingBagPaymentPickerModuleOutput) {
+        let paymentPickerViewController = ShoppingBagPaymentPickerAssembly.assemble(moduleOutput: moduleOutput)
         viewController?.navigationController?.pushViewController(paymentPickerViewController, animated: true)
+    }
+
+    func hidePaymentTypePicker() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+
+    func presentPaymentResults(moduleOutput: ShoppingBagPaymentResultsModuleOutput) {
+        let paymentResultsViewController = ShoppingBagPaymentResultsAssembly.assemble(moduleOutput: moduleOutput)
+        viewController?.navigationController?.pushViewController(paymentResultsViewController, animated: true)
+    }
+
+    func hidePaymentResults() {
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

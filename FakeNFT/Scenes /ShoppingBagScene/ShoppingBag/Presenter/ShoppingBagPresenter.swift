@@ -26,7 +26,7 @@ extension ShoppingBagPresenter: ShoppingBagViewOutput {
     }
 
     func didTapPurchaseButton() {
-        router?.presentPaymentTypePicker()
+        router?.presentPaymentTypePicker(moduleOutput: self)
     }
 
     func didTapSubmitRemoveNFTButton() {
@@ -97,5 +97,20 @@ extension ShoppingBagPresenter: ShoppingBagModule {
                 view?.showRemoveNFTAlert(for: cell.previewImage)
             }
         } ?? []
+    }
+}
+
+extension ShoppingBagPresenter: ShoppingBagPaymentPickerModuleOutput {
+    func didRecieveSuccessPaymentResults() {
+        router?.hidePaymentTypePicker()
+        router?.presentPaymentResults(moduleOutput: self)
+    }
+}
+
+extension ShoppingBagPresenter: ShoppingBagPaymentResultsModuleOutput {
+    func didTapBackButton() {
+        router?.hidePaymentResults()
+        view?.showProgressHUD(with: "Загрузка корзины")
+        interactor?.loadShoppingOrder(with: stateStorage?.sortType ?? .name)
     }
 }
