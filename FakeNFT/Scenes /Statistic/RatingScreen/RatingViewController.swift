@@ -49,12 +49,17 @@ final class RatingViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavBar()
-        tabBarController?.tabBar.isHidden = false
         
         view.addSubview(table)
         
         setupConstraints()
         presenter.listUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
     
     func setupNavBar() {
