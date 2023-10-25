@@ -10,7 +10,8 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
-    private var presenter: ProfileViewPresenterProtocol
+    var user: User
+    var presenter: ProfileViewPresenterProtocol
     
     lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: unknownAvatar)
@@ -82,6 +83,10 @@ final class ProfileViewController: UIViewController {
         view.addSubview(nftcCllectionLabel)
         view.addSubview(imageView)
         
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(didTapNFTsCollection))
+        view.addGestureRecognizer(tapGR)
+        view.isUserInteractionEnabled = true
+        
         NSLayoutConstraint.activate([
             nftcCllectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             nftcCllectionLabel.topAnchor.constraint(equalTo: view.topAnchor),
@@ -111,8 +116,6 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypWhite
-        
-        tabBarController?.tabBar.isHidden = true
         
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
@@ -164,6 +167,10 @@ final class ProfileViewController: UIViewController {
     @objc func didTapProfileWebsite() {
         presenter.didTapProfileWebsite()
     }
+    
+    @objc func didTapNFTsCollection() {
+        presenter.didTapNFTsCollection()
+    }
 }
 
 extension ProfileViewController: ProfileViewPresenterDelegateProtocol {
@@ -172,8 +179,8 @@ extension ProfileViewController: ProfileViewPresenterDelegateProtocol {
         alertPresenter.show(result: alert)
     }
     
-    func showWebView(_ webView: UIViewController) {
-        navigationController?.pushViewController(webView, animated: true)
+    func showViewController(_ viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func closeWebView() {

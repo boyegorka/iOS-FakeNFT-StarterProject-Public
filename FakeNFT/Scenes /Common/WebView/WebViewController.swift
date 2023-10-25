@@ -41,8 +41,8 @@ final class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .ypWhite
         
+        view.backgroundColor = .ypWhite
         webView.backgroundColor = .ypWhite
         
         webView.navigationDelegate = self
