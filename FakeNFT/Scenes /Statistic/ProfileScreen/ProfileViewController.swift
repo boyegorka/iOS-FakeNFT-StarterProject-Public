@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
-    var presenter: ProfileViewPresenterProtocol
+    private var presenter: ProfileViewPresenterProtocol
     
     lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: unknownAvatar)
@@ -116,11 +116,11 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .ypWhite
         
+        tabBarController?.tabBar.isHidden = true
+        
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .ypBlack
-        
-        tabBarController?.tabBar.isHidden = true
         
         titleLabel.text = presenter.user.name
         descriptionLabel.text = presenter.user.description
