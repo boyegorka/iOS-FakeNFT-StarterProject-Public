@@ -44,7 +44,7 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
     weak var delegate: RatingViewPresenterDelegate?
     
     var users: [User] = []
-
+    
     init(networkClient: NetworkClient) {
         switch UserDefaults.standard.string(forKey: sortParameterKey) {
         case UsersSortParameter.byRating.rawValue:
@@ -55,7 +55,7 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
             print("failed to get sortParameter from userDefaults")
             sortParameter = UsersSortParameter.byRating
         }
-    
+        
         switch UserDefaults.standard.string(forKey: sortOrderKey) {
         case UsersSortOrder.asc.rawValue:
             sortOrder = UsersSortOrder.asc
@@ -65,17 +65,17 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
             print("failed to get sortOrder from userDefaults")
             sortOrder = UsersSortOrder.asc
         }
-
+        
         self.service = UserService(networkClient: networkClient)
     }
-        
+    
     func setDelegate(delegate: RatingViewPresenterDelegate) {
         self.delegate = delegate
     }
     
     func listUsers() {
         assert(Thread.isMainThread)
-            
+        
         let nextPage = lastLoadedPage + 1
         
         delegate?.loadUserStarted()
@@ -110,7 +110,7 @@ final class RatingViewPresenter: RatingViewPresenterProtocol {
                 }
             }
         }
-     }
+    }
     
     func updateTableViewAnimated(_ newUsers: [User]) {
         if lastLoadedPage == 1 {

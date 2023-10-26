@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 import Kingfisher
 
-let unknownAvatar = UIImage(systemName: "person.crop.circle.fill")
-
 final class RatingCell: UITableViewCell {
     static let reuseIdentifier = "RatingCell"
     
@@ -40,10 +38,10 @@ final class RatingCell: UITableViewCell {
         imageView.tintColor = .gray
         imageView.layer.cornerRadius = 14
         imageView.clipsToBounds = true
- 
+        
         return imageView
     }()
-
+    
     private var nameLabel: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 22, weight: .bold)
@@ -53,7 +51,7 @@ final class RatingCell: UITableViewCell {
         
         return title
     }()
-
+    
     private var ratingLabel: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 22, weight: .bold)
@@ -63,7 +61,7 @@ final class RatingCell: UITableViewCell {
         
         return title
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -94,7 +92,7 @@ final class RatingCell: UITableViewCell {
             print("failed to create URL from \(avatarUrl)")
             return
         }
-                
+        
         avatarView.kf.setImage(with: url, placeholder: unknownAvatar)
     }
     

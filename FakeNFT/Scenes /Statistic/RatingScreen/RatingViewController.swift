@@ -22,23 +22,12 @@ protocol RatingViewPresenterProtocol: AnyObject {
 final class RatingViewController: UIViewController {
     private let horizontalPadding: CGFloat = 16
     private let rowHeight: CGFloat = 88
-
+    
     lazy private var presenter: RatingViewPresenterProtocol = {
         let defaultNetworkClient = DefaultNetworkClient()
         presenter = RatingViewPresenter(networkClient: defaultNetworkClient)
         presenter.setDelegate(delegate: self)
         return presenter
-    }()
-    
-    lazy private var sortButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "sortIcon"), for: .normal)
-        button.backgroundColor = .background
-        
-        button.addTarget(self, action: #selector(didTapSortButton), for: .touchUpInside)
-        
-        return button
     }()
     
     lazy private var table: UITableView = {
@@ -59,21 +48,35 @@ final class RatingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(sortButton)
+        setupNavBar()
+        
         view.addSubview(table)
         
         setupConstraints()
         presenter.listUsers()
     }
-            
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    func setupNavBar() {
+        let rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "sortIcon"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapSortButton)
+        )
+        rightBarButtonItem.tintColor = .black
+        
+        navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
+    }
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            sortButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            sortButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
-            sortButton.widthAnchor.constraint(equalToConstant: 42),
-            sortButton.heightAnchor.constraint(equalToConstant: 42),
-            
-            table.topAnchor.constraint(equalTo: sortButton.bottomAnchor, constant: 20),
+            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -94,30 +97,39 @@ extension RatingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RatingCell.reuseIdentifier, for: indexPath)
-       
+        cell.selectionStyle = .none
+        
         guard let ratingCell = cell as? RatingCell else {
             return UITableViewCell()
         }
-
+        
         if indexPath.row >= presenter.users.count {
             assertionFailure("configCell: indexPath.row >= users.count")
             return cell
         }
-
+        
         ratingCell.configure(
             indexPath: indexPath,
             name: presenter.users[indexPath.row].name,
             avatarUrl: presenter.users[indexPath.row].avatarUrl,
             rating: presenter.users[indexPath.row].rating
         )
-
+        
         return ratingCell
     }
 }
 
 extension RatingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row >= presenter.users.count {
+            assertionFailure("didSelectRowAt: indexPath.row >= users.count")
+            return
+        }
         
+        let profilePresenter = ProfileViewPresenter(user: presenter.users[indexPath.row])
+        let profileVC = ProfileViewController(presenter: profilePresenter)
+        profilePresenter.delegate = profileVC
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 
@@ -180,7 +192,7 @@ extension RatingViewController {
                 assertionFailure("didTapSortButton: self is empty")
                 return
             }
-
+            
             self.presenter.setSortParameter(UsersSortParameter.byName)
             self.presenter.setSortOrder(UsersSortOrder.asc)
             
@@ -195,7 +207,7 @@ extension RatingViewController {
                 assertionFailure("didTapSortButton: self is empty")
                 return
             }
-
+            
             self.presenter.setSortParameter(UsersSortParameter.byRating)
             self.presenter.setSortOrder(UsersSortOrder.asc)
             
