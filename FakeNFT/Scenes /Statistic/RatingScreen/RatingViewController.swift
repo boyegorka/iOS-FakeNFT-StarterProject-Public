@@ -20,7 +20,6 @@ protocol RatingViewPresenterProtocol: AnyObject {
 }
 
 final class RatingViewController: UIViewController {
-    private let horizontalPadding: CGFloat = 16
     private let rowHeight: CGFloat = 88
     
     lazy private var presenter: RatingViewPresenterProtocol = {
@@ -77,8 +76,8 @@ final class RatingViewController: UIViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
-            table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
+            table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }

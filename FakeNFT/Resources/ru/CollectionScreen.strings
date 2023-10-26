@@ -1,1 +1,3 @@
 "nav.bar.title" = "Коллекция NFT";
+"alert.update.failed" = "Не удалось обновить данные";
+"alert.update.failed.close" = "Закрыть";

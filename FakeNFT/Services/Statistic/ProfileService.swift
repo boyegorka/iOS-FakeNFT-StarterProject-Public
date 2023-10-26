@@ -50,6 +50,8 @@ struct UpdateProfileRequest: NetworkRequest {
 final class ProfileService: ProfileServiceProtocol {
     let networkClient: NetworkClient
     
+    var updateProfileDataTask: NetworkTask?
+    
     init(networkClient: NetworkClient) {
         self.networkClient = networkClient
     }
@@ -63,9 +65,21 @@ final class ProfileService: ProfileServiceProtocol {
     }
     
     func updateProfile(profile: Profile, _ handler: @escaping (Result<Profile, Error>) -> Void) {
+        assert(Thread.isMainThread)
+    
+        if updateProfileDataTask != nil {
+            return
+        }
+        
         let req = UpdateProfileRequest(updateProfile: profile)
         
-        networkClient.send(request: req, type: Profile.self) { (result: Result<Profile, Error>) in
+        updateProfileDataTask = networkClient.send(request: req, type: Profile.self) { [weak self] (result: Result<Profile, Error>) in
+            guard let self = self else {
+                assertionFailure("updateProfile: self is empty")
+                return
+            }
+            
+            self.updateProfileDataTask = nil
             handler(result)
         }
     }

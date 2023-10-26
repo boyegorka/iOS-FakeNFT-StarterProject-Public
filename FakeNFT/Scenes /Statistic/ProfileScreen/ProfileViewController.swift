@@ -10,7 +10,6 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
-    var user: User
     var presenter: ProfileViewPresenterProtocol
     
     lazy var avatarView: UIImageView = {
@@ -121,6 +120,8 @@ final class ProfileViewController: UIViewController {
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .ypBlack
         
+        tabBarController?.tabBar.isHidden = true
+        
         titleLabel.text = presenter.user.name
         descriptionLabel.text = presenter.user.description
         let nftCollection = NSLocalizedString("nft.collection", tableName: "StatisticProfileScreen", comment: "")
@@ -140,27 +141,27 @@ final class ProfileViewController: UIViewController {
     func setupConstraint() {
         NSLayoutConstraint.activate([
             avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            avatarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            avatarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
             avatarView.heightAnchor.constraint(equalToConstant: 70),
             avatarView.widthAnchor.constraint(equalToConstant: 70),
             
             titleLabel.centerYAnchor.constraint(equalTo: avatarView.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            titleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: sideMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             
             descriptionLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 20),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             
             siteButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 28),
-            siteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            siteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            siteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
+            siteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             siteButton.heightAnchor.constraint(equalToConstant: 40),
             
             collectionView.topAnchor.constraint(equalTo: siteButton.bottomAnchor, constant: 40),
             collectionView.heightAnchor.constraint(equalToConstant: 40),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
         ])
     }
     
@@ -179,11 +180,11 @@ extension ProfileViewController: ProfileViewPresenterDelegateProtocol {
         alertPresenter.show(result: alert)
     }
     
-    func showViewController(_ viewController: UIViewController) {
+    func showSubViewController(_ viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func closeWebView() {
+    func closeSubViewController() {
         navigationController?.popViewController(animated: true)
     }
     

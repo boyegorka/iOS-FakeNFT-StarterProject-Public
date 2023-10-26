@@ -12,10 +12,16 @@ protocol NFTServiceProtocol {
 }
 
 struct GetNFTRequest: NetworkRequest {
+    private let path = "/api/v1/nft"
     var endpoint: URL?
     
     init(nftID: String) {
-        endpoint = URL(string: "https://64858e8ba795d24810b71189.mockapi.io/api/v1/nft/\(nftID)")
+        guard let url = URL(string: "\(path)/\(nftID)", relativeTo: baseURL) else {
+            assertionFailure("failed to create url from \(String(describing: baseURL)) and path: \(path)")
+            return
+        }
+        
+        endpoint = url
     }
 }
 
@@ -29,12 +35,7 @@ final class NFTService: NFTServiceProtocol {
     func getNFT(id: String, _ handler: @escaping (Result<NFT, Error>) -> Void) {
         let req = GetNFTRequest(nftID: id)
         
-        networkClient.send(request: req, type: NFT.self) { [weak self] (result: Result<NFT, Error>) in
-            guard let self = self else {
-                assertionFailure("getNFT: self is empty")
-                return
-            }
-
+        networkClient.send(request: req, type: NFT.self) { (result: Result<NFT, Error>) in
             handler(result)
         }
     }

@@ -8,22 +8,24 @@
 import Foundation
 import UIKit
 
-protocol NFTCollectionCellDelegate {
+protocol NFTCollectionCellDelegate: AnyObject {
     func didTapLikeButton(isLike: Bool, indexPath: IndexPath)
+    func didTapBasketButton(isOnOrder: Bool, indexPath: IndexPath)
 }
 
 final class NFTCollectionCell: UICollectionViewCell {
-    var delegate: NFTCollectionCellDelegate?
+    weak var delegate: NFTCollectionCellDelegate?
     var indexPath: IndexPath?
     
     private var isLike: Bool = false
+    private var isOnOrder: Bool = false
     
     lazy private var likeButton: UIButton = {
         let like = UIButton()
         //  TODO: добавлять картинку в зависимости от FavoriteNFTService
         like.setImage(unlikeImage, for: .normal)
         like.translatesAutoresizingMaskIntoConstraints = false
-        like.addTarget(self, action: #selector(didTapLkeButton), for: .touchUpInside)
+        like.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
 
         return like
     }()
@@ -37,13 +39,11 @@ final class NFTCollectionCell: UICollectionViewCell {
         return imageView
     }()
 
-    private lazy var starsButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "star0"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didTapStars), for: .touchUpInside)
+    private lazy var starsButton: UIImageView = {
+        let stars = UIImageView(image: UIImage(named: "star0"))
+        stars.translatesAutoresizingMaskIntoConstraints = false
         
-        return button
+        return stars
     }()
     
     private lazy var nameLabel: UILabel = {
@@ -66,12 +66,13 @@ final class NFTCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var basketIcon: UIImageView = {
-        //TODO: сделать в соответствии с состоянием корзины
-        let imageView = UIImageView(image: UIImage(named: "basket"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var basketIcon: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(basketImage, for: .normal)
+        button.addTarget(self, action: #selector(didTapBusketIcon), for: .touchUpInside)
         
-        return imageView
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -135,13 +136,15 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     func configure(nftVM: NFTViewModel) {
         isLike = nftVM.isLike
+        isOnOrder = nftVM.isOnOrder
         
-        starsButton.setImage(UIImage(named: "star" + (nftVM.nft.rating.description)), for: .normal)
+        starsButton.image = UIImage(named: "star" + (nftVM.nft.rating.description))
         nameLabel.text = nftVM.nft.name
         priceLabel.text = (nftVM.nft.price.description) + " ETH"
         
         likeButton.setImage(isLike ? likeImage : unlikeImage, for: .normal)
- 
+        basketIcon.setImage(isOnOrder ? basketCrossImage : basketImage, for: .normal)
+        
         guard
             let urlString = nftVM.nft.images.first,
             let url = URL(string: urlString)
@@ -153,7 +156,7 @@ final class NFTCollectionCell: UICollectionViewCell {
         imageView.kf.setImage(with: url, placeholder: imagePlaceholder)
     }
     
-    @objc private func didTapLkeButton() {
+    @objc private func didTapLikeButton() {
         guard let indexPath = indexPath else {
             assertionFailure("didTapLkeButton: indexPath is empty")
             return
@@ -163,7 +166,13 @@ final class NFTCollectionCell: UICollectionViewCell {
         delegate?.didTapLikeButton(isLike: self.isLike, indexPath: indexPath)
     }
     
-    @objc private func didTapStars() {
-        print("!!!!!!!! didTapStars !!!!!!!!!!!")
+    @objc private func didTapBusketIcon() {
+        guard let indexPath = indexPath else {
+            assertionFailure("didTapBusketIco: indexPath is empty")
+            return
+        }
+        
+        self.isOnOrder = !isOnOrder
+        delegate?.didTapBasketButton(isOnOrder: isOnOrder, indexPath: indexPath)
     }
 }

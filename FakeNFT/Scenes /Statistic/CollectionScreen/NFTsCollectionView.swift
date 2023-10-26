@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class NFTsCollectionView: UIViewController {
-    private let cellReusableIdentifier = "reusableCell123"
+    private let cellReusableIdentifier = "reusableCell"
     private let nftIDs: [String]
     
     private var presenter: NFTCollectionPresenterProtocol
@@ -31,8 +31,6 @@ final class NFTsCollectionView: UIViewController {
         self.nftIDs = nfts
         self.presenter = presenter
         
-        print(nftIDs)
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,18 +43,18 @@ final class NFTsCollectionView: UIViewController {
         view.backgroundColor = .background
         
         setupNavBar()
-       
+        
+        tabBarController?.tabBar.isHidden = true
+        
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sideMargin),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
 
-        UIBlockingProgressHUD.show()
-        
         presenter.loadData(nftIDs: nftIDs)
     }
     
@@ -80,12 +78,20 @@ final class NFTsCollectionView: UIViewController {
 }
 
 extension NFTsCollectionView: NFTCollectionPresenterDelegateProtocol {
-    func showAlert(alert: AlertModel) {
+    func showProgresHUD() {
+        UIBlockingProgressHUD.show()
+    }
     
+    func dismissProgressHUD() {
+        UIBlockingProgressHUD.dismiss()
+    }
+    
+    func showAlert(alert: AlertModel) {
+        let alertPresenter = AlertPresenter(delegate: self)
+        alertPresenter.show(result: alert)
     }
     
     func reloadData() {
-        UIBlockingProgressHUD.dismiss()
         collectionView.reloadData()
      }
     
@@ -121,7 +127,7 @@ extension NFTsCollectionView: UICollectionViewDataSource {
 
 extension NFTsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let availableWidth = collectionView.frame.width - (16 + 16)
+        let availableWidth = collectionView.frame.width - (sideMargin + sideMargin)
         let cellWidth =  availableWidth / 3
   
         return CGSize(width: cellWidth, height: cellWidth + 56 + 8)
@@ -134,6 +140,10 @@ extension NFTsCollectionView: UICollectionViewDelegateFlowLayout {
 
 extension NFTsCollectionView: NFTCollectionCellDelegate {
     func didTapLikeButton(isLike: Bool, indexPath: IndexPath) {
-        presenter.likeNFT(isLike: isLike, indexPath: indexPath)
+        presenter.didTapLikeNFTButton(isLike: isLike, indexPath: indexPath)
+    }
+    
+    func didTapBasketButton(isOnOrder: Bool, indexPath: IndexPath) {
+        presenter.didTapBasketButton(isOnOrder: isOnOrder, indexPath: indexPath)
     }
 }

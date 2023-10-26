@@ -10,5 +10,5 @@ import Foundation
 struct NFTViewModel {
     let nft: NFT
     var isLike: Bool
-    var inOrder: Bool
+    var isOnOrder: Bool
 }
