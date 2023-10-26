@@ -13,7 +13,6 @@ struct NFTModel {
     let image: URL?
     let rating: Int
     let price: Double
-    let isLiked: Bool
     
     init(nft: NFT) {
         self.id = nft.id
@@ -21,6 +20,5 @@ struct NFTModel {
         self.image = nft.images.first?.getUrl()
         self.rating = nft.rating
         self.price = nft.price
-        self.isLiked = true
     }
 }
