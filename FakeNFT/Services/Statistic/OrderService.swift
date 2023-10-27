@@ -78,7 +78,7 @@ final class OrderService: OrderServiceProtocol {
                 assertionFailure("updateProfile: self is empty")
                 return
             }
-
+            
             self.updateOrderDataTask = nil
             handler(result)
         }

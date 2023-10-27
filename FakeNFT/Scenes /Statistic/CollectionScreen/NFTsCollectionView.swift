@@ -54,7 +54,7 @@ final class NFTsCollectionView: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sideMargin),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-
+        
         presenter.loadData(nftIDs: nftIDs)
     }
     
@@ -93,7 +93,7 @@ extension NFTsCollectionView: NFTCollectionPresenterDelegateProtocol {
     
     func reloadData() {
         collectionView.reloadData()
-     }
+    }
     
     func reloadCell(by indexPath: IndexPath) {
         collectionView.reloadItems(at: [indexPath])
@@ -129,7 +129,7 @@ extension NFTsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width - (sideMargin + sideMargin)
         let cellWidth =  availableWidth / 3
-  
+        
         return CGSize(width: cellWidth, height: cellWidth + 56 + 8)
     }
     

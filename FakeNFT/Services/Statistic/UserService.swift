@@ -60,18 +60,18 @@ final class UserService: UserServiceProtocol {
         _ handler: @escaping(Result<[User], Error>) -> Void
     ) {
         assert(Thread.isMainThread)
-    
+        
         if dataTask != nil {
             return
         }
-                
+        
         let req = ListUsersRequest(
             nextPage: nextPage,
             usersPerPage: usersPerPage,
             sortParameter: sortParameter,
             sortOrder: sortOrder
         )
-     
+        
         dataTask = networkClient.send(request: req, type: [User].self) {[weak self] (result: Result<[User], Error>) in
             guard let self = self else {
                 assertionFailure("listUser: self is empty")

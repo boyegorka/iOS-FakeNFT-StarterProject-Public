@@ -22,7 +22,6 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     lazy private var likeButton: UIButton = {
         let like = UIButton()
-        //  TODO: добавлять картинку в зависимости от FavoriteNFTService
         like.setImage(unlikeImage, for: .normal)
         like.translatesAutoresizingMaskIntoConstraints = false
         like.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)

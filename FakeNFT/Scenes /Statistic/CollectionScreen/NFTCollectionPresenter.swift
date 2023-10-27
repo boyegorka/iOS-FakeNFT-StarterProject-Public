@@ -26,15 +26,17 @@ protocol NFTCollectionPresenterProtocol {
 }
 
 final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
-    var nftViewModels: [NFTViewModel] = []
-    var profile: Profile?
-    var likes: Set<String> = []
-    var order: ShoppingOrder?
-    var inOrder: Set<String> = []
+    private var profile: Profile?
+    private var likes: Set<String> = []
+    private var order: ShoppingOrder?
+    private var inOrder: Set<String> = []
     
-    var nftService: NFTServiceProtocol
-    var profileService: ProfileServiceProtocol
-    var orderService: OrderServiceProtocol
+    private var nftService: NFTServiceProtocol
+    private var profileService: ProfileServiceProtocol
+    private var orderService: OrderServiceProtocol
+    
+    var nftViewModels: [NFTViewModel] = []
+    
     weak var delegate: NFTCollectionPresenterDelegateProtocol?
     
     init(
@@ -76,7 +78,7 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
             
             group.leave()
         }
-
+        
         group.enter()
         orderService.getOrder(orderID: "1") { [weak self] (result: Result<ShoppingOrder, Error>) in
             switch result {
@@ -107,7 +109,6 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
                 }
                 
                 group.leave()
-                
             }
         }
         
@@ -137,6 +138,11 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
         
         profileService.updateProfile(profile: updateProfile) { [weak self] (result: Result<Profile, Error>) in
             DispatchQueue.main.async {
+                guard let self = self else {
+                    assertionFailure("update profile, show alert: self is empty")
+                    return
+                }
+                
                 switch result {
                 case .failure(let error):
                     let alertModel = AlertModel(
@@ -149,21 +155,10 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
                             ) { _ in }
                         ]
                     )
-                    
-                    guard let self = self else {
-                        assertionFailure("show alert: self is empty")
-                        return
-                    }
-                    
                     self.delegate?.showAlert(alert: alertModel)
                     print("failed to update profile with error \(error)")
                     return
                 case .success(let newProfile):
-                    guard let self = self else {
-                        assertionFailure("update profile, handle result: self is empty")
-                        return
-                    }
-                    
                     self.profile = newProfile
                     self.nftViewModels[indexPath.row].isLike = isLike
                     self.likes = Set(newProfile.likes)
@@ -191,6 +186,11 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
         
         orderService.updateOrder(updateOrder: updateOrder) { [weak self] (result: Result<ShoppingOrder, Error>) in
             DispatchQueue.main.async {
+                guard let self = self else {
+                    assertionFailure("updateOrder, handle result: self is empty")
+                    return
+                }
+                
                 switch result {
                 case .failure(let error):
                     let alertModel = AlertModel(
@@ -203,15 +203,10 @@ final class NFTCollectionPresenter: NFTCollectionPresenterProtocol {
                             ) { _ in }
                         ]
                     )
-  
+                    self.delegate?.showAlert(alert: alertModel)
                     print("failed to update profile with error \(error)")
                     return
                 case .success(let newOrder):
-                    guard let self = self else {
-                        assertionFailure("updateOrder, handle result: self is empty")
-                        return
-                    }
-
                     self.order = newOrder
                     self.inOrder = Set(newOrder.nfts)
                     self.nftViewModels[indexPath.row].isOnOrder = isOnOrder
