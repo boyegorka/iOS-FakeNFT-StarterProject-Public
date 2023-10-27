@@ -9,7 +9,7 @@ import Foundation
 
 protocol ShoppingBagInteractor {
     func loadShoppingOrder(with sortType: ShoppingBagSortType)
-    func loadNFTs(with ids: [String])
+    func loadNFTs(with ids: [String], sortType: ShoppingBagSortType?)
 
     func sendShoppingOrder(_ shoppingOrder: ShoppingOrder)
 }
@@ -33,7 +33,7 @@ extension ShoppngBagInteractorImpl: ShoppingBagInteractor {
         }
     }
 
-    func loadNFTs(with ids: [String]) {
+    func loadNFTs(with ids: [String], sortType: ShoppingBagSortType?) {
         let dispatchGroup = DispatchGroup()
 
         for id in ids {
@@ -49,7 +49,20 @@ extension ShoppngBagInteractorImpl: ShoppingBagInteractor {
         dispatchGroup.notify(queue: .main) { [weak self] in
             guard let self else { return }
 
-            output?.didLoadNFTs(nfts.wrappedValue.isEmpty ? nil : nfts.wrappedValue)
+            let sortedNFTs = nfts.wrappedValue.sorted { lhsNFT, rhsNFT in
+                let sortType = sortType ?? .name
+
+                switch sortType {
+                case .price:
+                    return lhsNFT.price < rhsNFT.price
+                case .rating:
+                    return lhsNFT.rating < rhsNFT.rating
+                case .name:
+                    return lhsNFT.name < rhsNFT.name
+                }
+            }
+
+            output?.didLoadNFTs(nfts.wrappedValue.isEmpty ? nil : sortedNFTs)
             nfts.wrappedValue.removeAll()
         }
     }

@@ -48,7 +48,7 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
 
         guard let nfts = shoppingOrder?.nfts else { return }
 
-        interactor?.loadNFTs(with: nfts)
+        interactor?.loadNFTs(with: nfts, sortType: stateStorage?.sortType)
     }
 
     func didLoadNFTs(_ nfts: [NFT]?) {
@@ -65,7 +65,7 @@ extension ShoppingBagPresenter: ShoppingBagInteractorOutput {
 
         guard let nfts = shoppingOrder?.nfts else { return }
 
-        interactor?.loadNFTs(with: nfts)
+        interactor?.loadNFTs(with: nfts, sortType: stateStorage?.sortType)
     }
 }
 
