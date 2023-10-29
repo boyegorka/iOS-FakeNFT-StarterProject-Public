@@ -48,6 +48,7 @@
 		4CDC0871681846F3B0C904E7 /* LikesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED7B593A2238499A781BE2 /* LikesDTO.swift */; };
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
+		4DFE259D2AEE60F900B32F5B /* StatisticProfileScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADB8E7E6706AACE57CAF53B4 /* StatisticProfileScreen.strings */; };
 		535D135B1A3D325B0F8B0FBB /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9840700CA757CC7B726ED /* CatalogueViewController.swift */; };
 		57F6D860B736DA9445D5CF5C /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DF82E0DBB35EA4353582 /* NFTCollectionModel.swift */; };
 		596090CA1F067D9BA3D01986 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CBB04A3D2DD772A78B63C4 /* CataloguePresenter.swift */; };
@@ -923,7 +924,7 @@
 			mainGroup = 3F68068A29CBBAF100B4F915;
 			packageReferences = (
 				3F603CCB29DB4A53000C43D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
-				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 3F68069429CBBAF100B4F915 /* Products */;
 			projectDirPath = "";
@@ -947,6 +948,7 @@
 				3F68069E29CBBAF100B4F915 /* Main.storyboard in Resources */,
 				4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */,
 				B7C914EDD4523E75A26CCE90 /* CollectionScreen.strings in Resources */,
+				4DFE259D2AEE60F900B32F5B /* StatisticProfileScreen.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1445,7 +1447,7 @@
 				minimumVersion = 13.0.0;
 			};
 		};
-		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1463,7 +1465,7 @@
 		};
 		3F603CCF29DB4A74000C43D7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = 3F603CCE29DB4A74000C43D7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
