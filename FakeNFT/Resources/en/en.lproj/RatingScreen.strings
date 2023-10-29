@@ -1,1 +1,7 @@
-
+"sort.byname" = "By name";
+"sort.byrating" = "By rating";
+"sort.close" = "Close";
+"sort.title" = "Sort";
+"alert.message" = "Failed to retrieve data";
+"alert.cancel" = "Cancel";
+"alert.retry" = "Retry";
