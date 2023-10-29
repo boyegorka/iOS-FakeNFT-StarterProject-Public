@@ -109,10 +109,10 @@ final class RatingCell: UITableViewCell {
             
             avatarView.heightAnchor.constraint(equalToConstant: 28),
             avatarView.widthAnchor.constraint(equalToConstant: 28),
-            avatarView.leadingAnchor.constraint(equalTo: userCard.leadingAnchor, constant: 16),
+            avatarView.leadingAnchor.constraint(equalTo: userCard.leadingAnchor, constant: sideMargin),
             avatarView.centerYAnchor.constraint(equalTo: userCard.centerYAnchor),
             
-            ratingLabel.trailingAnchor.constraint(equalTo: userCard.trailingAnchor, constant: -16),
+            ratingLabel.trailingAnchor.constraint(equalTo: userCard.trailingAnchor, constant: -sideMargin),
             ratingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),

@@ -12,6 +12,7 @@ protocol ProfileViewPresenterProtocol {
     var user: User { get }
     
     func didTapProfileWebsite()
+    func didTapNFTsCollection()
     func setImage()
 }
 
@@ -19,8 +20,8 @@ protocol ProfileViewPresenterDelegateProtocol: AnyObject {
     var avatarView: UIImageView { get set }
     
     func showAlert(alert: AlertModel)
-    func showWebView(_ webView: UIViewController)
-    func closeWebView()
+    func showSubViewController(_ subViewController: UIViewController)
+    func closeSubViewController()
     func setImage(url: URL)
 }
 
@@ -57,7 +58,21 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
         let webViewController = WebViewController(with: url, output: self)
         self.webViewController = webViewController
         
-        delegate.showWebView(webViewController)
+        delegate.showSubViewController(webViewController)
+    }
+
+    func didTapNFTsCollection() {
+        let defaultNetworkClient = DefaultNetworkClient()
+        let collectionPresenter = NFTCollectionPresenter(
+            nftService: NFTService(networkClient: defaultNetworkClient),
+            profileService: ProfileService(networkClient: defaultNetworkClient),
+            orderService: OrderService(networkClient: defaultNetworkClient)
+        )
+        let collectionVC = NFTsCollectionView(nfts: user.nfts, presenter: collectionPresenter)
+
+        collectionPresenter.delegate = collectionVC
+        
+        delegate?.showSubViewController(collectionVC)
     }
     
     func setImage() {
@@ -65,7 +80,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
             let delegate = delegate,
             let url = URL(string: user.avatarUrl)
         else {
-            print("failed to get url")
+            print("failed to get url from \(user.avatarUrl)")
             return
         }
         delegate.setImage(url: url)
@@ -78,6 +93,6 @@ extension ProfileViewPresenter: WebViewControllerOutput {
     }
     
     func didTapBackButton() {
-        delegate?.closeWebView()
+        delegate?.closeSubViewController()
     }
 }
