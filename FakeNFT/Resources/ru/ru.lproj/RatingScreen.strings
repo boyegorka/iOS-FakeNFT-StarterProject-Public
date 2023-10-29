@@ -1,1 +1,7 @@
-
+"sort.byname" = "По имени";
+"sort.byrating" = "По рейтингу";
+"sort.close" = "Закрыть";
+"sort.title" = "Сортировка";
+"alert.message" = "Не удалось получить данные";
+"alert.cancel" = "Отмена";
+"alert.retry" = "Повторить";
