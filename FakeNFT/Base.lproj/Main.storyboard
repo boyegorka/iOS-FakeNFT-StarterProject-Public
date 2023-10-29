@@ -1,45 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x8A-Mu-ndU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x8A-Mu-ndU">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Каталог-->
+        <!--Catalogue View Controller-->
         <scene sceneID="XQZ-g0-L4M">
             <objects>
-                <viewController id="lvU-bz-Vrw" sceneMemberID="viewController">
+                <viewController id="lvU-bz-Vrw" customClass="CatalogueViewController" customModule="FakeNFT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVa-0O-Hf2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Каталог" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWk-zT-AG8">
-                                <rect key="frame" x="16" y="159" width="361" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="6aO-T1-oVc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Jse-zw-T38"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Jse-zw-T38" firstAttribute="trailing" secondItem="qWk-zT-AG8" secondAttribute="trailing" constant="16" id="KN5-HO-MY8"/>
-                            <constraint firstItem="qWk-zT-AG8" firstAttribute="leading" secondItem="Jse-zw-T38" secondAttribute="leading" constant="16" id="QPq-w8-S1J"/>
-                            <constraint firstItem="qWk-zT-AG8" firstAttribute="top" secondItem="Jse-zw-T38" secondAttribute="top" constant="100" id="vow-DL-xVp"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Каталог" image="square.stack.3d.up.fill" catalog="system" id="X74-Ak-ux8"/>
+                    <navigationItem key="navigationItem" id="f1u-Rh-5Kv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEn-qE-qUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-720" y="50"/>
+            <point key="canvasLocation" x="205.34351145038167" y="50"/>
         </scene>
         <!--Профиль-->
         <scene sceneID="L5w-BP-CgG">
@@ -103,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqF-RD-h9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127" y="50"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="50"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="za3-hk-cpw">
@@ -116,7 +100,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="6i5-Qt-ukh" kind="relationship" relationship="viewControllers" id="T9j-PL-Yhv"/>
-                        <segue destination="lvU-bz-Vrw" kind="relationship" relationship="viewControllers" id="UQk-8s-8v2"/>
+                        <segue destination="aea-f7-Mh0" kind="relationship" relationship="viewControllers" id="UQk-8s-8v2"/>
                         <segue destination="ZuB-kp-v3h" kind="relationship" relationship="viewControllers" id="z6Y-lX-f3f"/>
                         <segue destination="aDr-Rx-MMR" kind="relationship" relationship="viewControllers" id="HDa-tO-gwF"/>
                     </connections>
@@ -141,6 +125,25 @@
             </objects>
             <point key="canvasLocation" x="1866.4122137404579" y="50"/>
         </scene>
+        <!--Каталог-->
+        <scene sceneID="36G-7j-AcI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aea-f7-Mh0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Каталог" image="square.stack.3d.up.fill" catalog="system" id="X74-Ak-ux8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xwE-jb-CCp">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lvU-bz-Vrw" kind="relationship" relationship="rootViewController" id="A0b-6b-8DD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VB0-eH-9uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-721.37404580152668" y="50"/>
+        </scene>
         <!--Статистика-->
         <scene sceneID="tTk-db-DbV">
             <objects>
@@ -163,8 +166,8 @@
     </scenes>
     <resources>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
-        <image name="flag.2.crossed.fill" catalog="system" width="128" height="72"/>
-        <image name="square.stack.3d.up.fill" catalog="system" width="128" height="125"/>
+        <image name="flag.2.crossed.fill" catalog="system" width="128" height="80"/>
+        <image name="square.stack.3d.up.fill" catalog="system" width="120" height="128"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
