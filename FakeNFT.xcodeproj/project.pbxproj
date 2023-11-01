@@ -75,6 +75,8 @@
 		90BB350F2ADCE9230087D331 /* ShoppingBagPaymentResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB350E2ADCE9230087D331 /* ShoppingBagPaymentResultsViewController.swift */; };
 		90BB35112ADCE94E0087D331 /* ShoppingBagPaymentResultsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35102ADCE94E0087D331 /* ShoppingBagPaymentResultsAssembly.swift */; };
 		90BB35132ADCE9580087D331 /* ShoppingBagPaymentResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB35122ADCE9580087D331 /* ShoppingBagPaymentResultsPresenter.swift */; };
+		90D2125F2AF287590000EABB /* CollectionScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5F1F0CA12E6C615B821874E /* CollectionScreen.strings */; };
+		90D212602AF2875C0000EABB /* StatisticProfileScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 644342BFAB727E2BD04E79BC /* StatisticProfileScreen.strings */; };
 		999A265F2962BAB370D7B467 /* ShoppingBagPaymentPickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CF74525008D7DC093401ED /* ShoppingBagPaymentPickerRouter.swift */; };
 		9DB13729405BD6CB6080B9A5 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE6E328BF2B98D40D71291 /* OrderCellModel.swift */; };
 		9F905F1E26A31FA46265D573 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7CB0CF8EA48B06DA036109 /* NFTModel.swift */; };
@@ -946,8 +948,10 @@
 				4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */,
 				3F6806A029CBBAF200B4F915 /* Assets.xcassets in Resources */,
 				3F68069E29CBBAF100B4F915 /* Main.storyboard in Resources */,
+				90D2125F2AF287590000EABB /* CollectionScreen.strings in Resources */,
 				4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */,
 				4DFE259E2AF2858E00B32F5B /* CollectionScreen.strings in Resources */,
+				90D212602AF2875C0000EABB /* StatisticProfileScreen.strings in Resources */,
 				4DFE259D2AEE60F900B32F5B /* StatisticProfileScreen.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
