@@ -49,6 +49,7 @@
 		4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D952AD53BC00048BE2D /* RatingScreen.strings */; };
 		4D142D962AD53BC40048BE2D /* RatingScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D142D982AD53BC40048BE2D /* RatingScreen.strings */; };
 		4DFE259D2AEE60F900B32F5B /* StatisticProfileScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADB8E7E6706AACE57CAF53B4 /* StatisticProfileScreen.strings */; };
+		4DFE259E2AF2858E00B32F5B /* CollectionScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DFE25A02AF2858E00B32F5B /* CollectionScreen.strings */; };
 		535D135B1A3D325B0F8B0FBB /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9840700CA757CC7B726ED /* CatalogueViewController.swift */; };
 		57F6D860B736DA9445D5CF5C /* NFTCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DF82E0DBB35EA4353582 /* NFTCollectionModel.swift */; };
 		596090CA1F067D9BA3D01986 /* CataloguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CBB04A3D2DD772A78B63C4 /* CataloguePresenter.swift */; };
@@ -83,7 +84,6 @@
 		B1C009F74AA70BD534A88D2A /* ReferenceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99256F938FB0CB3B795C6A42 /* ReferenceWrapper.swift */; };
 		B622139F703E6DF315712D22 /* CollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAEC3F3F76A442B97A95BEF /* CollectionPresenter.swift */; };
 		B77D5FF860225FF08A47E863 /* ShoppingBagPaymentPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5706649048DCEA1155FCE551 /* ShoppingBagPaymentPickerInteractor.swift */; };
-		B7C914EDD4523E75A26CCE90 /* CollectionScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = C60E6FA2F9F6D79B4D8FDE35 /* CollectionScreen.strings */; };
 		BBD0486918AA8E33E40EB6B6 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD79E3DD837DAAB2DB538BB /* RatingCell.swift */; };
 		C792ACE471FA8CD0CA3EA40C /* ShoppingBagDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97A7C2A61D4DB8AFA9644B /* ShoppingBagDataSource.swift */; };
 		C92335BE1F1E0C7C38160CB8 /* OrdersDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930AC2C6B9B7012048CCB733 /* OrdersDTO.swift */; };
@@ -162,6 +162,7 @@
 		4CD79E3DD837DAAB2DB538BB /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
 		4D142D972AD53BC40048BE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RatingScreen.strings; sourceTree = "<group>"; };
 		4D142D992AD53C040048BE2D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RatingScreen.strings; sourceTree = "<group>"; };
+		4DFE259F2AF2858E00B32F5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CollectionScreen.strings; sourceTree = "<group>"; };
 		4E97A7C2A61D4DB8AFA9644B /* ShoppingBagDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagDataSource.swift; sourceTree = "<group>"; };
 		4F3060E22772B8804787D1E5 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		501F1072824F9A6657B35353 /* ShoppingBagPaymentPickerViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagPaymentPickerViewInput.swift; sourceTree = "<group>"; };
@@ -209,7 +210,6 @@
 		C0D7FB8F14C7B3AEF4666A2A /* CatalogueString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogueString+Extensions.swift"; sourceTree = "<group>"; };
 		C1551A7EB8EAEE88FD6D92D9 /* ShoppingBagViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewInput.swift; sourceTree = "<group>"; };
 		C417E826D980755408A69318 /* ShoppingBagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagRouter.swift; sourceTree = "<group>"; };
-		C60E6FA2F9F6D79B4D8FDE35 /* CollectionScreen.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = CollectionScreen.strings; sourceTree = "<group>"; };
 		CC845B41E05BBFB5D161D844 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		CE5E7D9EA54BA897D97EAD38 /* ShoppingBagStateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBagStateStorage.swift; sourceTree = "<group>"; };
 		D74BA3B3ECE13D659D48A876 /* CatalogueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueService.swift; sourceTree = "<group>"; };
@@ -510,7 +510,7 @@
 			children = (
 				4D142D952AD53BC00048BE2D /* RatingScreen.strings */,
 				ADB8E7E6706AACE57CAF53B4 /* StatisticProfileScreen.strings */,
-				C60E6FA2F9F6D79B4D8FDE35 /* CollectionScreen.strings */,
+				4DFE25A02AF2858E00B32F5B /* CollectionScreen.strings */,
 			);
 			path = ru;
 			sourceTree = "<group>";
@@ -947,7 +947,7 @@
 				3F6806A029CBBAF200B4F915 /* Assets.xcassets in Resources */,
 				3F68069E29CBBAF100B4F915 /* Main.storyboard in Resources */,
 				4D142D932AD53BC00048BE2D /* RatingScreen.strings in Resources */,
-				B7C914EDD4523E75A26CCE90 /* CollectionScreen.strings in Resources */,
+				4DFE259E2AF2858E00B32F5B /* CollectionScreen.strings in Resources */,
 				4DFE259D2AEE60F900B32F5B /* StatisticProfileScreen.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1122,6 +1122,14 @@
 				4D142D972AD53BC40048BE2D /* en */,
 			);
 			name = RatingScreen.strings;
+			sourceTree = "<group>";
+		};
+		4DFE25A02AF2858E00B32F5B /* CollectionScreen.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DFE259F2AF2858E00B32F5B /* ru */,
+			);
+			name = CollectionScreen.strings;
 			sourceTree = "<group>";
 		};
 		644342BFAB727E2BD04E79BC /* StatisticProfileScreen.strings */ = {
