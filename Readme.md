@@ -1,5 +1,11 @@
 # ТЗ мобильного приложения FakeNFT
 
+https://github.com/boyegorka/iOS-FakeNFT-StarterProject-Public/assets/78556508/b3e09b30-dc85-448e-b5be-387d3147823a
+
+https://github.com/boyegorka/iOS-FakeNFT-StarterProject-Public/assets/78556508/88de1f8a-b850-453c-967f-17dc0e2b88f7
+
+https://github.com/boyegorka/iOS-FakeNFT-StarterProject-Public/assets/78556508/d09d2cbe-4b05-4373-ad95-37c2000813c1
+
 # Ссылки
 
 [Дизайн Figma](https://www.figma.com/file/k1LcgXHGTHIeiCv4XuPbND/FakeNFT-(YP)?node-id=96-5542&t=YdNbOI8EcqdYmDeg-0)
